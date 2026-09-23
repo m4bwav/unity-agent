@@ -1,0 +1,33 @@
+# Checks the skills' structure, manifests, links and public-safety guards on Linux and Windows, and runs
+# both PowerShell scripts on a Windows runner with no Unity installed, where each must still print one
+# parseable JSON object. A change that only works on the author's machine cannot land unnoticed.
+name: tests
+on:
+  push:
+    branches: [master]
+  pull_request:
+jobs:
+  structure:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.9", "3.13"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: skills, companions, manifests, links and text guards
+        run: python tests/check_skills.py
+  powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PowerShell 7
+        shell: pwsh
+        run: ./tests/check_scripts.ps1
+      - name: Windows PowerShell 5.1
+        shell: powershell
+        run: ./tests/check_scripts.ps1

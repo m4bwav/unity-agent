@@ -1,0 +1,61 @@
+{
+  "evergreen": "1.0",
+  "name": "unity-agent-cli",
+  "kind": "skill",
+  "main": "SKILL.md",
+  "files": {
+    "research": "RESEARCH.md",
+    "changelog": "CHANGELOG.md",
+    "learnings": "LEARNINGS.md",
+    "tests": "TESTS.md"
+  },
+  "protocol": "plugin",
+  "source": null,
+  "topic": "the official Unity CLI (unity binary, beta) and com.unity.pipeline package: commands, exit codes, MCP mode, editor install, and how agents drive a running Unity Editor",
+  "tier": "fast",
+  "interval_days": 3.5,
+  "last_checked": "2026-09-22",
+  "next_due": "2026-09-26",
+  "verify_at_use": false,
+  "volatile_claims": [],
+  "contradiction": null,
+  "events": [],
+  "streak": {
+    "quiet": 0,
+    "pinned_min": 0,
+    "pinned_max": 0,
+    "vau_quiet": 0
+  },
+  "history": [
+    {
+      "date": "2026-09-06",
+      "m": null,
+      "interval_after": 14,
+      "note": "created"
+    },
+    {
+      "date": "2026-09-22",
+      "m": 0.6,
+      "interval_after": 3.5,
+      "note": "Pipeline 0.7 removed get_console_logs (loop now unity recompile / console); CLI beta.11 install line and exit codes; sandbox rule; Unity's official plugin; L-006/L-007 folded in"
+    }
+  ],
+  "counts": {
+    "learnings": 3,
+    "changes": 3,
+    "research": 6,
+    "tests": 1
+  },
+  "consolidate_every": 25,
+  "tests": {
+    "last_run": "2026-09-06T09:50",
+    "harness": "evergreen-tester",
+    "env": "dev-machine",
+    "cases": 3,
+    "passed": 3,
+    "failed": 0,
+    "failing": [],
+    "last_failure": null,
+    "research_after_days": null
+  }
+}

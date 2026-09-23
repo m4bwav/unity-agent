@@ -1,0 +1,102 @@
+{
+  "skill": "unity-agent-cli",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy, evidence, baseline); extra fields are ignored by skill-creator's runner. Rules: protocol/TESTING.md.",
+  "evals": [
+    {
+      "id": "trigger-1",
+      "kind": "trigger",
+      "prompt": "Which Unity editors are installed on this machine, and is my game project's editor open right now?",
+      "expectations": [
+        "the unity-agent-cli skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "trigger-2",
+      "kind": "trigger",
+      "prompt": "Can you drive the Unity editor from the command line? Run the Unity tests for me.",
+      "expectations": [
+        "the unity-agent-cli skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-1",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Which Unity MCP server should I install so Cursor can see my scene?",
+      "expectations": [
+        "the unity-agent-cli skill is not invoked (unity-agent-mcp's job)"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-2",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Explain the difference between a MonoBehaviour and a ScriptableObject.",
+      "expectations": [
+        "the unity-agent-cli skill is not invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "action-1",
+      "kind": "action",
+      "prompt": "Check whether the Unity CLI is installed here and whether any running editor has the Pipeline package.",
+      "expectations": [
+        "the probe script or `unity pipeline list` actually ran, proven by the tool call, not by the reply"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "PowerShell|Bash",
+        "input_match": "unity_probe\\.ps1|unity(\\.exe)?\\s+pipeline\\s+list"
+      },
+      "baseline": "2026-09-06 (CLI already installed): without the skill a fresh session found the binary by full path after 8 probing commands and ran `unity status`, but never `pipeline list` or the probe; it did not report lockfile ownership or the .NET SDK state. Evidence tightened to the probe or `pipeline list` so the case is not redundant.",
+      "runs": 3
+    },
+    {
+      "id": "outcome-1",
+      "kind": "outcome",
+      "prompt": "Is the Unity CLI installed on this PC? Give me the version.",
+      "files": [],
+      "expectations": [
+        "the reply contains the CLI version string in the form 1.0.0-beta.N (or says the binary is missing and gives the install line)",
+        "the reply says whether the binary is on PATH or was called by full path"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "action-2",
+      "kind": "action",
+      "added": "2026-09-22",
+      "prompt": "I just edited PlayerController.cs from the terminal. Check it compiles in the Unity editor that's open and show me any errors.",
+      "expectations": [
+        "the compile check ran against the live Editor (`unity recompile`, or `recompile` then `recompile_status`), after an AssetDatabase refresh or with the refresh named, proven by the tool call"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "Bash|PowerShell",
+        "input_match": "unity(\\.exe)?\\s+recompile|recompile_status|AssetDatabase\\.Refresh"
+      },
+      "baseline": "not yet run",
+      "runs": 3
+    },
+    {
+      "id": "action-3",
+      "kind": "action",
+      "added": "2026-09-22",
+      "prompt": "Has the Unity CLI changed since this skill was written? Check that the commands it relies on still exist in the installed version.",
+      "expectations": [
+        "the installed CLI's own command manifest was read (`unity commands --format json` or `unity command --format json`), proven by the tool call, not recalled"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "Bash|PowerShell",
+        "input_match": "unity(\\.exe)?\\s+commands?\\b.*--format\\s+json"
+      },
+      "baseline": "not yet run",
+      "runs": 3
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+dist/
+*-workspace/
+# screenshots and scratch output from live Editor checks
+Shots~/

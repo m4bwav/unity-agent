@@ -1,0 +1,55 @@
+{
+  "evergreen": "1.0",
+  "name": "unity-agent-workflow",
+  "kind": "skill",
+  "main": "SKILL.md",
+  "files": {
+    "research": "RESEARCH.md",
+    "changelog": "CHANGELOG.md",
+    "learnings": "LEARNINGS.md",
+    "tests": "TESTS.md"
+  },
+  "protocol": "plugin",
+  "source": null,
+  "topic": "how AI coding agents work safely in Unity projects: verification ladder, YAML and .meta rules, Humble Object testing, agent skill packs for Unity, Unity's AI policies and agent roadmap",
+  "tier": "moderate",
+  "interval_days": 30,
+  "last_checked": "2026-09-06",
+  "next_due": "2026-10-06",
+  "verify_at_use": false,
+  "volatile_claims": [],
+  "contradiction": null,
+  "events": [],
+  "streak": {
+    "quiet": 0,
+    "pinned_min": 0,
+    "pinned_max": 0,
+    "vau_quiet": 0
+  },
+  "history": [
+    {
+      "date": "2026-09-06",
+      "m": null,
+      "interval_after": 30,
+      "note": "created"
+    }
+  ],
+  "counts": {
+    "learnings": 1,
+    "changes": 2,
+    "research": 4,
+    "tests": 1
+  },
+  "consolidate_every": 25,
+  "tests": {
+    "last_run": "2026-09-06T09:50",
+    "harness": "evergreen-tester",
+    "env": "dev-machine",
+    "cases": 2,
+    "passed": 2,
+    "failed": 0,
+    "failing": [],
+    "last_failure": null,
+    "research_after_days": null
+  }
+}

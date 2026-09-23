@@ -1,0 +1,86 @@
+{
+  "skill": "unity-agent-mcp",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy, evidence, baseline); extra fields are ignored by skill-creator's runner. Rules: protocol/TESTING.md.",
+  "evals": [
+    {
+      "id": "trigger-1",
+      "kind": "trigger",
+      "prompt": "Is there an MCP server for Unity? I want Claude to be able to see my scene.",
+      "expectations": [
+        "the unity-agent-mcp skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "trigger-2",
+      "kind": "trigger",
+      "prompt": "The unity-mcp bridge keeps dropping every time I hit Play. What's going on?",
+      "expectations": [
+        "the unity-agent-mcp skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-1",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Run the EditMode tests for my game project from the command line.",
+      "expectations": [
+        "the unity-agent-mcp skill is not invoked (unity-agent-cli's job)"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-2",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Set up the Todoist MCP connector for me.",
+      "expectations": [
+        "the unity-agent-mcp skill is not invoked (not Unity)"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "action-1",
+      "kind": "action",
+      "prompt": "Which Unity MCP servers could work for this project, and which ones are ruled out? Check the actual project path and Unity version before answering.",
+      "expectations": [
+        "the skill read ProjectSettings/ProjectVersion.txt or ran the probe / `unity pipeline list` before recommending, proven by the tool call"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "Read|Bash|PowerShell",
+        "input_match": "ProjectVersion\\.txt|unity_probe\\.ps1|unity(\\.exe)?\\s+pipeline\\s+list"
+      },
+      "baseline": "2026-09-06: without the skill a fresh session listed CoplayDev and IvanMurzak from memory, did not mention the official `unity mcp`, and did not check the path-with-spaces constraint.",
+      "runs": 3
+    },
+    {
+      "id": "outcome-1",
+      "kind": "outcome",
+      "prompt": "Recommend one Unity MCP route for Claude Code on this project and give me the exact register command.",
+      "files": [],
+      "expectations": [
+        "the reply names the official `unity mcp` route and gives a register command: `claude mcp add` (local scope) with `unity mcp --project-path`, or `unity mcp configure claude-code`",
+        "the reply says the Pipeline package must be installed first and that this edits Packages/manifest.json"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "action-2",
+      "kind": "action",
+      "added": "2026-09-22",
+      "prompt": "The unity MCP server is registered. Prove the client can actually see its tools.",
+      "expectations": [
+        "a listing of the server's tools actually ran (`claude mcp list` or the MCP Inspector CLI with tools/list), proven by the tool call"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "Bash|PowerShell",
+        "input_match": "claude\\s+mcp\\s+list|inspector.*--cli.*tools/list"
+      },
+      "baseline": "not yet run",
+      "runs": 3
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "skill": "unity-agent-headless",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy, evidence, baseline); extra fields are ignored by skill-creator's runner. Rules: protocol/TESTING.md.",
+  "evals": [
+    {
+      "id": "trigger-1",
+      "kind": "trigger",
+      "prompt": "Does the C# in this Unity project compile? The editor is open, so don't close it.",
+      "expectations": [
+        "the unity-agent-headless skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "trigger-2",
+      "kind": "trigger",
+      "prompt": "Run the level importer in batch mode without opening Unity and tell me if it worked.",
+      "expectations": [
+        "the unity-agent-headless skill is invoked"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-1",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Add com.unity.cinemachine to this project.",
+      "expectations": [
+        "the unity-agent-headless skill is not invoked (unity-agent-packages' job)"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "decoy-2",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Write a unit test for the ScoreCalculator rounding rule.",
+      "expectations": [
+        "the unity-agent-headless skill is not invoked (plain coding task; the repo's test project)"
+      ],
+      "runs": 3
+    },
+    {
+      "id": "action-1",
+      "kind": "action",
+      "prompt": "Compile-check this Unity project without opening the editor.",
+      "expectations": [
+        "the driver ran with -Action compile (or dotnet build on Assembly-CSharp.csproj), proven by the tool call"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "PowerShell|Bash",
+        "input_match": "unity_headless\\.ps1.*-Action compile",
+        "or": {
+          "type": "file",
+          "path": "<project>/Logs/agent-compile-*.log"
+        }
+      },
+      "baseline": "2026-09-06: without the skill a fresh session hit 'No .NET SDKs were found', searched the Unity install for 2 minutes, found Data\\DotNetSdk on the 4th try and built the csproj (0 errors); with the skill it was one driver call. Evidence tightened to the driver or its log so the case is not redundant on a machine where the bundled SDK is discoverable.",
+      "runs": 3
+    },
+    {
+      "id": "outcome-1",
+      "kind": "outcome",
+      "prompt": "Where does Unity 6 write the editor log for this project, and what line tells me a batchmode run succeeded?",
+      "files": [],
+      "expectations": [
+        "the reply names <project>/Logs/Editor.log (per project) and 'Exiting batchmode successfully'",
+        "the reply warns that the exit code alone is not proof and names 'error CS' / 'Scripts have compiler errors'"
+      ],
+      "runs": 3
+    }
+  ]
+}

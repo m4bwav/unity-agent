@@ -1,0 +1,8 @@
+{
+  "name": "unity-agent",
+  "owner": { "name": "Mark Rogers" },
+  "metadata": { "description": "Skills that let AI coding agents drive Unity: the official CLI, headless batchmode, MCP bridges, agent-safe workflow rules and UPM packages" },
+  "plugins": [
+    { "name": "unity-agent", "source": "./", "description": "Five evergreen Unity skills: the official Unity CLI and Pipeline package, batchmode and offline compile checks, MCP server choice, agent-safe repo rules, and package management" }
+  ]
+}

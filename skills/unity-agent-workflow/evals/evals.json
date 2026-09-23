@@ -1,0 +1,60 @@
+{
+  "skill": "unity-agent-workflow",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy, evidence, baseline); extra fields are ignored by skill-creator's runner. Rules: protocol/TESTING.md.",
+  "evals": [
+    {
+      "id": "trigger-1",
+      "kind": "trigger",
+      "prompt": "What's the latest thinking on using AI coding agents with Unity? How should Claude work in my Unity repo?",
+      "expectations": ["the unity-agent-workflow skill is invoked"],
+      "runs": 3
+    },
+    {
+      "id": "trigger-2",
+      "kind": "trigger",
+      "prompt": "Set up this Unity project so Copilot and Claude Code don't break scenes or .meta files.",
+      "expectations": ["the unity-agent-workflow skill is invoked"],
+      "runs": 3
+    },
+    {
+      "id": "decoy-1",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Which Unity editors are installed and is the editor open?",
+      "expectations": ["the unity-agent-workflow skill is not invoked (unity-agent-cli's job)"],
+      "runs": 3
+    },
+    {
+      "id": "decoy-2",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Generate a treasure chest sprite with ComfyUI.",
+      "expectations": ["the unity-agent-workflow skill is not invoked (an image-generation task, not Unity workflow)"],
+      "runs": 3
+    },
+    {
+      "id": "action-1",
+      "kind": "action",
+      "prompt": "Add agent working rules to this Unity repo so future sessions verify changes properly.",
+      "expectations": ["the skill read the repo's existing AGENTS.md/CLAUDE.md before proposing anything, and any addition came from references/AGENTS-snippet.md, proven by the tool calls"],
+      "evidence": {
+        "type": "trace",
+        "tool": "Read|Bash",
+        "input_match": "AGENTS\\.md|AGENTS-snippet\\.md"
+      },
+      "baseline": "2026-09-06: without the skill a fresh session wrote generic C# style rules and did not mention YAML, .meta, the compile check, or the Editor lock.",
+      "runs": 3
+    },
+    {
+      "id": "outcome-1",
+      "kind": "outcome",
+      "prompt": "I renamed a public method used by the UI. What do I run before I can say it's safe?",
+      "files": [],
+      "expectations": [
+        "the reply says to grep all of Assets for the old name and run the whole-assembly compile check (dotnet build on the Unity csproj), not just `dotnet test`",
+        "the reply names the log or output that proves it"
+      ],
+      "runs": 3
+    }
+  ]
+}

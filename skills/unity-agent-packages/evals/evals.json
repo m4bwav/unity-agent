@@ -1,0 +1,60 @@
+{
+  "skill": "unity-agent-packages",
+  "_format": "skill-creator evals.json plus evergreen fields (kind, decoy, evidence, baseline); extra fields are ignored by skill-creator's runner. Rules: protocol/TESTING.md.",
+  "evals": [
+    {
+      "id": "trigger-1",
+      "kind": "trigger",
+      "prompt": "Add com.unity.cinemachine to my Unity project.",
+      "expectations": ["the unity-agent-packages skill is invoked"],
+      "runs": 3
+    },
+    {
+      "id": "trigger-2",
+      "kind": "trigger",
+      "prompt": "Bump the test framework package to 2.0 and make sure it resolves.",
+      "expectations": ["the unity-agent-packages skill is invoked"],
+      "runs": 3
+    },
+    {
+      "id": "decoy-1",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Does the project compile without opening the editor?",
+      "expectations": ["the unity-agent-packages skill is not invoked (unity-agent-headless' job)"],
+      "runs": 3
+    },
+    {
+      "id": "decoy-2",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Install the npm package for the Todoist MCP server.",
+      "expectations": ["the unity-agent-packages skill is not invoked (not a Unity package)"],
+      "runs": 3
+    },
+    {
+      "id": "action-1",
+      "kind": "action",
+      "prompt": "What packages does this Unity project use, and is the Pipeline package among them?",
+      "expectations": ["the skill read Packages/manifest.json, proven by the tool call"],
+      "evidence": {
+        "type": "trace",
+        "tool": "Read|Bash",
+        "input_match": "Packages[/\\\\]manifest\\.json"
+      },
+      "baseline": "2026-09-06: without the skill a fresh session also reads manifest.json (redundant for reading); the skill's value is on mutation, so a follow-up action case should add a package on a scratch project once one exists.",
+      "runs": 3
+    },
+    {
+      "id": "outcome-1",
+      "kind": "outcome",
+      "prompt": "Why can't I use `unity run` to install packages headlessly, and what should I do instead?",
+      "files": [],
+      "expectations": [
+        "the reply says `unity run` injects -quit and Client.Add completes on later Editor ticks, so run Unity.exe -batchmode without -quit and exit from the script",
+        "the reply names the Pipeline package_add route for an open Editor"
+      ],
+      "runs": 3
+    }
+  ]
+}
