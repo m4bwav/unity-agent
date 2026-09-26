@@ -13,16 +13,16 @@
   "source": null,
   "topic": "the official Unity CLI (unity binary, beta) and com.unity.pipeline package: commands, exit codes, MCP mode, editor install, and how agents drive a running Unity Editor",
   "tier": "fast",
-  "interval_days": 3.5,
-  "last_checked": "2026-09-22",
-  "next_due": "2026-09-26",
+  "interval_days": 3,
+  "last_checked": "2026-09-26",
+  "next_due": "2026-09-29",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 0,
+    "pinned_min": 1,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -38,21 +38,27 @@
       "m": 0.6,
       "interval_after": 3.5,
       "note": "Pipeline 0.7 removed get_console_logs (loop now unity recompile / console); CLI beta.11 install line and exit codes; sandbox rule; Unity's official plugin; L-006/L-007 folded in"
+    },
+    {
+      "date": "2026-09-26",
+      "m": 0.4,
+      "interval_after": 3,
+      "note": "Pipeline 0.8.0-exp.1 (missed last refresh) and CLI beta.10 build commands; cost: searches 6 · fetches 15 · tool calls 25"
     }
   ],
   "counts": {
     "learnings": 3,
     "changes": 3,
-    "research": 6,
-    "tests": 1
+    "research": 7,
+    "tests": 2
   },
   "consolidate_every": 25,
   "tests": {
-    "last_run": "2026-09-06T09:50",
-    "harness": "evergreen-tester",
+    "last_run": "2026-09-26T11:17",
+    "harness": "evergreen-tester subagents, partial suite after refresh",
     "env": "dev-machine",
-    "cases": 3,
-    "passed": 3,
+    "cases": 2,
+    "passed": 2,
     "failed": 0,
     "failing": [],
     "last_failure": null,

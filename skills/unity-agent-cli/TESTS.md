@@ -10,6 +10,12 @@ Cases added 2026-09-22 and not yet run: action-2 (the compile loop) and action-3
 
 ## Runs
 
+### T-20260926-1 · 2026-09-26 · evergreen-tester subagents (partial suite after the Pipeline 0.8 refresh) · Windows 11 dev machine, CLI 1.0.0-beta.8, no Editor running · 2/2 graded (1 not gradable)
+- trigger-1 pass (Skill called; probe and `unity status` read-only; answer named both editors and that the user's game project (6000.6.0f1) was not open)
+- decoy-1 pass (unity-agent-cli not invoked); the run found unity-agent-mcp missing from the skill listing: its ~/.claude/skills junction had never been made (fixed 2026-09-26)
+- action-2 not gradable: no Editor running; the skill probed, got STATUS_NO_INSTANCES (exit 6), stopped and offered the offline compile check; needs a live Editor on Pipeline 0.8 to grade (also the object-payload parse of `recompile_status`)
+- led to: none (C-20260926-1 was the refresh itself)
+
 ### T-20260906-1 · 2026-09-06 · evergreen-tester subagent (one run per case, not three) · dev-machine Claude Code · 3/3
 - trigger-1 pass (skill invoked; probe ran)
 - decoy-1 pass (unity-agent-mcp invoked instead)

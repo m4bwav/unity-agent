@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20260926-1 · 2026-09-26 · Pipeline 0.8.0-exp.1: capture default, JSON status payloads, 127.0.0.1 only; CLI build listing and `build run`
+- because: R-20260926-1
+- files: SKILL.md (Step 3 live Editor: screens sentence, status polling bullet, raw HTTP bullet; tests and builds: build line), RESEARCH.md (Current understanding; Open questions; Search plan; R-20260926-1, R-20260926-2)
+- Status payloads are now objects, so a double-decode breaks; the capture default changed and Edit Mode support is noted as unverified until a live run; `localhost` no longer reaches the server at all.
+
 ### C-20260922-2 · 2026-09-22 · Refresh: the verification loop moves to `unity recompile` and `console`; new install line, exit codes, sandbox rule, Unity's plugin; L-006 and L-007 folded in
 - because: R-20260922-1 to R-20260922-5, L-006, L-007 (the fold C-20260916-1 deferred to this refresh)
 - files: SKILL.md (Step 1 install block; Step 2 route table and JSON note; Step 3 live Editor: command count, eval, verification loop, Play mode; tests line; MCP mode; skills line; Maintenance), evals/evals.json (action-2, action-3 added, not yet run), RESEARCH.md (header; Current understanding; Open questions; Search plan; R-20260922-1..5)
