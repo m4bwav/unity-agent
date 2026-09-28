@@ -62,3 +62,11 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Scope: global
 - Status: active · helpful 1 · harmful 0 · last_confirmed 2026-09-16
 
+
+### L-008 · 2026-09-28 · `unity open` through a pipe never returns; start it with Start-Process and --non-interactive
+- Trigger: 2026-09-28: a PowerShell script ran `& unity open <path> --format json 2>&1 | Out-String` on a self-hosted CI runner; the Editor opened and went idle, the script blocked for over an hour with no CPU and no child process.
+- Hypothesis: the pipe read ends only when every writer closes it, and the Editor that `unity open` launches inherits the write end. `Start-Process` with `-RedirectStandard*` leaks it too (.NET inherits all inheritable handles when redirecting). Plain `Start-Process` does not leak, but the CLI then has an interactive console and waits on a prompt nobody sees unless given `--non-interactive`.
+- Rule: from any script that captures CLI output, open the Editor with `Start-Process <unity.exe> -ArgumentList open,"<path>",--no-banner,--non-interactive -PassThru` (no redirection, default window style so the Editor is not minimized), then poll `unity status` for `ready`. Verified: CLI exits code 0 in under 1 s, Editor ready about 20 s later on a warm Library.
+- Evidence: the game project's ai-docs/solutions/2026-09-28-unity-open-from-a-piped-script-hangs-forever.md (timing table)
+- Scope: global
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-09-28
