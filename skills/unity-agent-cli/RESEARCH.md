@@ -23,6 +23,7 @@ Topic: the official Unity CLI (unity binary, beta) and com.unity.pipeline packag
 - Parameters of the server-side `wait` command mentioned in the Pipeline 0.7 changelog, which might replace L-006's retry loop (not in the 0.8 manual, 2026-09-26).
 - On Pipeline 0.8: does `capture_game_view` (default screen source) include UI Toolkit runtime UI in Edit Mode, and does L-004 still hold?
 - The eval timeout: the skill no longer states the unverified 5 s default; check `unity command eval --help` on the next live run.
+- Does `unity command run_tests` exit non-zero on failed tests in CLI beta.11 with Pipeline 0.8, or only report them in the payload (R-20260929-1)? And does `set_autotick` with `persist` true really survive a reload here (R-20260929-2)? Check both on the next live run.
 - The development machine still runs CLI beta.8; `unity recompile` needs beta.11 (`unity self-update` is the user's call).
 - (resolved 2026-09-06) `com.unity.pipeline` 0.6.0-exp.1 runs on 6000.5.0f1; 149 commands registered.
 
@@ -51,12 +52,34 @@ Testing (how the job is verified and what checkers exist):
 
 - `unity test exit code 8 nunit xml <year>`; UTF 2.0 changelog; `"unity test" flaky retries shard`
 - `GameDevBench arxiv unity agent benchmark <year>`
+- `github SKILL.md "unity command" OR "com.unity.pipeline"` (found Hissal/mattpocock-skills-unity, a source of sandbox-verified pitfalls); the Pipeline manual's command pages (editor-lifecycle, build-and-compilation) are richer than its changelog: read them each refresh
 
 Best sources (primary first): unity.com/blog, docs.unity3d.com package manuals (fetch fine), the CLI's own `--help` and `changelog`, github.com/Unity-Technologies/skills, github.com/CoplayDev/unity-mcp issues for pitfalls. Noisy: docs.unity.com (returns titles only), mcpservers.org listings, YouTube explainers.
 
 ## Findings log
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
+
+### R-20260929-3 · 2026-09-29 · Quiet subject, tooling, practice: no CLI beta.12, no Pipeline 0.9; Codex plugin route; Windows port pitfall
+- summary: CLI release notes still end at beta.11 (2026-09-22); `com.unity.pipeline@0.9` changelog 404s and the 0.8 changelog's newest entry is 0.8.0-exp.1; the MCP registry has no Unity Technologies server. Unity-Technologies/skills commits of 2026-09-25 and 28 do not touch `skills/unity-cli` (last substantive edit 2026-09-16); `unity-cli` at 6.4K installs on skills.sh (about 100 a day); unity-agent-plugin 0.1.6-beta, 369 stars, documents `codex plugin marketplace add Unity-Technologies/unity-agent-plugin`. Practice: a Discussions thread (2026-08-20, no staff reply) says the Pipeline auto-port range 7800-7849 can fall inside Windows' Hyper-V excluded range (`netsh int ipv4 show excludedportrange protocol=tcp`); another says Pipeline 0.5/0.6 ship an old Unsafe.dll that breaks after Collections 2.6.8. Testing: GameLogicBench (arXiv 2609.21562, Godot) and Unity Insight (2609.27585) exist; nothing benchmarks the Unity CLI.
+- track: subject, tooling, practice, testing
+- sources: https://docs.unity.com/en-us/unity-cli/release-notes, https://docs.unity3d.com/Packages/com.unity.pipeline@0.8/changelog/CHANGELOG.html, https://skills.sh/Unity-Technologies/skills/unity-cli, https://github.com/Unity-Technologies/unity-agent-plugin, https://discussions.unity.com/t/com-unity-pipeline-auto-port-problem/1734381, https://discussions.unity.com/t/com-unity-pipeline-ships-an-outdated-unsafe-dll-causing-missingmethodexception-after-collections-2-6-8/1735411, https://arxiv.org/abs/2609.21562
+- magnitude: 0.2
+- applied: C-20260929-1 (Codex route pointed); the port and DLL pitfalls noted here only (point if `unity status` fails with the Editor open)
+
+### R-20260929-2 · 2026-09-29 · Subject: `set_autotick` persists across domain reloads by default
+- summary: The Pipeline 0.6 and 0.8 manuals (editor lifecycle page) document `set_autotick` with `enable` (default true), `interval_ms` (16) and `persist` (default true): the choice survives a domain reload and dies with the Editor process. SKILL.md said it resets on domain reload, a claim from a 0.4-era third-party skill, never observed here (L-005 is about the player loop, not autotick). The 0.8 page also lists `editor_focus`, `audit`/`audit_status`, `report_evals` and `get/set_authoring_root`.
+- track: subject
+- sources: https://docs.unity3d.com/Packages/com.unity.pipeline@0.8/manual/commands/editor-lifecycle-and-observability.html, https://docs.unity3d.com/Packages/com.unity.pipeline@0.6/manual/commands/editor-lifecycle-and-observability.html
+- magnitude: 0.3
+- applied: C-20260929-1
+
+### R-20260929-1 · 2026-09-29 · Testing: a live `run_tests` can exit 0 with failed tests; `unity command recompile` returns early
+- summary: Hissal/mattpocock-skills-unity PR #46 (a `unity-verification` skill, one author, no evals) found in sandbox checks that the Pipeline `run_tests` command exits 0 when tests fail, so the failed count must be read from the payload, and that `unity command recompile` returns before compilation ends (they use the blocking `unity recompile`). The Pipeline 0.8 manual confirms `run_tests` is synchronous by default (`timeout` 300 s; `async_tests=true` returns at once, then poll `test_status`), returns a TestExecutionResponse, and `recompile` is asynchronous with `recompile_status` giving `status, failed, errors, compilationFailed`. Treat the exit-0 claim as a lead until a live run here confirms it.
+- track: testing
+- sources: https://github.com/Hissal/mattpocock-skills-unity/pull/46, https://docs.unity3d.com/Packages/com.unity.pipeline@0.8/manual/commands/build-and-compilation.html
+- magnitude: 0.35
+- applied: C-20260929-1 (SKILL.md Step 3; evals action-4)
 
 ### R-20260926-2 · 2026-09-26 · Tooling, practice, testing: install velocity, community wrappers, a parsing case
 - summary: Unity-Technologies/skills commits of 2026-09-21 to 25 are README pointers, a frontmatter CI check, URP-default project creation and a restored skill; none changes `unity-cli` guidance. skills.sh: `unity-cli` 6.1K installs (about 75 a day; next is unity-package-management at 5.1K); unity-agent-plugin 0.1.6-beta, 357 stars, no MCP server. Practice: itsdevlogger/unity-cli-skill (9 stars, Windows only, no tests) wraps the CLI; Nice-Wolf-Studio/unity-claude-skills issue #4 proposes `unity test` over raw `-runTests` for the exit-code contract (the skill already says so). Testing: nothing new since GameDevBench; a candidate case is parsing `recompile_status` as an object on Pipeline 0.8.

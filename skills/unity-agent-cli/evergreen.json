@@ -14,15 +14,15 @@
   "topic": "the official Unity CLI (unity binary, beta) and com.unity.pipeline package: commands, exit codes, MCP mode, editor install, and how agents drive a running Unity Editor",
   "tier": "fast",
   "interval_days": 3,
-  "last_checked": "2026-09-26",
-  "next_due": "2026-09-29",
+  "last_checked": "2026-09-29",
+  "next_due": "2026-10-02",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 1,
+    "pinned_min": 2,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -44,12 +44,18 @@
       "m": 0.4,
       "interval_after": 3,
       "note": "Pipeline 0.8.0-exp.1 (missed last refresh) and CLI beta.10 build commands; cost: searches 6 · fetches 15 · tool calls 25"
+    },
+    {
+      "date": "2026-09-29",
+      "m": 0.35,
+      "interval_after": 3,
+      "note": "run_tests payload over exit code, set_autotick persists, Codex plugin route; suite not re-run (action cases need a live Editor); cost: searches 8 · fetches 23 · tool calls 35"
     }
   ],
   "counts": {
     "learnings": 8,
     "changes": 3,
-    "research": 7,
+    "research": 8,
     "tests": 2
   },
   "consolidate_every": 25,

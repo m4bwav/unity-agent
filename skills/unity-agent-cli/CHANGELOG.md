@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20260929-1 · 2026-09-29 · Live `run_tests` judged by its payload; `set_autotick` persists; Codex plugin route
+- because: R-20260929-1, R-20260929-2, R-20260929-3
+- files: SKILL.md (Step 3 live Editor: long operations bullet; "Skills Unity ships"), RESEARCH.md (Open questions; Search plan, Testing; R-20260929-1 to 3), evals/evals.json (action-4)
+- A live `unity command run_tests` can exit 0 with failed tests, so the skill now reads the payload's failed count; `unity command recompile` returns early, so the blocking `unity recompile` is preferred; the autotick note no longer says the setting resets on a domain reload (the manuals say it persists); the Codex install line for Unity's plugin sits beside the Claude Code one.
+
 ### C-20260926-1 · 2026-09-26 · Pipeline 0.8.0-exp.1: capture default, JSON status payloads, 127.0.0.1 only; CLI build listing and `build run`
 - because: R-20260926-1
 - files: SKILL.md (Step 3 live Editor: screens sentence, status polling bullet, raw HTTP bullet; tests and builds: build line), RESEARCH.md (Current understanding; Open questions; Search plan; R-20260926-1, R-20260926-2)

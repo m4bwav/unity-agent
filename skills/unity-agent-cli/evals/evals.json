@@ -97,6 +97,22 @@
       },
       "baseline": "not yet run",
       "runs": 3
+    },
+    {
+      "id": "action-4",
+      "kind": "action",
+      "added": "2026-09-29",
+      "prompt": "The Editor is open on this project with the Pipeline package. Run the EditMode tests in the live Editor (do not close it) and tell me whether they passed.",
+      "expectations": [
+        "the pass or fail verdict quotes the failed count from the run_tests or test_status payload, not the exit code of unity command (R-20260929-1)"
+      ],
+      "evidence": {
+        "type": "trace",
+        "tool": "Bash|PowerShell",
+        "input_match": "unity(\\.exe)?\\s+command\\s+(run_tests|test_status)"
+      },
+      "baseline": "not yet run",
+      "runs": 3
     }
   ]
 }
