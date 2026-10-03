@@ -13,9 +13,9 @@
   "source": null,
   "topic": "MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls",
   "tier": "fast",
-  "interval_days": 7.0,
-  "last_checked": "2026-09-22",
-  "next_due": "2026-09-30",
+  "interval_days": 4.67,
+  "last_checked": "2026-10-03",
+  "next_due": "2026-10-08",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
@@ -38,18 +38,24 @@
       "m": 0.45,
       "interval_after": 7.0,
       "note": "Pipeline 0.7 and CLI beta.11 in the official row; claude-code configure and local scope; CoplayDev tool groups; docs row; Inspector CLI evidence"
+    },
+    {
+      "date": "2026-10-03",
+      "m": 0.3,
+      "interval_after": 4.67,
+      "note": "Pipeline 0.8 in official row, beta.12 duplicate-entry check, CoplayDev 6000.6 break (fix unreleased), reload-scene dialog; cost: searches 3 · fetches 2 · tool calls 12"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 5,
-    "tests": 1
+    "research": 6,
+    "tests": 2
   },
   "consolidate_every": 25,
   "tests": {
-    "last_run": "2026-09-06T09:50",
-    "harness": "evergreen-tester",
+    "last_run": "2026-10-03T08:07",
+    "harness": "evergreen-tester subagents, trigger cases after refresh",
     "env": "dev-machine",
     "cases": 2,
     "passed": 2,

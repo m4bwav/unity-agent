@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261003-1 · 2026-10-03 · CLI beta.12: `status --until-ready` and `wait_for` prove Play mode; `--` fence; `unity setup claude`; Claude Code MCP line corrected
+- because: R-20261003-1, R-20261003-2, R-20260922-3 (the MCP mode line still said Claude Code had no `configure` target)
+- files: SKILL.md (Step 2 route table: Pipeline install row; JSON note; Step 3 live Editor: verification loop, Play mode; MCP mode; "Skills Unity ships"), RESEARCH.md (header; Current understanding; Open questions; Search plan, Subject and Tooling; R-20261003-1 to 3)
+- After a Pipeline install or `editor_play` the skill now waits with `unity status --until-ready` and proves the game runs with `playerLoopTicking`/`frameCount` and `wait_for`, keeping L-006's re-send loop for older CLIs; Pipeline parameters go after `--`; `unity recompile` exit 7 now also covers a dropped request; Unity's plugin installs with `unity setup claude`.
+
 ### C-20260929-1 · 2026-09-29 · Live `run_tests` judged by its payload; `set_autotick` persists; Codex plugin route
 - because: R-20260929-1, R-20260929-2, R-20260929-3
 - files: SKILL.md (Step 3 live Editor: long operations bullet; "Skills Unity ships"), RESEARCH.md (Open questions; Search plan, Testing; R-20260929-1 to 3), evals/evals.json (action-4)

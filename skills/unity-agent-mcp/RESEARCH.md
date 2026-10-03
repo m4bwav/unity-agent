@@ -2,19 +2,20 @@
 
 Findings that back [SKILL.md](SKILL.md). Changes they caused are logged in [CHANGELOG.md](CHANGELOG.md); procedural lessons live in [LEARNINGS.md](LEARNINGS.md); test runs in [TESTS.md](TESTS.md); schedule and state in `evergreen.json`. Protocol: MAINTENANCE.md.
 
-Topic: MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls. Tier `fast`. Last refresh 2026-09-22; next due per `evergreen.json`.
+Topic: MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls. Tier `fast`. Last refresh 2026-10-03; next due per `evergreen.json`.
 
 ## Current understanding
 
-- Official route (since July 2026): the Unity CLI's `unity mcp` stdio server over `com.unity.pipeline` (0.7.0-exp.1 since 2026-09-10; Unity 6.0+). Free, no Unity AI subscription. `unity mcp configure <client>` writes the config for 16 client ids (beta.10), `claude-code` included (`--dry-run` previews); `claude mcp add --scope local` stays the manual route. Unity's official Claude Code plugin (2026-09-09) is CLI-first and registers no MCP server. The older in-Editor "Unity MCP" (com.unity.ai.assistant 2.x, relay in `~/.unity/relay/`, needs Unity Cloud plus an AI beta seat) is marked deprecated in Assistant 2.18 docs.
-- Community ranking by adoption (stars, last commit): CoplayDev/unity-mcp (MIT, ~14.4k stars, v10.2.0 on 2026-09-01; Unity 2021.3 to 6.5; 47 tools in groups, only `core` on by default; Python/uv server) > IvanMurzak/Unity-MCP (Apache-2.0, ~4.3k, 0.91.0 on 2026-09-17; 70+ tools, `[AiTool]`, npm CLI, batchmode and in-Player; project path must not contain spaces) > CoderGamester/mcp-unity (MIT, ~1.9k, v1.5.0 on 2026-09-03 with a required per-project token in `Library/McpUnity/bridge-token`, WebSocket 8090, Unity 6+). None is in the official MCP registry; a registry search for `unity` returns Funplay's small bridge, a docs server (unity-api-mcp) and a paid test-loop server.
+- Official route (since July 2026): the Unity CLI's `unity mcp` stdio server over `com.unity.pipeline` (0.8.0-exp.1 since 2026-09-22, still the newest on 2026-10-03; Unity 6.0+). Free, no Unity AI subscription. `unity mcp configure <client>` writes the config for 16 client ids (beta.10), `claude-code` included (`--dry-run` previews); `claude mcp add --scope local` stays the manual route; from CLI beta.12 (2026-09-30) `configure claude-code` skips with a warning when an enabled plugin already runs `unity mcp` for the project. Unity's official Claude Code plugin (2026-09-09; 0.1.8-beta on 2026-10-01, also installable with `unity setup claude`) is CLI-first and still registers no MCP server. The older in-Editor "Unity MCP" (com.unity.ai.assistant 2.x, relay in `~/.unity/relay/`, needs Unity Cloud plus an AI beta seat) is marked deprecated in Assistant 2.18 docs.
+- Community ranking by adoption (stars, last commit): CoplayDev/unity-mcp (MIT, ~14.7k stars, v10.2.0 on 2026-09-01 still the latest release on 2026-10-03, active `main`; Unity 2021.3 to 6.5; 47 tools in groups, only `core` on by default; Python/uv server) > IvanMurzak/Unity-MCP (Apache-2.0, ~4.4k, 0.93.2 on 2026-09-27; 70+ tools, `[AiTool]`, npm CLI, batchmode and in-Player; project path must not contain spaces) > CoderGamester/mcp-unity (MIT, ~1.9k, v1.5.0 on 2026-09-03 and no push since with a required per-project token in `Library/McpUnity/bridge-token`, WebSocket 8090, Unity 6+). None is in the official MCP registry; a registry search for `unity` returns Funplay's small bridge, a docs server (unity-api-mcp) and a paid test-loop server.
 - Docs: CLI beta.11 adds `unity docs <topic>` (docs matched to the project's Unity version) and Unity's remote Issue Tracker MCP (`unity mcp configure <client> --server issue-tracker`). docs.unity.com publishes an `llms.txt`; docs.unity3d.com has none. saqoosha/unity-docs-mcp is unmaintained (12 stars, last push 2025-06); Codeturion/unity-api-mcp (MCP registry) is the maintained community docs server.
-- Pitfalls verified from issues and reports: bridges drop on domain reload (CoplayDev #657, #1207; 20 s reconnect), forced DisableDomainReload for PlayMode tests causes NRE after an EditMode run (#1322), Windows TcpListener leak with silent port fallback (#1173), unfocused Editor stops ticking, modal dialogs need `-automated`, Pipeline token 401 after Play mode reported by Vindler (docs say the token survives reloads within a session). Unity 6000.5.1 + Assistant 2.13.0-pre.2 livelocks the AssetDatabase at startup (UUM-132096, CoplayDev #1219).
+- Pitfalls verified from issues and reports: bridges drop on domain reload (CoplayDev #657, #1207; 20 s reconnect), forced DisableDomainReload for PlayMode tests causes NRE after an EditMode run (#1322), Windows TcpListener leak with silent port fallback (#1173), unfocused Editor stops ticking, modal dialogs need `-automated`, Pipeline token 401 after Play mode reported by Vindler (docs say the token survives reloads within a session). Unity 6000.5.1 + Assistant 2.13.0-pre.2 livelocks the AssetDatabase at startup (UUM-132096, CoplayDev #1219). Unity 6000.6 broke CoplayDev v10.2.0's instance-ID lookups (#1398, #1412; fix #1399 on `main` 2026-09-30, unreleased); the Save/Reload-scene prompt stalls agents that read it as an import (#1411).
 - Practice consensus (Unity Discussions, 2026): code-only work is the most reliable; MCP is best for inspection and small scene edits; hand-emitting YAML is unreliable. Robert Wetzold migrated 31 MCP tools to `[CliCommand]`s in Aug 2026 (secondary source).
 - Nothing installed on the development machine as of 2026-09-06: no `~/.claude.json` MCP entries for Unity, no Pipeline package in the game project, so no bridge is verified locally.
 
 ## Open questions
 
+- (carried) Does a CoplayDev release after v10.2.0 ship the 6000.6 fix? Check its releases next refresh.
 - Which client is best served by `unity mcp` versus the CLI in practice (latency per call was reported around 0.8 s). Footprint measured 2026-09-06: 149 tools, ~24k tokens of schema.
 - Does CoplayDev v10.1.x list Unity 6.5/6.6 as tested (the 6.5 fix was in 9.6.8)?
 - (partly resolved 2026-09-22) Unity 6.6 shipped 2026-09-01 with Play entry skipping the domain reload by default in new projects only; existing projects keep their setting. Do the reload pitfalls shrink for bridges on those projects?
@@ -32,7 +33,7 @@ Subject (the goal and the latest thinking on reaching it):
 
 Tooling (skills, plugins, MCP servers, scripts, knowledge graphs built for this subject):
 
-- `https://registry.modelcontextprotocol.io/v0/servers?search=unity`; github.com/CoplayDev/unity-mcp/releases; github.com/IvanMurzak/Unity-MCP/releases; github.com/CoderGamester/mcp-unity/commits/main
+- `https://registry.modelcontextprotocol.io/v0/servers?search=unity`; github.com/CoplayDev/unity-mcp/releases (and `gh api repos/CoplayDev/unity-mcp/commits?since=<last_checked>`, since fixes sit on `main` for weeks between releases); github.com/IvanMurzak/Unity-MCP/releases; github.com/CoderGamester/mcp-unity/commits/main
 - `path:SKILL.md "unity-mcp" OR "unity mcp"` on GitHub code search; `unity mcp server <year> site:github.com stars:>500`
 
 Practice (how others use AI agents on this goal, and everything in between):
@@ -50,6 +51,27 @@ Best sources (primary first): the three GitHub repos (README, releases, issues),
 ## Findings log
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
+
+### R-20261003-3 · 2026-10-03 · Practice and testing: quiet beyond Unity's play-mode loop
+- summary: No new practitioner write-ups on MCP versus CLI since 2026-09-22 beyond Unity's own play-mode verification loop (CLI-based: `status --until-ready`, `wait_for` on `Time.frameCount`; see unity-agent-cli R-20261003-2), which reinforces rung 2 for clients with a shell. Testing: nothing new for Editor bridges (general MCP benchmarks such as MCP-AgentBench are not Unity-specific). The MCP registry still lists no Unity Technologies server; its Unity entries are community bridges (Funplay, shiranui-isuzu 4.4.2, hera-agent-unity) and the Codeturion docs server.
+- track: practice, testing
+- sources: https://raw.githubusercontent.com/Unity-Technologies/skills/main/skills/unity-cli/references/playmode-verification-loop.md, https://registry.modelcontextprotocol.io/v0/servers?search=unity&limit=100
+- magnitude: 0.1
+- applied: note
+
+### R-20261003-2 · 2026-10-03 · Tooling: server versions and the Unity 6000.6 break in CoplayDev
+- summary: CoplayDev 14.7K stars, no release since v10.2.0 (2026-09-01) but busy `main`: #1399 (merged 2026-09-30) fixes `InstanceIDToObjectCompat` throwing `NotImplementedException` on 6000.6, which broke `manage_components` and the `gameobject/{id}` resources (#1398, #1412 still open on 6000.6.2f1); a Pi client configurator; Unity.Mathematics serialisation fix for a hang (#1415). #1411: agents stall on the Save/Reload-scene dialog, taking it for an import. IvanMurzak 0.92.0 to 0.93.2 (2026-09-23 to 27): CLI setup fixes, a 6000.6.3f1 test project. CoderGamester unchanged since 1.5.0. Response: point (CoplayDev row note, Step 4 dialog bullet).
+- track: tooling
+- sources: https://github.com/CoplayDev/unity-mcp/pull/1399, https://github.com/CoplayDev/unity-mcp/issues/1412, https://github.com/CoplayDev/unity-mcp/issues/1411, https://github.com/IvanMurzak/Unity-MCP/releases, https://github.com/CoderGamester/mcp-unity/releases
+- magnitude: 0.3
+- applied: C-20261003-1
+
+### R-20261003-1 · 2026-10-03 · Subject: CLI beta.12 de-duplicates the Claude Code entry, safer Codex config, `unity bug mcp`
+- summary: CLI 1.0.0-beta.12 (2026-09-30): `unity mcp configure claude-code` checks whether an enabled Claude Code plugin already provides a server running `unity mcp` for the same project and then warns and skips its own `claude mcp add` unless confirmed or `--yes`; `unity mcp configure codex` refuses to edit `config.toml` when it cannot verify a safe match; `unity bug mcp` is an alias of `unity mcp configure --server issue-tracker` (same `--list`, `--local`, `--yes`, `--dry-run`); `unity mcp` treats an Editor argument error as an answer, not a lost connection; `unity setup claude` installs Unity's plugin (no MCP server in it, 0.1.8-beta). Pipeline unchanged at 0.8.0-exp.1.
+- track: subject
+- sources: https://docs.unity.com/en-us/unity-cli/release-notes, https://github.com/Unity-Technologies/unity-agent-plugin, https://packages.unity.com/com.unity.pipeline
+- magnitude: 0.3
+- applied: C-20261003-1
 
 ### R-20260922-6 · 2026-09-22 · Testing: the MCP Inspector CLI proves a server's tools without any client
 - summary: `npx @modelcontextprotocol/inspector --cli <server command> --method tools/list` returns the tool list as JSON, and `--method tools/call --tool-name <name>` makes one call, so a stdio server such as `unity mcp` can be verified for clients with no status command. Response: adopt, as the Step 3 evidence and a new action case.

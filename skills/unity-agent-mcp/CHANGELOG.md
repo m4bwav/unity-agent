@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261003-1 · 2026-10-03 · Refresh: Pipeline 0.8 in the official row, beta.12 duplicate check, CoplayDev on Unity 6000.6, scene-reload dialog
+- because: R-20261003-1, R-20261003-2
+- files: SKILL.md (Step 2 official, CoplayDev, IvanMurzak and docs rows; Step 3.3; Step 4 modal dialogs bullet), RESEARCH.md (header; Current understanding; Open questions; Search plan, Tooling; R-20261003-1 to 3)
+- The official row named Pipeline 0.7; `unity mcp configure claude-code` now skips when a plugin already runs the server; CoplayDev v10.2.0 breaks on 6000.6 until a release carries #1399; the Save/Reload-scene prompt is named as the dialog that stalls agents.
+
 ### C-20260922-2 · 2026-09-22 · Refresh: Pipeline 0.7 and CLI beta.11 in the official row, Claude Code at local scope, tool groups, docs row, Inspector evidence
 - because: R-20260922-1 to R-20260922-6
 - files: SKILL.md (Step 1 rung 2; Step 2 official, CoplayDev, IvanMurzak, CoderGamester and docs rows, registry note; Step 3.3 and 3.4; Step 4 reload bullet and a new bullet on tool success versus state; Maintenance), evals/evals.json (outcome-1 accepts either register command; action-2 added, not yet run), RESEARCH.md (header; Current understanding; Open questions; R-20260922-1..6)
