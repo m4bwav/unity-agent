@@ -14,15 +14,28 @@
   "topic": "the official Unity CLI (unity binary, beta) and com.unity.pipeline package: commands, exit codes, MCP mode, editor install, and how agents drive a running Unity Editor",
   "tier": "fast",
   "interval_days": 3,
-  "last_checked": "2026-09-29",
-  "next_due": "2026-10-02",
-  "verify_at_use": false,
-  "volatile_claims": [],
+  "last_checked": "2026-10-03",
+  "next_due": null,
+  "verify_at_use": true,
+  "volatile_claims": [
+    {
+      "claim": "Newest Unity CLI release is 1.0.0-beta.12 (2026-09-30)",
+      "checked": "2026-10-03"
+    },
+    {
+      "claim": "Newest com.unity.pipeline is 0.8.0-exp.1 (packages.unity.com)",
+      "checked": "2026-10-03"
+    },
+    {
+      "claim": "Play-mode proof: unity status --until-ready, playerLoopTicking/frameCount, unity command wait_for",
+      "checked": "2026-10-03"
+    }
+  ],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 2,
+    "pinned_min": 0,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -50,18 +63,24 @@
       "m": 0.35,
       "interval_after": 3,
       "note": "run_tests payload over exit code, set_autotick persists, Codex plugin route; suite not re-run (action cases need a live Editor); cost: searches 8 · fetches 23 · tool calls 35"
+    },
+    {
+      "date": "2026-10-03",
+      "m": 0.5,
+      "interval_after": null,
+      "note": "CLI beta.12 (status --until-ready, playerLoopTicking, setup claude, recompile exit 7) and Unity's play-mode loop with wait_for adopted; cost: searches 3 · fetches 4 · tool calls 22"
     }
   ],
   "counts": {
     "learnings": 8,
     "changes": 3,
-    "research": 8,
-    "tests": 2
+    "research": 9,
+    "tests": 4
   },
   "consolidate_every": 25,
   "tests": {
-    "last_run": "2026-09-26T11:17",
-    "harness": "evergreen-tester subagents, partial suite after refresh",
+    "last_run": "2026-10-03T08:07",
+    "harness": "evergreen-tester subagents, trigger cases after refresh",
     "env": "dev-machine",
     "cases": 2,
     "passed": 2,

@@ -4,7 +4,13 @@ Test runs for [SKILL.md](SKILL.md). Cases live in `evals/evals.json`. A failure 
 
 A test passes on evidence (a tool call in the trace, a file, a marker, a log line), never on the transcript's claim that something was done.
 
-Entry shape: `### T-YYYYMMDD-n · date · harness · env · passed/total`, then one line per failing case (`id · kind · class · what the evidence showed`), then `led to:` (L-, C-, R- ids or none). Newest first. Budget 150 lines; archive older runs to `TESTS-ARCHIVE.md`.
+Entry shape: `### T-20261003-1 · 2026-10-03 · evergreen-tester subagents (trigger cases after refresh, one run each) · Windows 11 dev machine, no Editor started · 2/2
+- trigger-2 pass (unity-agent-mcp invoked; answer gave the reload cause and pitfalls)
+- decoy-1 pass (unity-agent-cli invoked, not unity-agent-mcp)
+- Trigger results from a subagent are a proxy for the main loop.
+- led to: none
+
+### T-YYYYMMDD-n · date · harness · env · passed/total`, then one line per failing case (`id · kind · class · what the evidence showed`), then `led to:` (L-, C-, R- ids or none). Newest first. Budget 150 lines; archive older runs to `TESTS-ARCHIVE.md`.
 
 Case added 2026-09-22 and not yet run: action-2 (tools listed through `claude mcp list` or the MCP Inspector CLI), from C-20260922-2.
 
