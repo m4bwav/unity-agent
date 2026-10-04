@@ -45,7 +45,7 @@ Rule: `dotnet test` green is not a compile check for engine-side files; before c
 
 ## Step 4: tooling worth pointing at (verify state at refresh)
 
-- Unity-Technologies/skills (MIT, official): `npx skills add Unity-Technologies/skills` gives `unity-cli`, `unity-package-management`, `ui` router with `ui-uitk` (UI Toolkit), `ui-ugui`, `ui-imgui`, `validate-urp-render-graph-renderer-feature`, `shader-graph-create-custom-node`, multiplayer, IAP, LevelPlay, `new-unity-project`. `unity skill install <client>` does the same for the CLI skill.
+- Unity-Technologies/skills (MIT, official): `npx skills@1.7.0 add Unity-Technologies/skills` gives `unity-cli`, `unity-package-management`, `ui` router with `ui-uitk` (UI Toolkit), `ui-ugui`, `ui-imgui`, `validate-urp-render-graph-renderer-feature`, `shader-graph-create-custom-node`, multiplayer, IAP, LevelPlay, `new-unity-project`. `unity skill install <client>` does the same for the CLI skill.
 - nowsprinting/unity-coding-skills (Unlicense): test-first Unity skills (`plan-feature`, `fix-bug`, `run-tests`, `unity-yaml-editing-guide`, `test-designing-guide`); the test and scene skills depend on Rider's MCP.
 - Nice-Wolf-Studio/unity-claude-skills: 35 topic skills in a WHEN/WRONG/RIGHT/GOTCHA format; gamedev-skills/awesome-gamedev-agent-skills: router over 60+ game-dev skills.
 - Unity's own agentic path: Unity CLI + Pipeline (unity-agent-cli), `unity mcp` (unity-agent-mcp). Unity 6.6 makes Fast Enter Play Mode (no domain reload on play) the default; Unity 7 (preview late 2026) is positioned around agent collaboration.

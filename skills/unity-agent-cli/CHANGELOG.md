@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261003-2 · 2026-10-03 · Install step: winget first, Unity's script downloaded and read before it runs
+- because: user request (Claude plugin directory submission)
+- files: SKILL.md (Step 1: CLI missing)
+- The Claude plugin directory flags piping a downloaded script straight into the shell. `winget install Unity.CLI` (checked 2026-10-03 with `winget show`: Unity CLI 1.0.0-beta.12) leads; Unity's install script stays as a second route, saved and read before it runs.
+
 ### C-20261003-1 · 2026-10-03 · CLI beta.12: `status --until-ready` and `wait_for` prove Play mode; `--` fence; `unity setup claude`; Claude Code MCP line corrected
 - because: R-20261003-1, R-20261003-2, R-20260922-3 (the MCP mode line still said Claude Code had no `configure` target)
 - files: SKILL.md (Step 2 route table: Pipeline install row; JSON note; Step 3 live Editor: verification loop, Play mode; MCP mode; "Skills Unity ships"), RESEARCH.md (header; Current understanding; Open questions; Search plan, Subject and Tooling; R-20261003-1 to 3)

@@ -1,6 +1,6 @@
 {
   "name": "unity-agent",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Evergreen skills for driving Unity with AI coding agents: the official Unity CLI and Pipeline package, headless batchmode and compile checks, MCP bridge selection, agent-safe Unity workflow rules, and UPM package management. Each skill re-researches its subject on a schedule and carries the evals that prove it triggers and acts.",
   "author": {
     "name": "Mark Rogers"
@@ -18,5 +18,8 @@
   ],
   "skills": "./skills",
   "repository": "https://github.com/m4bwav/unity-agent",
-  "homepage": "https://github.com/m4bwav/unity-agent"
+  "homepage": "https://github.com/m4bwav/unity-agent",
+  "documentationUrl": "https://github.com/m4bwav/unity-agent#readme",
+  "supportUrl": "https://github.com/m4bwav/unity-agent/issues",
+  "privacyPolicyUrl": "https://github.com/m4bwav/unity-agent#privacy"
 }

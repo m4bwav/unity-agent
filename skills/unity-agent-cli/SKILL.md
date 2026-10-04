@@ -25,10 +25,10 @@ It reports: CLI path and version (or `null`), installed editors, running Editor 
 CLI missing: install it (user-level, `%LOCALAPPDATA%\Unity\bin` or `UNITY_CLI_HOME`, checksum-verified, adds itself to the user PATH; no admin; the latest beta until a stable release exists):
 
 ```powershell
-irm https://unity.com/install.ps1 | iex
+winget install Unity.CLI
 ```
 
-`winget install Unity.CLI` works too, and Unity Hub 3.21+ installs the CLI on first launch. A shell opened before the install does not see the new PATH: call it by full path `"$env:LOCALAPPDATA\Unity\bin\unity.exe"` until the user restarts the terminal. `unity self-update` updates; `unity self-uninstall` removes it.
+Unity's install script at https://unity.com/install.ps1 does the same: download it, let the user read it, then run the saved file. Unity Hub 3.21+ installs the CLI on first launch. A shell opened before the install does not see the new PATH: call it by full path `"$env:LOCALAPPDATA\Unity\bin\unity.exe"` until the user restarts the terminal. `unity self-update` updates; `unity self-uninstall` removes it.
 
 ## Step 2: pick the route
 

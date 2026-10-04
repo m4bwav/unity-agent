@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261003-2 · 2026-10-03 · Inspector command pinned to 2.9.0
+- because: user request (Claude plugin directory submission)
+- files: SKILL.md (Install and verify, step 4)
+- The Claude plugin directory wants every package a launcher runs pinned. `@modelcontextprotocol/inspector@2.9.0` is the current release (`npm view`, 2026-10-03); its `--cli <server> --method tools/list` returned a stub server's tool list as JSON.
+
 ### C-20261003-1 · 2026-10-03 · Refresh: Pipeline 0.8 in the official row, beta.12 duplicate check, CoplayDev on Unity 6000.6, scene-reload dialog
 - because: R-20261003-1, R-20261003-2
 - files: SKILL.md (Step 2 official, CoplayDev, IvanMurzak and docs rows; Step 3.3; Step 4 modal dialogs bullet), RESEARCH.md (header; Current understanding; Open questions; Search plan, Tooling; R-20261003-1 to 3)

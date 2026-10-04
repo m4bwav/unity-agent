@@ -101,6 +101,28 @@ guards) and `tests/check_scripts.ps1` in PowerShell 7 and Windows PowerShell 5.1
 both scripts and runs them on a runner with no Unity installed: each must still print one JSON
 object.
 
+## Privacy
+
+unity-agent has no server and collects nothing. The skills are instructions for your agent, and
+the two PowerShell scripts run on your machine and print one JSON object each. They make no
+network calls of their own. `unity_probe.ps1` runs the local `unity` CLI (`--version`,
+`editors --installed`, `pipeline list`), lists running Unity processes, and reads two files in
+the project: `Temp/UnityLockfile` and the Pipeline descriptor in `Library/Pipeline`. That
+descriptor holds the local token the Pipeline server uses to accept commands from the CLI. The
+probe reads it only to report the server's process id, port and heartbeat; it never prints,
+stores or uses the token. `unity_headless.ps1` reads Unity Hub's list of installed editors and
+starts the Editor in batchmode on your project. Neither script reads any other credential or
+environment variable beyond the standard folder locations (`LOCALAPPDATA`, `APPDATA`).
+
+Network traffic comes from the tools the skills tell the agent to run, each only after you
+approve it. The Unity CLI and the Editor talk to Unity's services for sign-in, licensing, editor
+and package downloads, docs and the issue tracker, under Unity's terms. The Pipeline server that
+Unity's MCP mode talks to listens on 127.0.0.1 only. Installing a community MCP server fetches it from GitHub, OpenUPM or
+npm. The two `npx` commands the skills name, `skills@1.7.0` to add Unity's skill pack and
+`@modelcontextprotocol/inspector@2.9.0` to list an MCP server's tools, download those exact
+versions from npm. Nothing is kept by this plugin; the tools above keep their own caches and
+settings.
+
 ## If you are an agent asked to analyze this suite
 
 Worth your attention, roughly in order: `skills/*/SKILL.md` for how each skill decides and what

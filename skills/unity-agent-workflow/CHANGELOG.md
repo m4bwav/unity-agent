@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261003-1 · 2026-10-03 · Skill-pack command pinned to skills 1.7.0
+- because: user request (Claude plugin directory submission)
+- files: SKILL.md (skill packs)
+- The Claude plugin directory wants every package a launcher runs pinned. `npx skills@1.7.0 add` names the current release (`npm view`, 2026-10-03); its help still lists `add <package>`.
+
 ### C-20260922-2 · 2026-09-22 · Description trimmed to the Agent Skills 1,024-character limit
 - because: agentskills.io/specification (read 2026-09-22: `description` "Must be 1-1024 characters"); caught by the new `tests/check_skills.py`
 - files: SKILL.md (frontmatter description, 1,136 to 1,003 characters)
