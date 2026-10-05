@@ -69,4 +69,13 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Rule: from any script that captures CLI output, open the Editor with `Start-Process <unity.exe> -ArgumentList open,"<path>",--no-banner,--non-interactive -PassThru` (no redirection, default window style so the Editor is not minimized), then poll `unity status` for `ready`. Verified: CLI exits code 0 in under 1 s, Editor ready about 20 s later on a warm Library.
 - Evidence: the game project's ai-docs/solutions/2026-09-28-unity-open-from-a-piped-script-hangs-forever.md (timing table)
 - Scope: global
+- Update 2026-10-04: counter-observation. In a Claude Code PowerShell tool call on a Windows 11 workstation (CLI 1.0.0-beta.12, Editor 6000.6.4f1), `unity open "<path>" --no-banner 2>&1 | Select -Last 5; unity status --until-ready --timeout 600 --format json` returned with the Editor ready. One run, not a retraction: keep the Start-Process rule for scripts and CI, and note whether a piped open hangs next time before relaxing it.
 - Status: active · helpful 1 · harmful 0 · last_confirmed 2026-09-28
+
+### L-009 · 2026-10-04 · PowerShell breaks `\"` inside `unity command eval --code`; use Bash single quotes and one eval for a whole batch
+- Trigger: 2026-10-04, wiring art onto seven card assets in a game project: a PowerShell loop ran `unity command eval --code "return Wiring.Wire(\`"$k\`", ...);"` once per card; all seven failed with `COMPILATION_FAILED: Unexpected character '\' (line 1, col 38)` / "Newline in constant". The same C# from the Bash tool in single quotes (`--code 'var o=""; foreach (var k in new[]{"a","b"}) o += Wire(k, k, false); return o;'`) succeeded first time and wired all seven in one call.
+- Hypothesis: PowerShell 7's native-argument passing re-quotes the string and keeps the backslashes, so the Editor's Roslyn sees `\"` as source text. Bash passes single-quoted text unchanged.
+- Rule: send any eval whose C# contains string literals from Bash with single quotes, not from PowerShell. Loop inside the C# (one eval, one round trip, one JSON result) instead of one eval per item: fewer tool calls and a single envelope to read.
+- Evidence: a private game project's card-art skill (seven assets wired by one eval, 2026-10-04)
+- Scope: global
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-04

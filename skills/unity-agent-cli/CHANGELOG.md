@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261004-1 · 2026-10-04 · eval quoting from PowerShell breaks; batch items in one eval
+- because: L-009 (seven PowerShell evals with `\"` all failed to compile; one Bash single-quoted eval with a loop wired all seven); L-008 update (a piped `unity open` returned once in a Claude Code PowerShell call)
+- files: SKILL.md (Step 3, Live Editor: eval bullet), LEARNINGS.md (L-008 update, L-009)
+- One clause on the eval bullet; the Start-Process rule for `unity open` is unchanged.
+
 ### C-20261003-2 · 2026-10-03 · Install step: winget first, Unity's script downloaded and read before it runs
 - because: user request (Claude plugin directory submission)
 - files: SKILL.md (Step 1: CLI missing)
