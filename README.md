@@ -1,5 +1,7 @@
 # unity-agent
 
+![A small friendly robot at a workbench assembling glowing 3D cubes, spheres and tiny game characters on a miniature stage, workshop full of monitors](https://raw.githubusercontent.com/m4bwav/unity-agent/master/.github/images/banner.jpg)
+
 Five self-maintaining ("evergreen") skills that teach an AI coding agent to drive Unity: from the
 command line, headlessly, or over MCP. Written 2026-09-06 for Claude Code, GitHub Copilot, Cursor
 and Codex, from a four-track research pass (subject, tooling, practice, testing) whose findings and
