@@ -79,3 +79,19 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Evidence: a private game project's card-art skill (seven assets wired by one eval, 2026-10-04)
 - Scope: global
 - Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-04
+
+### L-010 · 2026-10-06 · `set-import-settings-ignores-unknown-keys`: `set_import_settings` reports success while skipping keys it does not know
+- Trigger: 2026-10-06, CLI 1.0.0-beta.12 with Pipeline 0.6.0-exp.1 on Unity 6000.6.4f1: `unity command set_import_settings -- --asset <png> --settings '{"textureType":"Sprite",...,"bogusKey":1}' --dry_run true` returned `success: true` with `applied` listing the six real keys and `unknown: ["bogusKey"]`. A settlement game's building-sprite workflow sets its sprites this way (Single mode, 48 PPU, Point filter, no mipmaps, alpha is transparency).
+- Hypothesis: the command maps each key onto an `AssetImporter` property by name and collects the misses instead of failing, so a misspelled key (`pixelsPerUnit` for `spritePixelsPerUnit`) leaves the asset unchanged behind a green envelope.
+- Rule: send the settings once with `--dry_run true`, stop if `unknown` is non-empty, then send them for real and read the result back with `get_import_settings`. The command takes no `--confirm`; it re-imports the asset on a real run.
+- Evidence: live dry run and `get_import_settings` 2026-10-06 (nothing written); command schema from `unity command --format json`; R-20261006-2
+- Scope: global
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-06
+
+### L-011 · 2026-10-06 · `prove-import-by-loading`: an asset is imported when the Editor can load it, not when its file and .meta exist
+- Trigger: a settlement game's production-sound workflow (seen 2026-10-06) writes a `.wav`, refreshes the AssetDatabase through `eval`, and confirms the import with `Resources.Load<AudioClip>(...)` and its `length`, stopping Play mode first. Checked here the same day: the eval returned `400.056` for a real clip and, for a wrong path, `success: true` with a null clip.
+- Hypothesis: a file plus a .meta on disk says nothing about whether the importer accepted it (an unsupported format, a broken hand-written .meta, or an import still pending all look the same from the shell), and the Editor defers imports while in Play mode.
+- Rule: after a shell-side asset change, refresh (L-007), check `editor_status` shows `playMode: stopped` (send `editor_stop` if not), then load the asset in one eval and return a property only a real import has (`AudioClip.length`, `Texture2D.width`, a sprite count); test for null yourself, because a missing asset does not fail the eval.
+- Evidence: live evals 2026-10-06 (read only); R-20261006-2
+- Scope: global
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-06

@@ -13,3 +13,11 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Evidence: SKILL.md §Step 2 ladder; unity-agent-headless:L-002
 - Scope: global
 - Status: promoted (C-20260906-1) · helpful 1 · harmful 0 · last_confirmed 2026-09-06
+
+### L-002 · 2026-10-06 · `hand-written-sprite-meta`: a hand-written sliced-sprite .meta must keep every identity Unity stores in it
+- Trigger: a settlement game's asset skills (seen 2026-10-06) write sprite-sheet `.meta` files by hand with the Editor closed, for crop growth strips, animal sheets and animated building tiles, and record what made them import cleanly and keep tiles and animations working after a sheet was regenerated.
+- Hypothesis: tiles, animation clips and prefabs reference a sprite by the texture's GUID plus the sprite's `internalID` (its fileID), and code that sorts frames by name sees the names in the `.meta`; a regenerated `.meta` with new values breaks every reference silently, and a per-frame tight rect moves a center pivot from frame to frame.
+- Rule: start from a neighbour's `.meta` of the same kind. New file: a fresh 32-hex GUID (`python -c "import uuid; print(uuid.uuid4().hex)"`), grepped across the repo for a collision. Multiple-sprite mode (`spriteMode: 2`): rename every sprite in both `internalIDToNameTable` and the `spriteSheet.sprites` list, give them sequential `internalID`s that match the name table and a unique 32-hex `spriteID` each, and give every frame of one animation the same rect size (the union of the frames' bounds) so a center pivot does not bob. Regenerating an existing sheet: change the image only, keep the GUID and every `internalID`. Single-sprite textures expose their sprite as fileID `21300000`. Write LF endings with a trailing newline, then let the Editor import it and prove the import by loading the asset (unity-agent-cli L-011).
+- Evidence: the game's crop, building and animal sprite skills (recorded there as importing cleanly); SKILL.md §Step 3 (.meta rule)
+- Scope: global
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-06

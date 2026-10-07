@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261006-1 · 2026-10-06 · Hand-written .meta rules for sliced sprites; rung 4 commands brought up to Pipeline 0.7
+- because: L-002 (a settlement game's sprite-sheet workflows); unity-agent-cli R-20260922-1 (Pipeline 0.7.0-exp.1 removed `get_console_logs`) and unity-agent-cli L-004 (`screenshot` renders the camera only)
+- files: SKILL.md (Step 2 ladder, rung 4; Step 3, .meta bullet), LEARNINGS.md (L-002), evergreen.json (counts)
+- The .meta bullet now says a replaced asset keeps its .meta and points at L-002 for hand-written sprite sheets; rung 4 names the commands that exist on current Pipeline versions. Out-of-cycle edit; no trigger changed, so the evals were not re-run.
+
 ### C-20261003-1 · 2026-10-03 · Skill-pack command pinned to skills 1.7.0
 - because: user request (Claude plugin directory submission)
 - files: SKILL.md (skill packs)

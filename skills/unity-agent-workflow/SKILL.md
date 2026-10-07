@@ -24,7 +24,7 @@ Look for `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, a `CODEMAP
 | 1. Engine-free unit tests | logic, math, state, determinism | seconds, Editor may be open | a `dotnet test` project that links `Assets/Scripts` sources with a small `UnityEngine` stub (Humble Object: rules in plain C#, MonoBehaviours as thin shells) |
 | 2. Offline compile check | every C# error in the player and editor assemblies | ~3 s, Editor may be open | `dotnet build Assembly-CSharp.csproj` with a system or Unity-bundled SDK (unity-agent-headless) |
 | 3. Unity Test Framework | Editor APIs, serialization, scene loading, play-mode behaviour | minutes, Editor closed (or live via the Pipeline package) | `unity test --mode EditMode|PlayMode` (unity-agent-cli) or batchmode `-runTests` |
-| 4. Live Editor checks | what it looks like and logs at runtime | seconds per call, Editor open with Pipeline | `recompile` + `get_console_logs --severity error`, `editor_play`, `screenshot`, `eval` for state |
+| 4. Live Editor checks | what it looks like and logs at runtime | seconds per call, Editor open with Pipeline | `unity recompile` + `console --level error`, `editor_play`, `capture_game_view --source screen`, `eval` for state (unity-agent-cli) |
 | 5. Human in the Editor | feel, art, UX | the user's time | describe the exact repro path |
 
 Rule: a red rung is never "pre-existing". When a test or compile check fails after a change, fix it or report it as failing with the output; do not label it pre-existing and move on, because unexamined red tests pile up and the ladder stops meaning anything. Tests that only restate the code (tautological asserts) do not count as a rung; a test must fail when the behaviour breaks.
@@ -34,7 +34,7 @@ Rule: `dotnet test` green is not a compile check for engine-side files; before c
 ## Step 3: rules that keep a Unity repo safe for agents
 
 - Never hand-write or regex-edit `.unity`, `.prefab`, `.asset`, `.controller`, `.mat` YAML, and never touch them at all while an Editor has the project open. Generate or change them through an editor script, an importer that reads a text source, a `[MenuItem]` the user can run, `-executeMethod`, or the Pipeline commands. Practitioners and the Unity-MCP maintainers agree direct YAML emission is unreliable and token-hungry.
-- Every file under `Assets/` needs a `.meta`; commit them together and `git mv` them together. A file created outside the Editor gets its `.meta` on the next import (`AssetDatabase.Refresh`) or from a repo helper; never regenerate an existing `.meta` (the GUID is the asset's identity).
+- Every file under `Assets/` needs a `.meta`; commit them together and `git mv` them together. A file created outside the Editor gets its `.meta` on the next import (`AssetDatabase.Refresh`) or from a repo helper; never regenerate an existing `.meta` (the GUID is the asset's identity); replacing an asset's content keeps its `.meta`. With no Editor open, a new `.meta` is a copy of a neighbour's with a fresh GUID; sliced sprite sheets have more rules (L-002).
 - Keep gameplay rules in plain C# classes with `System.Math`, injected data and `event Action<...>` outputs, so rung 1 reaches them. `UnityEngine` calls live in thin MonoBehaviours.
 - Content (cards, items, levels) comes from text sources through an importer; hand-edited generated assets are overwritten on the next import. Change the source and the importer together.
 - Domain reload: any recompile, Play-mode entry, or package change restarts bridges and clears static state. Batch edits, then verify once.
