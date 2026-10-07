@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261006-1 · 2026-10-06 · Asset imports through the Pipeline: set settings with a dry run, prove the import by loading it; `unity build --timeout`
+- because: R-20261006-1, R-20261006-2, L-010, L-011 (lessons from a settlement game's asset workflows, checked against the installed CLI and a live Editor)
+- files: SKILL.md (Step 3, Live Editor: new "Asset imports" bullet; Tests and builds: build line), LEARNINGS.md (L-010, L-011), RESEARCH.md (Open questions: eval timeout resolved; R-20261006-1, R-20261006-2), evergreen.json (counts)
+- One new bullet names `set_import_settings`, `get_import_settings` and `import_asset`, the `unknown` list a green envelope can hide, and the load-it-in-eval proof with Play mode stopped; the build line gains `--timeout` and the heartbeat. No trigger or route changed, so the evals were not re-run.
+
 ### C-20261004-1 · 2026-10-04 · eval quoting from PowerShell breaks; batch items in one eval
 - because: L-009 (seven PowerShell evals with `\"` all failed to compile; one Bash single-quoted eval with a loop wired all seven); L-008 update (a piped `unity open` returned once in a Claude Code PowerShell call)
 - files: SKILL.md (Step 3, Live Editor: eval bullet), LEARNINGS.md (L-008 update, L-009)
