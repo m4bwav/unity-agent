@@ -21,7 +21,7 @@ Read `Packages/manifest.json` (dependencies and any `scopedRegistries`) and `Pro
 
 | Editor state | Route |
 |---|---|
-| Open with `com.unity.pipeline` reachable (check with `unity pipeline list`; if `unity` is not on PATH yet, call `"$env:LOCALAPPDATA\Unity\bin\unity.exe"`) | `unity command package_add --name com.unity.x[@ver]` then poll `unity command package_status`; `package_remove`, `package_resolve`, `package_list` likewise (unity-agent-cli) |
+| Open with `com.unity.pipeline` reachable (check with `unity pipeline list`; if `unity` is not on PATH yet, call `"$env:LOCALAPPDATA\Unity\bin\unity.exe"`) | `unity command package_add --name com.unity.x[@ver]` (Unity's own unity-pipeline skill, written for a newer Pipeline, uses `--identifier <id> --confirm true`: check `unity command --format json` for the parameter name) then poll `unity command package_status`; `package_remove`, `package_resolve`, `package_list` likewise (unity-agent-cli) |
 | Closed | the Client API script (Step 3), run with `Unity.exe -batchmode -projectPath <p> -executeMethod ProjectBootstrap.PackageInstaller.Install -logFile -` **without `-quit`** (the request completes on later Editor ticks and the script exits itself); `unity run` cannot be used because it injects `-quit` |
 | Closed, simple pin or OpenUPM/git package, user wants a diff they can review | edit `Packages/manifest.json` by hand: add `"com.x.y": "1.2.3"`, a git URL `"https://github.com/org/repo.git?path=/Pkg#v1.2.3"`, or a scoped registry block for OpenUPM (`https://package.openupm.com` with `scopes`); the next Editor open resolves it. Keep `packages-lock.json` (Unity regenerates it; delete it only to force a full re-resolve) |
 
@@ -40,11 +40,12 @@ Unity's own guidance prefers the Client API over hand edits because it resolves 
 
 ## Step 5: AI-related packages and version traps (state when relevant)
 
-- `com.unity.pipeline` (experimental 0.4.x, Unity 6.0+): the agent bridge; install with `unity pipeline install`; pin the version.
+- `com.unity.pipeline` (experimental 0.8.0-exp.1 on 2026-10-11, Unity 6.0+): the agent bridge; install with `unity pipeline install`; pin the version. 0.9.0 (announced 2026-10-07, no date) renames many commands with no aliases: before upgrading, read `unity command --obsolete-command-names`.
 - `com.unity.ai.assistant`, `com.unity.ai.generators`, `com.unity.ai.inference`: Unity AI. Assistant needs a Unity Cloud project; its in-Editor MCP is deprecated in favour of the CLI. On Unity 6000.5.x, Assistant 2.13-pre livelocked the AssetDatabase at startup (UUM-132096, June 2026): avoid until a fixed version is confirmed at refresh.
-- `com.unity.test-framework` 1.7 or 2.0 (2.0 changes `-testResults` relative-path resolution and prints a settings summary in batchmode).
+- `com.unity.test-framework`: a core package fixed to the Editor version in Unity 6 (1.9 ships with 6.7); do not pin or upgrade it separately. The 2.0 line stopped at 2.0.1-exp.2 in 2022.
 - `com.unity.testtools.codecoverage` enables `unity test --coverage`.
-- OpenUPM packages need the scoped registry block; `openupm-cli` (`openupm add com.x.y`) writes it for you.
+- OpenUPM packages need the scoped registry block; `openupm-cli` (`openupm add com.x.y`) writes it for you. Unity 6.3+ verifies package signatures and warns on unsigned ones; OpenUPM serves signed tarballs, and UnityNuGet packages are signed since May 2026 (an old cached copy can fail the signature check: clear the UPM cache and resolve again).
+- Unity 6.7's experimental MSBuild mode allows a `<PackageReference>` but checks it against Unity's policy (errors MSBU0006, MSBU0007); NuGet is not a replacement for UPM.
 
 ## Output
 

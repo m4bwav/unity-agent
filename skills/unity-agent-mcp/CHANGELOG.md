@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261011-1 · 2026-10-11 · Pipeline 0.9 rename warning, CoplayDev fix released, dialog status, UNITY_PROJECT_PATH, Unity 7 note
+- because: R-20261011-1, R-20261011-2
+- files: SKILL.md (Step 2: official row, CoplayDev row, registry note; Step 4: Unity 7, dialogs, two Editors), RESEARCH.md (two findings, Open questions)
+- The official row warns that 0.9 renames tools; CoplayDev's 6000.6 fix is in v10.3.0; `STATUS_BLOCKED_BY_DIALOG` and `UNITY_PROJECT_PATH` come from CLI beta.13.
+
 ### C-20261003-2 · 2026-10-03 · Inspector command pinned to 2.9.0
 - because: user request (Claude plugin directory submission)
 - files: SKILL.md (Install and verify, step 4)

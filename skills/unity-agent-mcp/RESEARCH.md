@@ -15,7 +15,8 @@ Topic: MCP servers that bridge AI agents to the Unity Editor: Unity's official u
 
 ## Open questions
 
-- (carried) Does a CoplayDev release after v10.2.0 ship the 6000.6 fix? Check its releases next refresh.
+- (resolved 2026-10-11) CoplayDev v10.3.0 ships the 6000.6 fix (#1399).
+- What does `unity command --obsolete-command-names` map once Pipeline 0.9.0 ships, and do `unity mcp` tool names keep any alias (R-20261011-1)?
 - Which client is best served by `unity mcp` versus the CLI in practice (latency per call was reported around 0.8 s). Footprint measured 2026-09-06: 149 tools, ~24k tokens of schema.
 - Does CoplayDev v10.1.x list Unity 6.5/6.6 as tested (the 6.5 fix was in 9.6.8)?
 - (partly resolved 2026-09-22) Unity 6.6 shipped 2026-09-01 with Play entry skipping the domain reload by default in new projects only; existing projects keep their setting. Do the reload pitfalls shrink for bridges on those projects?
@@ -51,6 +52,20 @@ Best sources (primary first): the three GitHub repos (README, releases, issues),
 ## Findings log
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
+
+### R-20261011-1 · 2026-10-11 · Subject: Pipeline 0.9 renames commands; CLI beta.13 dialog status and UNITY_PROJECT_PATH; Unity 7 alpha
+- Summary: Unity's heads-up (2026-10-07) says `com.unity.pipeline` 0.9.0 renames many commands with no aliases (an old name answers 400 "Command Not Found"; `unity command --obsolete-command-names` lists the mapping); no date, 0.8.0-exp.1 still latest. `unity mcp` tool names mirror command names, so client allow-lists and evals naming tools break. CLI 1.0.0-beta.13: `unity mcp` reads `UNITY_PROJECT_PATH` when `--project-path` is omitted; `unity status` reports `STATUS_BLOCKED_BY_DIALOG` with `blockedBy`; `unity setup codex` and `unity setup grok` install Unity's agent plugin (0.1.8-beta, 404 stars). Unity 7.0 public alpha (2026-10-05): CoreCLR only, code reloads replace domain reloads (thread reply); Pipeline 0.8 blocks MSBuild projects on Unity 7 through Mono.Cecil ("high priority", 10-09); Assistant 2.20.0-pre.2 fixed a crash on 7000.0. ToS section 17.2 "Authorized Agentic Access" covers cloud services per Unity's informal reply; local Editor MCP is fine.
+- Track: subject, practice
+- Sources: https://discussions.unity.com/t/heads-up-upcoming-com-unity-pipeline-0-9-0-release-will-include-breaking-changes-to-command-names/1738559, https://packages.unity.com/com.unity.pipeline, https://docs.unity.com/en-us/unity-cli/release-notes, https://discussions.unity.com/t/unity-7-0-alpha-is-now-available/1738310, https://unity.com/releases/editor/alpha/7000.0.0a7
+- Magnitude: 0.5 (an upgrade will break tool names)
+- Applied: C-20261011-1 (SKILL.md Step 2 official row; Step 4 pitfalls)
+
+### R-20261011-2 · 2026-10-11 · Tooling and testing: CoplayDev v10.3.0 fixes 6000.6; versions and adoption; no new checker
+- Summary: CoplayDev v10.3.0 (2026-10-04, 14,842 stars) ships #1399 (the 6000.6 `InstanceIDToObjectCompat` fix) plus Claude Code registrations in CheckStatus, a Blender Bridge and new configurators. IvanMurzak 0.93.3 (2026-10-10, console `sinceSequence` cursor, 4,418 stars). CoderGamester merging PRs again since 2026-10-11, no tag after 1.5.0. skills.sh: CoplayDev `unity-mcp-orchestrator` about 394 installs against 7,286 for Unity's `unity-cli`. The MCP registry has an old IvanMurzak 0.17.1 entry, none for Unity, CoplayDev or CoderGamester. Testing: no new Editor-bridge checker; CraftBench-UE (Unreal) and OpenGameEval (Roblox) do not cover Unity.
+- Track: tooling, testing
+- Sources: https://github.com/CoplayDev/unity-mcp/releases, https://github.com/IvanMurzak/Unity-MCP/releases, https://github.com/CoderGamester/mcp-unity/commits/main, https://skills.sh/api/search?q=unity-mcp, https://registry.modelcontextprotocol.io/v0/servers?search=unity&limit=100, https://arxiv.org/pdf/2609.23142
+- Magnitude: 0.3
+- Applied: C-20261011-1 (SKILL.md Step 2 CoplayDev row and registry note)
 
 ### R-20261003-3 · 2026-10-03 · Practice and testing: quiet beyond Unity's play-mode loop
 - summary: No new practitioner write-ups on MCP versus CLI since 2026-09-22 beyond Unity's own play-mode verification loop (CLI-based: `status --until-ready`, `wait_for` on `Time.frameCount`; see unity-agent-cli R-20261003-2), which reinforces rung 2 for clients with a shell. Testing: nothing new for Editor bridges (general MCP benchmarks such as MCP-AgentBench are not Unity-specific). The MCP registry still lists no Unity Technologies server; its Unity entries are community bridges (Funplay, shiranui-isuzu 4.4.2, hera-agent-unity) and the Codeturion docs server.
