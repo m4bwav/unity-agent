@@ -18,6 +18,8 @@ Topic: Unity Package Manager from the command line and scripts: manifest.json, C
 - Does the Pipeline `package_add` accept git URLs and scoped-registry packages.
 - Does Unity plan a `unity package` CLI command (would supersede the Client API script).
 
+- Is `package_add`'s parameter `--name` or `--identifier` on Pipeline 0.8, and what does 0.9 rename it to (R-20261011-1)?
+
 ## Search plan
 
 Four tracks; every refresh runs at least one query on each (scope each to the period since the last refresh; add the year). Protocol §4 explains the tracks and how tooling findings are judged.
@@ -45,6 +47,13 @@ Best sources (primary first): docs.unity3d.com Manual and ScriptReference, the o
 ## Findings log
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
+
+### R-20261011-1 · 2026-10-11 · Subject and tooling: Pipeline 0.8 and the 0.9 renames, `package_add --identifier`, UTF core package, MSBuild NuGet, package signing
+- Summary: `com.unity.pipeline` is at 0.8.0-exp.1 (not 0.4.x); 0.9.0 renames many commands with no aliases (2026-10-07 notice). Unity's `unity-pipeline` skill (2026-10-08) uses `unity command package_add --identifier <id> --confirm true` and names commands absent from 0.8's changelog, so it probably targets 0.9; the parameter name on 0.8 needs checking with `unity command --format json`. Test Framework is a core package fixed to the Editor (1.9 on 6.7; 2.0 abandoned). Assistant 2.20.0-pre.2 (2026-10-02) has no changelog entry for UUM-132096, so the trap stands. 6.7 MSBuild mode allows `<PackageReference>` under a policy (MSBU0006, MSBU0007). Unity 6.3+ verifies package signatures; OpenUPM serves signed tarballs; UnityNuGet signed since May 2026 (a stale cache can fail the check). Unity's `unity-package-management` skill has 6,155 installs, unchanged since 2026-09-06. Practice and testing quiet.
+- Track: subject, tooling
+- Sources: https://packages.unity.com/com.unity.pipeline, https://raw.githubusercontent.com/Unity-Technologies/skills/main/skills/unity-pipeline/SKILL.md, https://discussions.unity.com/t/heads-up-upcoming-com-unity-pipeline-0-9-0-release-will-include-breaking-changes-to-command-names/1738559, https://docs.unity3d.com/Packages/com.unity.ai.assistant@2.20/changelog/CHANGELOG.html, https://docs.unity.com/en-us/engine/6000.7/manual/programming-environment/script-compilation/msbuild/unity.md, https://openupm.com/blog/unitynuget-packages-are-now-code-signed/, https://skills.sh/api/search?q=unity
+- Magnitude: 0.45 (the Pipeline route's parameter and version claims were stale)
+- Applied: C-20261011-1 (SKILL.md Step 2 Pipeline row; Step 5 bullets)
 
 ### R-20260906-2 · 2026-09-06 · Version traps for AI packages on Unity 6.5
 - Summary: CoplayDev #1219 documents the Assistant 2.13-pre livelock on 6000.5.1f1 (UUM-132096); workaround is removing the package, deleting packages-lock.json and Library. Applied as a trap in Step 5.

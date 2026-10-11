@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261011-1 · 2026-10-11 · MSBuild-mode projects, UTF as a core package, the MSB3277 warning
+- because: R-20261011-1
+- files: SKILL.md (the csproj paragraph under the compile check; "Tests from the command line"), RESEARCH.md (one finding, Open questions)
+- The compile check says to build the `.slnx` on a 6.7 MSBuild-mode project and to ignore MSB3277 with a new SDK; the UTF line drops the abandoned 2.0. The driver script is unchanged (open question).
+
 ### C-20260922-1 · 2026-09-22 · Privacy scrub before the repository went public
 - because: user request (publish the suite as a public repository); three privacy readers (paths and machines, people and working life, private projects)
 - files: SKILL.md (Hub path example now the default install location), RESEARCH.md (Current understanding; R-20260906-3 sources), LEARNINGS.md (L-001, L-002, L-004), evals/evals.json (three prompts), TESTS.md (T-20260906-1 env), evergreen.json (tests env), scripts/unity_headless.ps1 (example paths)

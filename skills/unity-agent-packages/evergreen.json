@@ -13,9 +13,9 @@
   "source": null,
   "topic": "Unity Package Manager from the command line and scripts: manifest.json, Client API headless pattern, Pipeline package commands, OpenUPM, AI-related Unity packages and version traps",
   "tier": "moderate",
-  "interval_days": 30,
-  "last_checked": "2026-09-06",
-  "next_due": "2026-10-06",
+  "interval_days": 20.0,
+  "last_checked": "2026-10-11",
+  "next_due": "2026-11-02",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
@@ -32,12 +32,18 @@
       "m": null,
       "interval_after": 30,
       "note": "created"
+    },
+    {
+      "date": "2026-10-11",
+      "m": 0.45,
+      "interval_after": 20.0,
+      "note": "refresh 2026-10-11: Pipeline 0.8/0.9, package_add --identifier, signing; cost: searches 5 · fetches 8 · tool calls 16"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 2,
+    "research": 3,
     "tests": 1
   },
   "consolidate_every": 25,

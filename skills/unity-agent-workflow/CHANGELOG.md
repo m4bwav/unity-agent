@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261011-1 · 2026-10-11 · Agentic-access terms, Unity 7 alpha facts, skill-pack adoption, benchmark wording
+- because: R-20261011-1
+- files: SKILL.md (Step 4: skill packs, Unity's agentic path, benchmarks; Step 5: terms), RESEARCH.md (one finding)
+- Step 5 names the "Authorized Agentic Access" clauses with Unity's informal reading; Step 4 has install counts and the Unity 7 alpha facts.
+
 ### C-20261006-1 · 2026-10-06 · Hand-written .meta rules for sliced sprites; rung 4 commands brought up to Pipeline 0.7
 - because: L-002 (a settlement game's sprite-sheet workflows); unity-agent-cli R-20260922-1 (Pipeline 0.7.0-exp.1 removed `get_console_logs`) and unity-agent-cli L-004 (`screenshot` renders the camera only)
 - files: SKILL.md (Step 2 ladder, rung 4; Step 3, .meta bullet), LEARNINGS.md (L-002), evergreen.json (counts)

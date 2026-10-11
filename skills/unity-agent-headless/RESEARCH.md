@@ -17,7 +17,8 @@ Topic: Unity Editor batchmode and Test Framework command line, offline C# compil
 ## Open questions
 
 - Is the exit-0-on-compile-error batchmode bug fixed in 6000.5? (issue tracker page lost in the migration.)
-- Which UTF version ships with 6000.5 by default (1.7 vs 2.0) and does `-testResults` relative-path behaviour differ.
+- (resolved 2026-10-11) UTF is a core package fixed to the Editor version in Unity 6 (1.9 on 6.7); the 2.0 line was abandoned in 2022 (R-20261011-1).
+- Does `unity_headless.ps1 -Action compile` need a branch for 6.7 MSBuild-mode projects (build the `.slnx`)? Exit code 0 on compile errors in Unity 6 is still unconfirmed.
 - Does `-nographics` change anything for UI Toolkit tests in PlayMode on Windows.
 
 ## Search plan
@@ -50,6 +51,13 @@ Best sources (primary first): docs.unity3d.com Manual and package pages (fetch f
 ## Findings log
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
+
+### R-20261011-1 · 2026-10-11 · Subject and testing: 6.7 MSBuild compilation, UTF is a core package, Unity 7 batchmode fixes, MSB3277
+- Summary: Unity 6.7 adds experimental MSBuild compilation (Editor setting or `-enable-msbuild`): authoritative `Main.EntryPoint.csproj`, `{project}.slnx`, `Assets/**/*.gen.csproj` and a `global.json` forcing SDK 8.0.0 with `rollForward latestMinor`; direct `dotnet build` is documented; targets `netstandard2.1` or `net10.0` (`enablelastdotnet.config`); NuGet under a policy (MSBU0006, MSBU0007). Unity 7 positions MSBuild as "compiling outside the Editor" for agents. The Test Framework is a core package fixed to the Editor version: 1.9.0 (2026-08-14) ships with 6.7 (Player runs with `-automated` no longer restore the graphics API); 1.8.0 fixed `-testSettingsFile` ignored in EditMode; the registry's `latest` tag is frozen at 1.4.6 and 2.0 stopped at 2.0.1-exp.2 (2022), so "UTF 1.7 or 2.0" was wrong. Unity 7.0.0a7 fixes batchmode runs that seemed to hang up to 10 minutes and sequential `-activeBuildProfile` builds; on Linux `-nographics` without `-batchmode` exits 1; every asset reimports on first open in Unity 7. The 6000.6 command-line page adds `-upmLogFile`, `-upmPack`, `-organization-id` and import-worker flags, and still documents only exit code 1. Testing: `dotnet build` with an SDK above 10 warns MSB3277 for System.Numerics.Vectors (Unity issue 20533), harmless. Tooling: GameCI unity-builder v6.0.0 wraps `game-ci/cli`. Practice: nothing new.
+- Track: subject, testing, tooling
+- Sources: https://docs.unity.com/en-us/engine/6000.7/manual/programming-environment/script-compilation/msbuild/unity.md, https://packages.unity.com/com.unity.test-framework, https://docs.unity3d.com/Packages/com.unity.test-framework@1.9/changelog/CHANGELOG.html, https://unity.com/releases/editor/alpha/7000.0.0a7, https://docs.unity3d.com/6000.6/Documentation/Manual/EditorCommandLineArguments.html, https://issuetracker.unity.com/issues/20533/msb3277-conflicts-between-different-versions-of-systemnumericsvectors-when-using-dotnet-110, https://github.com/game-ci/unity-builder/releases
+- Magnitude: 0.45 (the compile check needs a different target on MSBuild-mode projects)
+- Applied: C-20261011-1 (SKILL.md: the csproj paragraph; Tests from the command line)
 
 ### R-20260906-3 · 2026-09-06 · Local verification: compile check, lock refusal, Hub CLI
 - Summary: `unity_headless.ps1 -Action compile` built `Assembly-CSharp.csproj` and `Assembly-CSharp-Editor.csproj` (0 errors, ~3 s) with the Unity-bundled SDK while the Editor held the project; `-Action method` refused with the PID of the owning Editor; the Hub headless `editors --installed` worked only after `env -u ELECTRON_RUN_AS_NODE`. The repo's net9.0 test project failed on the bundled SDK with NETSDK1045.

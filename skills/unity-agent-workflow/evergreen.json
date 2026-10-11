@@ -13,9 +13,9 @@
   "source": null,
   "topic": "how AI coding agents work safely in Unity projects: verification ladder, YAML and .meta rules, Humble Object testing, agent skill packs for Unity, Unity's AI policies and agent roadmap",
   "tier": "moderate",
-  "interval_days": 30,
-  "last_checked": "2026-09-06",
-  "next_due": "2026-10-06",
+  "interval_days": 20.0,
+  "last_checked": "2026-10-11",
+  "next_due": "2026-11-01",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
@@ -32,12 +32,18 @@
       "m": null,
       "interval_after": 30,
       "note": "created"
+    },
+    {
+      "date": "2026-10-11",
+      "m": 0.35,
+      "interval_after": 20.0,
+      "note": "refresh 2026-10-11: ToS agentic access, Unity 7 alpha, skill pack adoption; cost: searches 5 · fetches 10 · tool calls 18"
     }
   ],
   "counts": {
     "learnings": 2,
     "changes": 3,
-    "research": 4,
+    "research": 5,
     "tests": 1
   },
   "consolidate_every": 25,

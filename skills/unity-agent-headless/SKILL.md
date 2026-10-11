@@ -32,7 +32,7 @@ It finds the pinned editor from `ProjectSettings/ProjectVersion.txt`, refuses ba
 
 ## Step 2: the compile check (the fast loop)
 
-Unity writes `Assembly-CSharp.csproj` and `Assembly-CSharp-Editor.csproj` at the project root when the project has been opened in an IDE (Edit > Preferences > External Tools > Generate .csproj files). They are SDK-style, target `netstandard2.1`, and reference the engine DLLs by absolute path, so a plain `dotnet build` compiles the whole player assembly in seconds without touching the Editor, and it works while the Editor is open.
+Unity writes `Assembly-CSharp.csproj` and `Assembly-CSharp-Editor.csproj` at the project root when the project has been opened in an IDE (Edit > Preferences > External Tools > Generate .csproj files). They are SDK-style, target `netstandard2.1`, and reference the engine DLLs by absolute path, so a plain `dotnet build` compiles the whole player assembly in seconds without touching the Editor, and it works while the Editor is open. With an SDK newer than 10 the build warns MSB3277 about System.Numerics.Vectors (Unity issue 20533, 6000.0 to 6000.6): harmless, not a failure. Unity 6.7's experimental MSBuild compilation (`-enable-msbuild` or the Editor setting) writes authoritative project files instead (`{project}.slnx`, `Main.EntryPoint.csproj`, `Assets/**/*.gen.csproj`, a `global.json` pinning SDK 8.0 with `rollForward latestMinor`) and documents `dotnet build` on them: on such a project build the `.slnx`, not a root `Assembly-CSharp.csproj` (the driver does not handle this mode yet).
 
 Which `dotnet`: a system .NET SDK if `dotnet --list-sdks` lists one; otherwise the SDK every Unity 6 install ships at `<editor>\Editor\Data\DotNetSdk\dotnet.exe` (8.0.x). The driver picks this automatically. That bundled SDK can only build projects targeting `net8.0` or lower: a repo test project on `net9.0` needs a system SDK (install one with `winget install Microsoft.DotNet.SDK.9`, and say so instead of silently downgrading the project).
 
@@ -52,7 +52,7 @@ Direct invocation, when the driver or `unity run` do not fit:
 - Useful flags (Unity 6 reference): `-nographics`, `-quitTimeout <s>`, `-accept-apiupdate`, `-ignorecompilererrors`, `-disable-assembly-updater`, `-noUpm`, `-silent-crashes`, `-stackTraceLogType Full`, `-timestamps`, `-job-worker-count N`, `-buildTarget <t>`, `-activeBuildProfile <path>`, `-build <path>` (Unity 6 build profiles), `-importPackage`, `-exportPackage`, `-createProject`, `-rebuildLibrary`, licensing `-username/-password/-serial`, `-returnlicense`, `-manualLicenseFile`.
 - The first batchmode run after closing the Editor re-imports the Library and can take minutes; "Unable to upload symbols" in a build log is harmless.
 
-Tests from the command line (Unity Test Framework 1.x/2.x):
+Tests from the command line (Unity Test Framework; in Unity 6 it is a core package fixed to the Editor version, 1.9 on 6.7; the 2.0 line was abandoned in 2022):
 
 ```
 Unity.exe -batchmode -projectPath "<project>" -runTests -testPlatform EditMode|PlayMode|StandaloneWindows64 -testResults "<project>\Logs\tests.xml" [-testFilter "Name;Other;!Skip"] [-testCategory "Fast"] [-runSynchronously] [-forgetProjectPath] -logFile "<log>"
