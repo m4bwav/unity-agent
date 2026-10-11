@@ -44,15 +44,15 @@
     "learnings": 1,
     "changes": 2,
     "research": 3,
-    "tests": 1
+    "tests": 2
   },
   "consolidate_every": 25,
   "tests": {
-    "last_run": "2026-09-06T09:50",
-    "harness": "evergreen-tester",
+    "last_run": "2026-10-11T14:14",
+    "harness": "claude plugin eval 2.1.281 (1 run per case, --ablation none)",
     "env": "dev-machine",
-    "cases": 2,
-    "passed": 2,
+    "cases": 4,
+    "passed": 4,
     "failed": 0,
     "failing": [],
     "last_failure": null,
