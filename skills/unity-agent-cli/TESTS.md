@@ -4,17 +4,17 @@ Test runs for [SKILL.md](SKILL.md). Cases live in `evals/evals.json`. A failure 
 
 A test passes on evidence (a tool call in the trace, a file, a marker, a log line), never on the transcript's claim that something was done.
 
-Entry shape: `### T-20261003-1 · 2026-10-03 · evergreen-tester subagents (trigger cases after the beta.12 refresh, one run each) · Windows 11 dev machine, no Editor started · 2/2
-- trigger-1 pass (Skill called; read-only probe and `unity status`: CLI 1.0.0-beta.12 found, the game project's Editor open and ready, Pipeline 0.6.0-exp.1 reachable)
-- decoy-1 pass (unity-agent-mcp invoked, not unity-agent-cli)
-- Action cases (Play-mode `--until-ready` and `wait_for` loop) need a live Editor on CLI beta.12; not run. Trigger results from a subagent are a proxy for the main loop.
-- led to: none
-
-### T-YYYYMMDD-n · date · harness · env · passed/total`, then one line per failing case (`id · kind · class · what the evidence showed`), then `led to:` (L-, C-, R- ids or none). Newest first. Budget 150 lines; archive older runs to `TESTS-ARCHIVE.md`.
+Entry shape: `### T-YYYYMMDD-n · date · harness · env · passed/total`, then one line per failing case (`id · kind · class · what the evidence showed`), then `led to:` (L-, C-, R- ids or none). Newest first. Budget 150 lines; archive older runs to `TESTS-ARCHIVE.md`.
 
 Cases added 2026-09-22 and not yet run: action-2 (the compile loop) and action-3 (the command manifest), from C-20260922-2.
 
 ## Runs
+
+### T-20261003-1 · 2026-10-03 · evergreen-tester subagents (trigger cases after the beta.12 refresh, one run each) · Windows 11 dev machine, no Editor started · 2/2
+- trigger-1 pass (Skill called; read-only probe and `unity status`: CLI 1.0.0-beta.12 found, the game project's Editor open and ready, Pipeline 0.6.0-exp.1 reachable)
+- decoy-1 pass (unity-agent-mcp invoked, not unity-agent-cli)
+- Action cases (Play-mode `--until-ready` and `wait_for` loop) need a live Editor on CLI beta.12; not run. Trigger results from a subagent are a proxy for the main loop.
+- led to: none
 
 ### T-20260926-1 · 2026-09-26 · evergreen-tester subagents (partial suite after the Pipeline 0.8 refresh) · Windows 11 dev machine, CLI 1.0.0-beta.8, no Editor running · 2/2 graded (1 not gradable)
 - trigger-1 pass (Skill called; probe and `unity status` read-only; answer named both editors and that the user's game project (6000.6.0f1) was not open)

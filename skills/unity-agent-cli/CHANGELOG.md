@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261014-1 · 2026-10-14 · Verify-at-use claims re-checked: Unity CLI 1.0.0-beta.13
+- because: verify-at-use check (one search each)
+- files: evergreen.json (volatile_claims)
+- Unity CLI 1.0.0-beta.13 (2026-10-07) is the newest; com.unity.pipeline 0.8.0-exp.1 still latest. The play-mode claim stays due: --until-ready and frameCount/playerLoopTicking are documented, but unity command wait_for is not in any public doc and needs `unity list` against a live Editor.
+
 ### C-20261006-1 · 2026-10-06 · Asset imports through the Pipeline: set settings with a dry run, prove the import by loading it; `unity build --timeout`
 - because: R-20261006-1, R-20261006-2, L-010, L-011 (lessons from a settlement game's asset workflows, checked against the installed CLI and a live Editor)
 - files: SKILL.md (Step 3, Live Editor: new "Asset imports" bullet; Tests and builds: build line), LEARNINGS.md (L-010, L-011), RESEARCH.md (Open questions: eval timeout resolved; R-20261006-1, R-20261006-2), evergreen.json (counts)
