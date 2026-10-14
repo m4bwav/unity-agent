@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261014-1 · 2026-10-14 · Quiet refresh: versions in Current understanding, forum lines in the Search plan
+- because: R-20261014-1
+- files: RESEARCH.md (header; Current understanding: official route and community ranking; Open questions: Pipeline 0.9; Search plan, Subject: package feeds and an official forum and announcements line; R-20261014-1)
+- Current understanding still named CoplayDev v10.2.0 and IvanMurzak 0.93.2; the Search plan had no discussions.unity.com line with URLs. SKILL.md needed no change.
+
 ### C-20261011-1 · 2026-10-11 · Pipeline 0.9 rename warning, CoplayDev fix released, dialog status, UNITY_PROJECT_PATH, Unity 7 note
 - because: R-20261011-1, R-20261011-2
 - files: SKILL.md (Step 2: official row, CoplayDev row, registry note; Step 4: Unity 7, dialogs, two Editors), RESEARCH.md (two findings, Open questions)

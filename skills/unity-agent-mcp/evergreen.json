@@ -14,8 +14,8 @@
   "topic": "MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls",
   "tier": "fast",
   "interval_days": 3.11,
-  "last_checked": "2026-10-11",
-  "next_due": "2026-10-14",
+  "last_checked": "2026-10-14",
+  "next_due": "2026-10-17",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
@@ -50,12 +50,18 @@
       "m": 0.5,
       "interval_after": 3.11,
       "note": "refresh 2026-10-11: Pipeline 0.9 renames, CLI beta.13 dialog status, CoplayDev v10.3.0 fix; cost: searches 6 · fetches 15 · tool calls 26"
+    },
+    {
+      "date": "2026-10-14",
+      "m": 0.1,
+      "interval_after": 3.11,
+      "note": "refresh 2026-10-14: quiet; Pipeline still 0.8, CLI beta.13, CoplayDev v10.3.0, IvanMurzak 0.93.4 docs-only; forum lines added to search plan; cost: searches 5 · fetches 5 · tool calls 26"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 7,
+    "research": 8,
     "tests": 3
   },
   "consolidate_every": 25,
