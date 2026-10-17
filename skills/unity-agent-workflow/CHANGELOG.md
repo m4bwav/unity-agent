@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261017-1 · 2026-10-17 · 3D models come from polywright through its asset folder
+- because: user request (polywright HANDOFF owed item 6: siblings call polywright through the folder contract)
+- files: SKILL.md (Step 3, new bullet after the content-importer bullet)
+- One bullet: when polywright is installed, a model that must be made, found, captured or fixed is requested through polywright's asset-folder contract with the `game-unity` target, and the file named in `manifest.json` is imported from `out/`. Pointer only; no trigger or description changed, so the evals were not re-run.
+
 ### C-20261011-1 · 2026-10-11 · Agentic-access terms, Unity 7 alpha facts, skill-pack adoption, benchmark wording
 - because: R-20261011-1
 - files: SKILL.md (Step 4: skill packs, Unity's agentic path, benchmarks; Step 5: terms), RESEARCH.md (one finding)
