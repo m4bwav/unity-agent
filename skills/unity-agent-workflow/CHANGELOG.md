@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261017-2 · 2026-10-17 · references/3d-models.md: 3D models from the Unity developer's side
+- because: user request: each plugin carries 3D modelling knowledge for its topic and points to polywright; R-20261017-1
+- files: references/3d-models.md (new), SKILL.md (Step 3, the 3D-models bullet gains one pointer sentence), RESEARCH.md (R-20261017-1)
+- New reference page: formats and importers (FBX chain, glTFast 6.14 limits), Model tab settings, Rig and animation, LOD Group naming and Mesh LOD, URP and HDRP texture packing, Unity 6.6 draw-call guidance (SRP Batcher plus GPU Resident Drawer, static batching off), collision, modelling styles, kits and texel density, naming, AssetPostprocessor, import verification; links polywright's contract and its Unity page. Pointer only in SKILL.md; no trigger or description changed, so the evals were not re-run.
+
 ### C-20261017-1 · 2026-10-17 · 3D models come from polywright through its asset folder
 - because: user request (polywright HANDOFF owed item 6: siblings call polywright through the folder contract)
 - files: SKILL.md (Step 3, new bullet after the content-importer bullet)
