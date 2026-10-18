@@ -1,7 +1,7 @@
 {
   "name": "unity-agent",
   "icon": "./.claude-plugin/icon.png",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Evergreen skills for driving Unity with AI coding agents: the official Unity CLI and Pipeline package, headless batchmode and compile checks, MCP bridge selection, agent-safe Unity workflow rules, and UPM package management. Each skill re-researches its subject on a schedule and carries the evals that prove it triggers and acts.",
   "author": {
     "name": "Mark Rogers"
