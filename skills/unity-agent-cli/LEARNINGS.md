@@ -95,3 +95,11 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Evidence: live evals 2026-10-06 (read only); R-20261006-2
 - Scope: global
 - Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-06
+
+### L-012 · 2026-10-18 · `pipeline-quit-fails-in-edit-mode`: Pipeline 0.8's `quit` command errors in Edit Mode; exit through eval
+- Trigger: 2026-10-18, on a Unity 6000.6.4f1 game project moved from Pipeline 0.6.0-exp.1 to 0.8.0-exp.1: `unity command quit` returned 400 "Command Execution Failed ... DontDestroyOnLoad can only be used in play mode ... PipelineQuitScheduler".
+- Hypothesis: 0.8 schedules the quit through a DontDestroyOnLoad helper object, which Unity refuses outside Play Mode.
+- Rule: to close an Editor you started, run `unity command eval --code 'UnityEditor.EditorApplication.Exit(0); return "bye";'`; the call reports "Invalid response format" because the server dies mid-reply, so confirm with `unity status` (no row). Never kill Unity.exe by image name. Revert the settings files the Editor rewrites as it exits (`.vscode/settings.json`, some ProjectSettings assets) before committing.
+- Evidence: the 2026-10-18 upgrade session on a private game project; `unity status` listed no instance 8 s after the eval. Same upgrade: 0.7's removal of `get_console_logs` is replaced by `console --level error --tail N`, result in `entries[].message`.
+- Scope: global (com.unity.pipeline 0.8.0-exp.1)
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-18
