@@ -24,7 +24,7 @@ Topic: the official Unity CLI (unity binary, beta) and com.unity.pipeline packag
 - On Pipeline 0.8: does `capture_game_view` (default screen source) include UI Toolkit runtime UI in Edit Mode, and does L-004 still hold?
 - (resolved 2026-10-06) The eval timeout: the `eval` and `eval_file` schemas on Pipeline 0.6.0-exp.1 give `timeout` in milliseconds, default 5000 (`unity command --format json`, R-20261006-2). Recheck on 0.8.
 - Does `unity command run_tests` exit non-zero on failed tests in CLI beta.11 with Pipeline 0.8, or only report them in the payload (R-20260929-1)? And does `set_autotick` with `persist` true really survive a reload here (R-20260929-2)? Check both on the next live run.
-- (resolved 2026-10-03) The development machine now runs CLI 1.0.0-beta.12 (probe in T-20261003-1); its game project still has Pipeline 0.6.0-exp.1, so `wait_for` and the 0.8 payload changes stay unverified there until `unity pipeline upgrade` (the user's call).
+- (resolved 2026-10-03) The development machine now runs CLI 1.0.0-beta.12 (probe in T-20261003-1); its game project still has Pipeline 0.6.0-exp.1, so `wait_for` and the 0.8 payload changes stay unverified there until `unity pipeline upgrade` (the user's call). Moved to 0.8.0-exp.1 on 2026-10-18: compile clean on 6000.6.4f1, its 37-scenario snapshot suite matches, `quit` fails in Edit Mode (L-012).
 - (resolved 2026-09-06) `com.unity.pipeline` 0.6.0-exp.1 runs on 6000.5.0f1; 149 commands registered.
 
 ## Search plan
