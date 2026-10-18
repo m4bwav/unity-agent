@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261017-1 · 2026-10-17 · Refresh: IvanMurzak 1.x RQL upgrade warning, Pipeline-on-Unity-7 fix source, Unity's unity-pipeline skill
+- because: R-20261017-1, R-20261017-2, R-20261017-3
+- files: SKILL.md (Step 1 rung 2; Step 2 official row and IvanMurzak row; Step 4 Unity 7 bullet), RESEARCH.md (header; Current understanding: official route and community ranking; Open questions; Search plan, Subject and Tooling and Testing; R-20261017-1..3)
+- The IvanMurzak row named 0.93; 1.0.0 replaced its data tools with RQL, so tool names in allow-lists break on upgrade, and 1.1.0 moved the add-ons into separate packages. The official row now says the Unity 7 build block is fixed by a Unity 7 alpha, not Pipeline. Rung 2 points at Unity's new `unity-pipeline` skill. No trigger or decision changed, so the eval suite was not re-run (AGENTS.md rule).
+
 ### C-20261014-1 · 2026-10-14 · Quiet refresh: versions in Current understanding, forum lines in the Search plan
 - because: R-20261014-1
 - files: RESEARCH.md (header; Current understanding: official route and community ranking; Open questions: Pipeline 0.9; Search plan, Subject: package feeds and an official forum and announcements line; R-20261014-1)

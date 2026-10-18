@@ -13,16 +13,16 @@
   "source": null,
   "topic": "MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls",
   "tier": "fast",
-  "interval_days": 3.11,
-  "last_checked": "2026-10-14",
-  "next_due": "2026-10-17",
+  "interval_days": 3,
+  "last_checked": "2026-10-17",
+  "next_due": "2026-10-21",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 0,
+    "pinned_min": 1,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -56,12 +56,18 @@
       "m": 0.1,
       "interval_after": 3.11,
       "note": "refresh 2026-10-14: quiet; Pipeline still 0.8, CLI beta.13, CoplayDev v10.3.0, IvanMurzak 0.93.4 docs-only; forum lines added to search plan; cost: searches 5 · fetches 5 · tool calls 26"
+    },
+    {
+      "date": "2026-10-17",
+      "m": 0.35,
+      "interval_after": 3,
+      "note": "refresh 2026-10-17: IvanMurzak 1.0 RQL replaces data tools (1.1.0 add-ons split), Pipeline-on-Unity-7 fix via Unity 7 alpha, Unity unity-pipeline skill; Pipeline 0.8, CLI beta.13, CoplayDev v10.3.0 unchanged; cost: searches 7 · fetches 26 · tool calls 36"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 8,
+    "research": 9,
     "tests": 3
   },
   "consolidate_every": 25,
