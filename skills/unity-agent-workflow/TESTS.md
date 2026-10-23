@@ -8,6 +8,13 @@ Entry shape: `### T-YYYYMMDD-n · date · harness · env · passed/total`, then 
 
 ## Runs
 
+### T-20261023-1 · 2026-10-23 · headless `claude -p` 2.1.281 (default model, 3 runs per case), `--setting-sources project`, `--plugin-dir` on the books-9 worktree · Windows 11 native, no Editor running · 27/27
+- Each run in its own empty folder (action runs: an empty `Assets/Scripts`); trigger and decoy runs `--max-turns 3`; `--permission-mode acceptEdits`. Grader reads the stream-json trace (Skill calls) and, for action-2, the files left behind: `docs/ONE-PAGER.md` exists and a `.cs` file declares `: ScriptableObject`.
+- trigger-1, trigger-2, trigger-3 (plan a twin-stick shooter's first level and enemies), trigger-4 (playtest plan for a platformer) · trigger · 12/12 · `Skill(unity-agent:unity-agent-workflow)` called.
+- decoy-1 · 3/3, unity-agent-cli called instead. decoy-2 (ComfyUI sprite), decoy-3 (Roblox waves), decoy-4 (board-game pitch) · 9/9, no Skill call.
+- action-2 (set up a fox platformer's run and jump) · with the skill 3/3: every run wrote `docs/ONE-PAGER.md` with the core loop and a `PlayerMetrics` ScriptableObject read by the controller and an engine-free test project (two runs also wrote an editor script that builds the scene). Baseline (no plugin) 0/3: controllers with the numbers as serialized fields on the MonoBehaviour, no one-pager. The baseline outputs are the grader's wrong-answer check; a with-run is its right-answer check.
+- Not rerun after the prose edits to references/game-design.md (wording only; Step 4 and the description unchanged). outcome-1 and action-1 not run (unchanged behaviour).
+- led to: L-003
 ### T-20261011-1 · 2026-10-11 · claude plugin eval 2.1.281 (default model, 1 run per case, --ablation none) · Windows 11 native, no Editor running · 4/4
 - Suite: cases from `evals/evals.json` exported with `evergreen.py eval-export --out evals/<short name>` into an uncommitted root `evals/` tree, frontmatter `runs` set to 1; `claude plugin eval . --ablation none --no-publish -j 4 --trust-plugin --case "*trigger*"`, then `"*decoy*"`. Cost for all four units: trigger 0.88 USD (28 s), decoy 0.49 USD (15 s), act-suffix decoys 0.72 USD plus a 0.27 USD rerun.
 - trigger-1 (latest thinking on agents with Unity), trigger-2 (keep agents from breaking scenes and .meta files) · trigger · pass · `Skill(unity-agent-workflow)` called.

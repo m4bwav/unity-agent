@@ -4,6 +4,10 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261023-1 · 2026-10-23 · Game design before code: references/game-design.md and a new Step 4
+- because: user request (book-learnings track 9, after Rogers, *Level Up!*); R-20261023-1; T-20261023-1
+- files: references/game-design.md (new), SKILL.md (description; new Step 4; Steps 4 and 5 renumbered 5 and 6; Output), evals/evals.json (trigger-3, trigger-4, decoy-3, decoy-4, action-2), LEARNINGS.md (L-003)
+- New page: the one-pager and the feature-fit check, the beat chart and what to read across it, player metrics in one `PlayerMetrics` ScriptableObject, `_Playground` and `_CombatArena` scenes, cheats compiled out (built-in `DEVELOPMENT_BUILD` or a custom symbol in the development build profile), the enemy card, encounter, fairness and boss rules, the Cinemachine 3 component names with the 2.x names they replaced, a camera checklist with a PlayMode test, the attack matrix as data, and a playtest protocol and questionnaire. Step 4 points at it for game features. The description gained game-design trigger words and lost the repo-setup parenthesis to stay under 1,024 characters; all eight trigger and decoy cases were rerun.
 ### C-20261017-2 · 2026-10-17 · references/3d-models.md: 3D models from the Unity developer's side
 - because: user request: each plugin carries 3D modelling knowledge for its topic and points to polywright; R-20261017-1
 - files: references/3d-models.md (new), SKILL.md (Step 3, the 3D-models bullet gains one pointer sentence), RESEARCH.md (R-20261017-1)

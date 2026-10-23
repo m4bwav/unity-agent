@@ -33,6 +33,36 @@
       "runs": 3
     },
     {
+      "id": "trigger-3",
+      "kind": "trigger",
+      "prompt": "I'm starting a top-down twin-stick shooter in Unity 6. Before we write any code, help me plan the first level and its enemies.",
+      "expectations": ["the unity-agent-workflow skill is invoked"],
+      "runs": 3
+    },
+    {
+      "id": "trigger-4",
+      "kind": "trigger",
+      "prompt": "Write me a playtest plan for the first world of my Unity platformer.",
+      "expectations": ["the unity-agent-workflow skill is invoked"],
+      "runs": 3
+    },
+    {
+      "id": "decoy-3",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Design the enemy waves for my Roblox tower defense game.",
+      "expectations": ["the unity-agent-workflow skill is not invoked (a Roblox game, roblox-agent's job)"],
+      "runs": 3
+    },
+    {
+      "id": "decoy-4",
+      "kind": "trigger",
+      "decoy": true,
+      "prompt": "Write a one-page pitch for my board game about building railways across Europe.",
+      "expectations": ["the unity-agent-workflow skill is not invoked (a board game, no Unity)"],
+      "runs": 3
+    },
+    {
       "id": "action-1",
       "kind": "action",
       "prompt": "Add agent working rules to this Unity repo so future sessions verify changes properly.",
@@ -43,6 +73,18 @@
         "input_match": "AGENTS\\.md|AGENTS-snippet\\.md"
       },
       "baseline": "2026-09-06: without the skill a fresh session wrote generic C# style rules and did not mention YAML, .meta, the compile check, or the Editor lock.",
+      "runs": 3
+    },
+    {
+      "id": "action-2",
+      "kind": "action",
+      "prompt": "I'm starting a new Unity 6 2D platformer about a fox who collects acorns. Set up the player's run and jump in this project (C# under Assets/Scripts). Don't ask me questions; make reasonable choices and write the files.",
+      "expectations": ["before or with the movement code the agent wrote a one-pager naming the core loop (docs/ONE-PAGER.md) and put the run and jump numbers in one ScriptableObject metrics asset, proven by the files"],
+      "evidence": {
+        "type": "file",
+        "path": "docs/ONE-PAGER.md"
+      },
+      "baseline": "2026-10-23 (T-20261023-1): fixtures-only folder, no plugin.",
       "runs": 3
     },
     {

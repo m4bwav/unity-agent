@@ -5,6 +5,9 @@
 - Published 2026-09-22 as github.com/m4bwav/unity-agent, version 1.1.0: one scrubbed commit, tag v1.1.0 for the release workflow.
 - unity-agent-cli and unity-agent-mcp were refreshed the same day (cli: Pipeline 0.7 removed `get_console_logs`, the verification loop now uses `unity recompile` and `console`; mcp: Pipeline 0.7 and CLI beta.11, local scope for Claude Code, CoplayDev tool groups, Inspector CLI evidence). Next due: cli 2026-09-26, mcp 2026-09-30; headless, packages and workflow per their `evergreen.json`.
 
+- 2026-10-23: unity-agent-workflow gained game design before code (references/game-design.md, Step 4, C-20261023-1; rulings U1-U6 in [the decision](decisions/2026-10-23-game-design-before-code-books-track9.md)). Unreleased: plugin.json stays 1.2.4 until the owner tags.
+- Branch evals: headless `claude -p --setting-sources project --plugin-dir <worktree>` from an empty folder (workflow L-003); the user skills folder links to the main clone otherwise.
+
 ## In progress
 
 - None.
