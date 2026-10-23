@@ -41,18 +41,18 @@
     }
   ],
   "counts": {
-    "learnings": 2,
-    "changes": 4,
-    "research": 6,
-    "tests": 2
+    "learnings": 3,
+    "changes": 5,
+    "research": 7,
+    "tests": 3
   },
   "consolidate_every": 25,
   "tests": {
-    "last_run": "2026-10-11T14:14",
-    "harness": "claude plugin eval 2.1.281 (1 run per case, --ablation none)",
+    "last_run": "2026-10-23T16:00",
+    "harness": "headless claude -p 2.1.281, --setting-sources project, 3 runs per case",
     "env": "dev-machine",
-    "cases": 4,
-    "passed": 4,
+    "cases": 9,
+    "passed": 9,
     "failed": 0,
     "failing": [],
     "last_failure": null,

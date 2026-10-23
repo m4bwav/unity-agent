@@ -30,16 +30,16 @@ building (heuristic); reuse and recolour a few systems instead.
 
 ## 2. The beat chart (`docs/BEAT-CHART.md`, once there are three or more levels)
 
-One column per level, one row per element: name and scene file, story beat, gameplay focus, estimated play time,
-time of day and colour scheme, enemies, mechanics, hazards, power-ups or new abilities, economy (what it hands out),
-music cue. Read across the rows for:
+One column per level, one row per element. The rows: name and scene file, story beat, gameplay focus, estimated
+play time, time of day and colour scheme, enemies, mechanics, hazards, power-ups or new abilities, economy (what it
+hands out) and music cue. Read across the rows and flag:
 
-- **Clumping**: more than two or three new things in one level (the first level is the exception).
-- **Sameness**: the same enemy and hazard combination, lighting, colour or music cue in neighbouring columns.
-- **Late tools**: every ability should be given by about three quarters of the way through, so the last stretch
-  uses them (heuristic).
-- **Pairing**: each new enemy or hazard arrives with, or after, the tool that beats it.
-- **Economy gaps**: a level that hands out nothing, or more than the next one can use.
+- more than two or three new things in one level (the first level is the exception);
+- the same enemy and hazard combination, lighting, colour or music cue in neighbouring columns;
+- an ability given late: every ability should arrive by about three quarters of the way through, so the last
+  stretch uses them (heuristic);
+- a new enemy or hazard that arrives before the tool that beats it;
+- a level that hands out nothing, or more than the next one can use.
 
 The music row is what a composer or the musicwright plugin plans cues from, so fill it.
 
@@ -62,9 +62,9 @@ public sealed class PlayerMetrics : ScriptableObject
 
 - Derive the physics from the design numbers (jump impulse from `jumpHeight` and gravity), not the other way round,
   and cover the derivation with a rung 1 test.
-- Size gaps, ledges and corridors from the asset: a gizmo or an editor tool that draws the jump arc and reach at
-  the player start lets the user check a grey-box by eye in the Scene view. A 3D corridor is roomier than it looks
-  in a plan (heuristic: about five hero widths), because first grey-boxes come out cramped.
+- Size gaps, ledges and corridors from the asset. A gizmo that draws the jump arc and reach at the player start
+  lets the user check a grey-box in the Scene view. Make 3D corridors wider than the plan suggests (heuristic:
+  about five hero widths), because first grey-boxes come out cramped.
 - Once players have learned the numbers, do not change them mid-game: they judge distance by eye.
 - Values in the asset are serialized: renaming a field drops its value (Step 3's serialized-field rule).
 
@@ -75,10 +75,10 @@ public sealed class PlayerMetrics : ScriptableObject
   both before the first real level, and create them through an editor script or `[MenuItem]`, never as hand-written
   YAML (Step 3).
 - Cheats: level skip, invulnerability, grant item and money, a free camera for screenshots. Compile them out of
-  release builds. Either gate them on the built-in `DEVELOPMENT_BUILD` and `UNITY_EDITOR` symbols [verified], or
-  define a custom symbol such as `GAME_CHEATS` only in the development build profile (Build Profiles window,
-  Build Data > Scripting Defines; project-wide it is Player Settings > Other Settings > Script Compilation >
-  Scripting Define Symbols, then Apply) [verified]. Wrap the code in `#if GAME_CHEATS`, or mark the entry points
+  release builds. The simplest gate is the built-in `DEVELOPMENT_BUILD` and `UNITY_EDITOR` symbols [verified].
+  For a switch of your own, define a symbol such as `GAME_CHEATS` only in the development build profile (Build
+  Profiles window, Build Data > Scripting Defines) [verified]. The project-wide place is Player Settings > Other
+  Settings > Script Compilation > Scripting Define Symbols, then Apply [verified]. Wrap the code in `#if GAME_CHEATS`, or mark the entry points
   `[System.Diagnostics.Conditional("GAME_CHEATS")]`.
 - Proof the cheats are gone: build or compile the release configuration (rung 2 or 3) and show that no cheat type
   is reachable, rather than trusting the define list.
@@ -101,23 +101,24 @@ Fill one card per enemy before modelling or scripting it, in the attack-matrix a
 
 Encounter rules:
 
-- **Pair archetypes** so the player must choose a target: a shield blocker in front of a shooter, a big chaser with
-  small flyers, a teleporter with a chaser, a guard with a bomber overhead.
-- **Only one or two attack at once**, even in a big group. In Unity this is usually an attack-token manager that
+- Pair archetypes so the player must choose a target. Pairs that work: a shield blocker in front of a shooter, a
+  big chaser with small flyers, a teleporter with a chaser, a guard with a bomber overhead.
+- Only one or two attack at once, even in a big group. In Unity this is usually an attack-token manager that
   enemies ask before attacking; cap the tokens, not the group size.
-- **Spawn safely**: out of the camera's view or behind a spawner the player can see and hit, never inside melee
+- Spawn out of the camera's view or behind a spawner the player can see and hit, never inside melee
   range. A first appearance is an event: frame it, name it, give the player a moment.
-- **Orchestrate in order** across a level or a game: movement and collecting, one mechanic until it is learned, a
-  second, the two combined, a hazard over familiar ground, enemies alone, enemies with hazards, then a twist on
-  something familiar.
-- **Pace big moments against small ones**: no two big moments back to back, a quiet stretch after a climax.
-- **Fairness**: hazards look dangerous and keep predictable timing with a little leeway; no death the player could
-  not see coming; checkpoints face the direction of travel, sit on flat ground away from hazards and aggro radii,
-  respawn the player standing, and save when touched. Offer, never force, an easier setting after repeated deaths.
+- Introduce things in order across a level or a game. Movement and collecting come first, then one mechanic until
+  it is learned, then a second, then the two combined. Next a hazard over familiar ground, enemies alone, enemies
+  with hazards, and last a twist on something familiar.
+- No two big moments back to back; a quiet stretch follows a climax.
+- Hazards look dangerous and keep predictable timing with a little leeway. No death the player could not see
+  coming. Checkpoints face the direction of travel and sit on flat ground away from hazards and aggro radii; they
+  respawn the player standing and save when touched. Offer, never force, an easier setting after repeated deaths.
   Never design an encounter around a target number of deaths.
-- **Bosses**: a readable pattern built on moves the player already has, or on one new ability, never both; a main
-  attack to learn, a big attack to survive, a clearly lit weak-spot window, rounds that escalate, an arena built
-  with the boss, and the player lands the last hit. A respawn should not reset the whole fight.
+- A boss fight is a readable pattern built on moves the player already has, or on one new ability, never both.
+  It has a main attack to learn, a big attack to survive and a clearly lit weak-spot window, in rounds that
+  escalate, in an arena built with the boss. The player lands the last hit, and a respawn should not reset the
+  whole fight.
 
 ## 6. Camera checklist (Cinemachine 3 or a custom follow camera)
 
@@ -145,8 +146,10 @@ was current for Unity 6.2 when this was written. The checklist, whichever camera
 - A scripted shot that takes control away is obvious (letterbox, a cut, input ignored visibly), and hands control
   back cleanly.
 
-A PlayMode test makes the first two items a rung 3 check: drive the player along a recorded path through the level
-and assert each frame that the player stays in view and unblocked.
+A PlayMode test turns the first two items into a rung 3 check. Drive the player along a recorded path through the
+level and assert on each frame that the player stays in view and unblocked. `path` and `player` are the test's
+fixtures. Both C# blocks on this page compile against the Unity 6.6 Editor's assemblies with C# 9; neither has been
+run inside a Unity project here.
 
 ```csharp
 [UnityTest]
@@ -182,14 +185,14 @@ never chain the player into a hazard. A shooter keeps a melee fallback for an em
 
 The ladder's rung 5 is a playtest. Hand the user this protocol rather than "please playtest".
 
-1. **Solo, by the agent where it can**: through the live Editor (unity-agent-cli: `editor_play`, `eval`,
+1. The agent, alone, where it can. Through the live Editor (unity-agent-cli: `editor_play`, `eval`,
    `console --level error`), teleport the player backwards along the level, through every door from the far side,
-   out of bounds and onto wall tops; run past enemies to see whether they follow; set each tuning value to its
+   out of bounds and onto wall tops. Run past enemies to see whether they follow, and set each tuning value to its
    extremes. Report errors, stuck states and falls through the world.
-2. **Solo, by the user**: play it as a player would, not in god mode; hug walls, jump at the camera's edges, play
+2. The user, alone: play it as a player would, not in god mode; hug walls, jump at the camera's edges, play
    on each target platform.
-3. **Fresh eyes**: someone new, with the screen and their face recorded, and the questions written before the
-   session (can they find the exit, read the goal, beat the fight, use the menus?). Watch without helping.
+3. Fresh eyes: someone new, with the screen and their face recorded. Write the questions before the session (can
+   they find the exit, read the goal, beat the fight, use the menus?) and watch without helping.
 4. Act on a problem when several testers hit it; suggestions are optional.
 
 Questions for afterwards: what were you trying to do; where were you confused, frustrated or bored; how long did

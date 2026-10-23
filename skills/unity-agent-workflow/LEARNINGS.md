@@ -21,3 +21,11 @@ Write an entry the moment a real signal happens: a user correction, the same err
 - Evidence: the game's crop, building and animal sprite skills (recorded there as importing cleanly); SKILL.md §Step 3 (.meta rule)
 - Scope: global
 - Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-06
+
+### L-003 · 2026-10-23 · `setting-sources-isolates-branch-skills`: a headless eval of a branch copy must not also load the installed copy
+- Trigger: evaluating this skill from a git worktree on a machine whose user skills folder links the same five skills from the main clone; with plain `--plugin-dir` both copies would load and the model could pick the old one.
+- Hypothesis: `claude -p --setting-sources project` skips the user tier, user skills folder included; with `--plugin-dir <worktree>` only the branch's `unity-agent:*` skills load, and without it the baseline arm has no Unity skill at all.
+- Rule: run branch evals with `--setting-sources project` (plus `--plugin-dir` in the skill arm) from an empty folder, and check the `init` event's `skills` list once before the batch.
+- Evidence: T-20261023-1 (init listed only `unity-agent:unity-agent-*`; the baseline arm listed none)
+- Scope: global
+- Status: active · helpful 1 · harmful 0 · last_confirmed 2026-10-23
