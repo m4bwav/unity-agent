@@ -1,6 +1,6 @@
 ---
 name: unity-agent-workflow
-description: "How an AI coding agent works inside a Unity project so its changes are verifiable: the verification ladder (engine-free tests, offline compile check, Unity Test Framework, live Editor checks), the rules that keep Unity repos safe for agents (never hand-write scene/prefab/asset YAML, keep .meta files with their assets, Humble Object logic, importers over hand-edited assets, domain reload), repo setup for agents (AGENTS.md snippet, skill packs, .gitignore, csproj generation) and Unity's stance on AI-made content. Use whenever the user asks how Claude, Copilot, Cursor or Codex should work with Unity, wants a Unity repo set up for AI agents, asks for Unity coding conventions for agents or the latest thinking on AI with Unity, asks why an agent edit broke a scene or .meta, or says 'refresh unity-agent-workflow' / 'is unity-agent-workflow stale'. The CLI is unity-agent-cli; batchmode and compile checks are unity-agent-headless; MCP servers are unity-agent-mcp; packages are unity-agent-packages."
+description: "How an AI coding agent works inside a Unity project so its changes are verifiable: the ladder (engine-free tests, offline compile check, Unity Test Framework, live Editor checks), the rules that keep Unity repos safe for agents (no hand-written scene/prefab/asset YAML, .meta files kept with their assets, Humble Object logic, domain reload), repo setup for agents, Unity's AI-content policy, and game design before code (one-pager, beat chart, player metrics, enemies, camera, playtest). Use whenever the user asks how Claude, Copilot, Cursor or Codex should work with Unity, wants a Unity repo set up for AI agents, asks for the latest thinking on AI with Unity or why an agent edit broke a scene or .meta, starts a Unity game or designs a level, enemy, weapon, camera or playtest for one, or says 'refresh unity-agent-workflow' / 'is unity-agent-workflow stale'. The CLI is unity-agent-cli; batchmode and compile checks are unity-agent-headless; MCP servers are unity-agent-mcp; packages are unity-agent-packages."
 ---
 
 # Unity agent workflow (how to work in a Unity repo and prove it)
@@ -44,7 +44,11 @@ Rule: `dotnet test` green is not a compile check for engine-side files; before c
 - Save systems and serialized fields: adding a field is safe; renaming or removing one silently drops data. Flag any change to a serialized or save-reachable type.
 - Don't add asmdefs, DI containers, Addressables, or new packages without asking; they change compile units and import behaviour for everyone.
 
-## Step 4: tooling worth pointing at (verify state at refresh)
+## Step 4: game features: design before code
+
+When the request is a new game or a game feature (a level, an enemy, a weapon, the player's movement, the camera), not a fix or a refactor, read [references/game-design.md](references/game-design.md) first (after Rogers, *Level Up!*). Before the first gameplay script, the repo gets a `docs/ONE-PAGER.md` with the core loop as a verb; check each new request against it and say in one line when one does not fit. Movement and level numbers live in one `PlayerMetrics` ScriptableObject that the controller and the level tools both read. Enemies get a card (archetype, speed against the player, tells, health in hits) before they get a model, and only one or two attack at once. `_Playground` and `_CombatArena` scenes and compiled-out debug cheats come before real levels. A Cinemachine 3 camera uses the 3.x component names, and a PlayMode test keeps the player in view along a path. Rung 5 is handed over as the page's playtest protocol and questionnaire, not as "please playtest".
+
+## Step 5: tooling worth pointing at (verify state at refresh)
 
 - Unity-Technologies/skills (MIT, official): `npx skills@1.7.0 add Unity-Technologies/skills` gives `unity-cli`, `unity-package-management`, `ui` router with `ui-uitk` (UI Toolkit), `ui-ugui`, `ui-imgui`, `validate-urp-render-graph-renderer-feature`, `shader-graph-create-custom-node`, multiplayer, IAP, LevelPlay, `new-unity-project`. `unity skill install <client>` does the same for the CLI skill.
 - nowsprinting/unity-coding-skills (Unlicense): test-first Unity skills (`plan-feature`, `fix-bug`, `run-tests`, `unity-yaml-editing-guide`, `test-designing-guide`); the test and scene skills depend on Rider's MCP.
@@ -52,13 +56,13 @@ Rule: `dotnet test` green is not a compile check for engine-side files; before c
 - Unity's own agentic path: Unity CLI + Pipeline (unity-agent-cli), `unity mcp` (unity-agent-mcp). Unity 6.6 makes Fast Enter Play Mode (no domain reload on play) the default; Unity 7 (public alpha since 2026-10-05, preview December 2026, release early 2027) is positioned around agent collaboration: CoreCLR only, code reloads instead of domain reloads, and text-serialized assets start with a `%UNITY` format-version line that older Editors refuse.
 - Benchmarks and verification research (no Unity agent benchmark exists yet): GameDevBench (arXiv 2602.11103, Godot only), replay-based verification of generated Unity code (arXiv 2603.07101). Use them for ideas, not as harnesses.
 
-## Step 5: Unity's stance on AI-made work (for a hobby or commercial project)
+## Step 6: Unity's stance on AI-made work (for a hobby or commercial project)
 
 Unity's Terms (updated 2026-06-30) let automated tools act on your account under your responsibility, and §17.2 (ff) and (gg) let AI agents and MCP clients reach Unity Offerings only through "Authorized Agentic Access" that Unity runs or designates; Unity's support account said this covers cloud services, the Asset Store and online APIs, not a local Editor bridge (informal, no official FAQ). The Asset Store allows AI-generated content with disclosure in the AI description field and bans training on Store assets. Unity AI features (Assistant, Generators) need a Unity Cloud project and their own terms; nothing restricts a project from using agent-written code with a normal Unity licence. Say this in one line when the user asks about permission; don't lecture.
 
 ## Output
 
-For "how should the agent work here": the ladder rung(s) you will use for the task, the route for any asset change, and the evidence you will show. For "set up the repo": the files you propose to add (snippet, skills, csproj generation) and what each prevents.
+For "how should the agent work here": the ladder rung(s) you will use for the task, the route for any asset change, and the evidence you will show. For "set up the repo": the files you propose to add (snippet, skills, csproj generation) and what each prevents. For a game feature: the design files written or updated first (one-pager, metrics asset, enemy card, beat chart) and the test or playtest step that checks them.
 
 ## While working: capture learnings
 
