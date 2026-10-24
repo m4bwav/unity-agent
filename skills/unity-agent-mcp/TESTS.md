@@ -10,6 +10,12 @@ Case added 2026-09-22 and not yet run: action-2 (tools listed through `claude mc
 
 ## Runs
 
+### T-20261023-1 · 2026-10-23 · evergreen-tester subagents (one run per case, after refresh C-20261023-1) · Windows 11 dev machine, no Editor started · 2/2
+- trigger-2 pass (`Skill(unity-agent-mcp)` the only skill called; answer gave the domain-reload cause and retry advice)
+- outcome-2 pass (new case; the answer named 0.9's grouped commands with no aliases, CLI beta.14+, and `unity command --obsolete-command-names`; the loaded skill is a junction to the working branch, diff empty)
+- Trigger results from a subagent are a proxy for the main loop.
+- led to: none
+
 ### T-20261011-1 · 2026-10-11 · claude plugin eval 2.1.281 (default model, 1 run per case, --ablation none) · Windows 11 native, no Editor running · 4/4
 - Suite: cases from `evals/evals.json` exported with `evergreen.py eval-export --out evals/<short name>` into an uncommitted root `evals/` tree, frontmatter `runs` set to 1; `claude plugin eval . --ablation none --no-publish -j 4 --trust-plugin --case "*trigger*"`, then `"*decoy*"`. Cost for all four units: trigger 0.88 USD (28 s), decoy 0.49 USD (15 s), act-suffix decoys 0.72 USD plus a 0.27 USD rerun.
 - trigger-1 (is there an MCP server for Unity), trigger-2 (bridge drops on Play) · trigger · pass · `Skill(unity-agent-mcp)` called.
