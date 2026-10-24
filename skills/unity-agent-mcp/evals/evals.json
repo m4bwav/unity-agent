@@ -81,6 +81,19 @@
       },
       "baseline": "not yet run",
       "runs": 3
+    },
+    {
+      "id": "outcome-2",
+      "kind": "outcome",
+      "added": "2026-10-23",
+      "prompt": "I upgraded com.unity.pipeline to 0.9 and now every unity mcp tool call fails with Command Not Found. What happened?",
+      "files": [],
+      "expectations": [
+        "the reply says 0.9 grouped the commands and dropped the old names, and that the Unity CLI must be beta.14 or later to match",
+        "the reply points to `unity command --obsolete-command-names` (or re-listing the tools) to update allow-lists or scripts that name old tools"
+      ],
+      "baseline": "not yet run",
+      "runs": 3
     }
   ]
 }

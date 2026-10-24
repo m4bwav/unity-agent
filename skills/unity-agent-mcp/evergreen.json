@@ -14,15 +14,15 @@
   "topic": "MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls",
   "tier": "fast",
   "interval_days": 3,
-  "last_checked": "2026-10-17",
-  "next_due": "2026-10-21",
+  "last_checked": "2026-10-23",
+  "next_due": "2026-10-27",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 1,
+    "pinned_min": 2,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -62,21 +62,27 @@
       "m": 0.35,
       "interval_after": 3,
       "note": "refresh 2026-10-17: IvanMurzak 1.0 RQL replaces data tools (1.1.0 add-ons split), Pipeline-on-Unity-7 fix via Unity 7 alpha, Unity unity-pipeline skill; Pipeline 0.8, CLI beta.13, CoplayDev v10.3.0 unchanged; cost: searches 7 · fetches 26 · tool calls 36"
+    },
+    {
+      "date": "2026-10-23",
+      "m": 0.6,
+      "interval_after": 3,
+      "note": "refresh 2026-10-23: Pipeline 0.9.0/0.9.1 shipped (grouped commands, no aliases), CLI beta.14 --tools filters and Editor pinning, 0.9 rollout pitfalls, IvanMurzak 1.5.0; cost: searches 4 · fetches 34 · tool calls 58"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 9,
-    "tests": 3
+    "research": 10,
+    "tests": 4
   },
   "consolidate_every": 25,
   "tests": {
-    "last_run": "2026-10-11T14:14",
-    "harness": "claude plugin eval 2.1.281 (1 run per case, --ablation none)",
-    "env": "dev-machine",
-    "cases": 4,
-    "passed": 4,
+    "last_run": "2026-10-23T23:29",
+    "harness": "evergreen-tester subagents (1 run per case)",
+    "env": "Windows 11 dev machine, no Editor",
+    "cases": 2,
+    "passed": 2,
     "failed": 0,
     "failing": [],
     "last_failure": null,
