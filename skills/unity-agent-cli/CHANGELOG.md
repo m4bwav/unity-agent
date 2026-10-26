@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261025-1 · 2026-10-25 · Pixel-art import: compression off, one PPU, integer scale
+- because: R-20261025-1 (book-learnings round 2 track 19)
+- files: SKILL.md (Step 3, Live Editor, the asset-import bullet), RESEARCH.md (R-20261025-1)
+- The `set_import_settings` example adds `"textureCompression":"Uncompressed"` and one clause on pixel art: no compression, one pixels-per-unit value, whole-number camera scale.
+
 ### C-20261014-1 · 2026-10-14 · Verify-at-use claims re-checked: Unity CLI 1.0.0-beta.13
 - because: verify-at-use check (one search each)
 - files: evergreen.json (volatile_claims)

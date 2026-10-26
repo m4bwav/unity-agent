@@ -60,6 +60,13 @@ Best sources (primary first): unity.com/blog, docs.unity3d.com package manuals (
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
 
+### R-20261025-1 · 2026-10-25 · Subject: pixel-art texture import (books and the Unity scripting reference)
+- summary: The pixel-art books read for the book-learnings build (Azzi, *Pixel Logic*, p. 21: resize by whole numbers only and never mix pixel ratios; Dawe and Humphries, *Make Your Own Pixel Art*, ch. 4) back the import example's point filter and no mipmaps, and add two items: compression off (block compression changes palette colours) and one pixels-per-unit value with integer camera scale. The key name comes from the Unity scripting reference: `TextureImporter.textureCompression`, type `TextureImporterCompression` with values `Uncompressed`, `Compressed`, `CompressedHQ`, `CompressedLQ` (docs.unity3d.com, read 2026-10-25). Not run live: send it with `--dry_run true` first and check `unknown` (L-010).
+- track: subject
+- sources: https://docs.unity3d.com/ScriptReference/TextureImporter-textureCompression.html; https://docs.unity3d.com/ScriptReference/TextureImporterCompression.html
+- magnitude: 0.1
+- applied: C-20261025-1
+
 ### R-20261006-2 · 2026-10-06 · Subject, testing: the Pipeline's import commands, checked live
 - summary: Out-of-cycle check, prompted by a settlement game's asset workflows (building sprites set through `set_import_settings`, sounds confirmed by loading them through `eval`). On CLI 1.0.0-beta.12 with Pipeline 0.6.0-exp.1 and Unity 6000.6.4f1, `unity command --format json` lists three import commands under the `assets/import` tag: `set_import_settings` (`asset` path, guid or globalId; `settings` JSON of importer property names; `platform` Default, Standalone, iOS, Android, WebGL or tvOS, where a real platform writes a texture or audio override; `dry_run`; no `confirm`; re-imports), `get_import_settings` (`asset`, `platform`; returns `importerType`, the settings and one platform override block) and `import_asset` (`source` absolute path, `path` under the authoring root, `confirm` only to overwrite, `dry_run`). A dry run with one made-up key returned `success: true` with `applied` and `unknown` lists (L-010). `eval` and `eval_file` take `timeout` in milliseconds, default 5000. A read-only eval of `Resources.Load<AudioClip>` returned the clip length, and null for a wrong path with `success: true` (L-011). Nothing was written.
 - track: subject, testing
