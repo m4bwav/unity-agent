@@ -58,6 +58,14 @@ Best sources (primary first): the three GitHub repos (README, releases, issues),
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
 
+### R-20261030-1 · 2026-10-30 · Subject: Unity CLI 1.0.0-beta.15
+- track: subject. magnitude: 0.4. applied: C-20261030-1
+- Staff post 2026-10-29: unique MCP tool names (`settings_player_get`, `script_eval`), MCP job tools, `unity mcp --cli-tools`, `unity list` and `list` subcommands removed, JSON listings now `items/total/nextPage/partial`, `cli.version` pin in `ProjectSettings/UnityCliConfig.json`, `unity command` uses the Pipeline connection with HTTP fallback.
+- sources: https://discussions.unity.com/t/unity-cli-1-0-0-beta-15-is-rolling-out/1740651
+
+### R-20261030-2 · 2026-10-30 · Rest quiet
+- Pipeline still 0.9.1-exp.1; Assistant 2.21.0-pre.2 (10-26), no MCP change found. CoplayDev v10.3.0 still latest; IvanMurzak 1.5.0 (10-24, already noted); CoderGamester 1.5.0. Practice: nothing new. Testing: nothing new. Unity 7.0 planned breaking changes (10-22) affect headless more than MCP.
+
 ### R-20261023-1 · 2026-10-23 · Subject: Pipeline 0.9.0-exp.1 shipped; 0.9.1-exp.1 is latest
 - Summary: packages.unity.com: 0.9.0-exp.1 (2026-10-20) and 0.9.1-exp.1 (2026-10-23, dist-tag `latest`), verified with curl. 0.9.0 groups commands (`unity command <group> <name>`, such as `editor status`, `script eval`, `test run`) and removes the old flat names; Code Reload becomes Method Reload; `[CliCommand]` takes the group first; `RuntimeOnly` and `dialogsDuringExecution` removed; requests whose Host is not 127.0.0.1 are refused (DNS rebinding); new Build Profile commands and `editor_set_run_in_background`. 0.9.1 reads a dotted `[CliCommand]` name as group.name and fixes the Android/iOS Subtarget pre-build exception and Unity 7 analyzer warnings. Upgrade: `unity pipeline install --package-version 0.9.0-exp.1 --force`.
 - Track: subject
