@@ -50,6 +50,9 @@ Best sources (primary first): docs.unity3d.com Manual and package pages (fetch f
 
 ## Findings log
 
+### R-20261030-1 · 2026-10-30 · Quiet refresh (Unity 7.0 notes for CI)
+- Subject: staff "Planned breaking changes in Unity 7.0" (2026-10-22, https://discussions.unity.com/t/planned-breaking-changes-in-unity-7-0/1740094): Editor moves to CoreCLR; serialization warnings become errors; `UNITY_64` and `DEVELOPMENT_BUILD` defines removed; Progressive CPU lightmapper converted to GPU (headless bake agents need a GPU); no change to command-line arguments, `-runTests` or exit codes. Not yet in SKILL.md: Unity 7 is alpha; apply when it ships. Tooling: com.unity.test-framework still 1.4.6; game-ci/unity-builder v6.0.0 (09-10) already out before last check. CLI beta.15 adds `unity projects audit --workflow coreclr` (lead for a Unity 7 readiness check). Practice: nothing new. Testing: nothing new. magnitude 0.2.
+
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
 
 ### R-20261029-1 · 2026-10-29 · Practice: behavioural oracles for agent changes (from other engines)

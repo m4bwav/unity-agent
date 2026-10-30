@@ -14,15 +14,15 @@
   "topic": "MCP servers that bridge AI agents to the Unity Editor: Unity's official unity mcp mode, CoplayDev, IvanMurzak, CoderGamester, docs servers; client configuration and domain-reload pitfalls",
   "tier": "fast",
   "interval_days": 3,
-  "last_checked": "2026-10-23",
-  "next_due": "2026-10-27",
-  "verify_at_use": false,
+  "last_checked": "2026-10-30",
+  "next_due": null,
+  "verify_at_use": true,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 2,
+    "pinned_min": 0,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -68,12 +68,18 @@
       "m": 0.6,
       "interval_after": 3,
       "note": "refresh 2026-10-23: Pipeline 0.9.0/0.9.1 shipped (grouped commands, no aliases), CLI beta.14 --tools filters and Editor pinning, 0.9 rollout pitfalls, IvanMurzak 1.5.0; cost: searches 4 · fetches 34 · tool calls 58"
+    },
+    {
+      "date": "2026-10-30",
+      "m": 0.4,
+      "interval_after": null,
+      "note": "CLI beta.15: unique MCP tool names, job tools, unity list removed; cost: searches 4 · fetches 3 · tool calls 12"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 10,
+    "research": 11,
     "tests": 4
   },
   "consolidate_every": 25,

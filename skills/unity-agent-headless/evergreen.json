@@ -14,8 +14,8 @@
   "topic": "Unity Editor batchmode and Test Framework command line, offline C# compile checks with dotnet against Unity-generated csproj and the Unity-bundled .NET SDK, Unity 6 log locations and exit-code traps, Unity Hub headless CLI",
   "tier": "moderate",
   "interval_days": 20.0,
-  "last_checked": "2026-10-11",
-  "next_due": "2026-10-29",
+  "last_checked": "2026-10-30",
+  "next_due": "2026-11-16",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
@@ -38,12 +38,18 @@
       "m": 0.45,
       "interval_after": 20.0,
       "note": "refresh 2026-10-11: 6.7 MSBuild mode, UTF core package, MSB3277; cost: searches 6 · fetches 12 · tool calls 21"
+    },
+    {
+      "date": "2026-10-30",
+      "m": 0.2,
+      "interval_after": 20.0,
+      "note": "quiet; Unity 7.0 breaking-changes notes for CI logged, not applied (alpha); cost: searches 3 · fetches 2 · tool calls 12"
     }
   ],
   "counts": {
     "learnings": 4,
     "changes": 2,
-    "research": 4,
+    "research": 5,
     "tests": 2
   },
   "consolidate_every": 25,

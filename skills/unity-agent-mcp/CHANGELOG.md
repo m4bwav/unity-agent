@@ -4,6 +4,10 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261030-1 · 2026-10-30 · CLI beta.15: unique tool names, job tools, `unity list` removed
+- because: R-20261030-1
+- files: SKILL.md (Step 1 ladder, MCP rung; Step 4 pitfalls, two Editors)
+
 ### C-20261023-1 · 2026-10-23 · Refresh: Pipeline 0.9 shipped, CLI beta.14 tool filters and pinning, 0.9 upgrade pitfall, IvanMurzak 1.5
 - because: R-20261023-1, R-20261023-2, R-20261023-3, R-20261023-4
 - files: SKILL.md (Step 1 rungs 2 and 3; Step 2 official and IvanMurzak rows; Step 3.3; Step 4 new upgrade bullet and two Editors bullet), RESEARCH.md (header; Current understanding; Open questions; Search plan, Subject and Tooling; R-20261023-1..4), evals/evals.json (outcome-2)
