@@ -119,6 +119,8 @@ Fill one card per enemy before modelling or scripting it, in the attack-matrix a
 | Size, speed, strength | they trade off: small is fast and weak, big is strong and slow; mid-size, fast and strong feels unfair |
 | Speed against the player | a chaser runs a little slower than the player so retreat works |
 | Movement and aggro radius | what makes it notice the player, and how far |
+| Awareness | how it senses the player: radius, view cone and line of sight, hearing (sound reaches it late and fades), reaction time before it acts, and the cue that shows it has noticed. Millington, AI for Games, ch. 11 |
+| States | at least normal and spotted, with a switch the player cannot miss (a bark, a pose, an icon); players notice the change more than the behaviour, and a missing switch reads as a bug. Millington, AI for Games, ch. 2 |
 | Attacks and their tells | every attack has a wind-up, sound, glow or laser line the player can read |
 | Health in hits | how many normal hits it takes; player health is the hits they should survive times average enemy damage |
 | Weakness | follows the fiction (an ice enemy fears fire) |
@@ -144,6 +146,31 @@ Encounter rules:
   It has a main attack to learn, a big attack to survive and a clearly lit weak-spot window, in rounds that
   escalate, in an arena built with the boss. The player lands the last hit, and a respawn should not reset the
   whole fight.
+
+### AI performance and navigation
+
+After Millington, AI for Games, ch. 2, 4, 6, 8 and 10, restated here. Unity names marked [verified] were read in the
+Unity 6 scripting reference and the AI Navigation package 2.0 API on 2026-11-01 ([RESEARCH.md](../RESEARCH.md)
+R-20261101-1).
+
+- Stagger NPC thinking: give each enemy a random phase offset so their expensive updates do not land on the same
+  frame, and run each layer at its own rate: movement every frame, perception a few times a second, tactics every
+  few seconds. Pick intervals that share no common factor so the layers do not stack up.
+- No allocation mid-level in AI code: pool paths, perception results and lists, and check the GC Alloc column in
+  the Profiler with twenty enemies on screen.
+- Move on a rough path first: a character that stands still while it plans looks broken, so head toward the
+  goal (straight line or a coarse route) while the full path finishes, then switch.
+- Path cost is a design tool: mark dangerous or exposed ground as its own NavMesh area, then weigh it per agent
+  type, so a scout avoids open ground a brute walks across. Bake with `NavMeshSurface` (namespace
+  `Unity.AI.Navigation`) [verified]; set per-agent costs with `NavMeshAgent.SetAreaCost(int areaIndex, float cost)`,
+  index from `NavMesh.GetAreaFromName`, and limit walkable areas with `NavMeshAgent.areaMask` [verified]. Costs set
+  by `SetAreaCost` reset when the agent is disabled and enabled again [verified], so set them in `OnEnable`.
+- Jumps, drops, ladders and doors are `NavMeshLink`s (`bidirectional`, `width`, `costModifier`, `area`) [verified]
+  placed with the level, not hard-coded in the enemy. Hand-placed cover, sniper and jump points get gizmos
+  (`OnDrawGizmos`) so a designer can see them in the Scene view; most games need only a few simple tags.
+- Leave passages wide enough for the AI to move through in groups; level layout and AI are one job.
+- One `System.Random` per subsystem (level layout, loot, AI choices), each seeded from one master seed, instead of
+  the shared `UnityEngine.Random`, so the same seed builds the same level 2 whatever happened in level 1's fights.
 
 ## 6. Camera checklist (Cinemachine 3 or a custom follow camera)
 
