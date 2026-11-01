@@ -269,3 +269,24 @@ each death and the player's position every few seconds to a CSV gives a cheap he
 Feedback the playtest should check: success is praised in layers (sound, animation, effect, text) and only for
 real achievements; success sounds rise in pitch and failure sounds fall; every sound that carries gameplay
 information has a visual twin.
+
+## 9. ML-Agents training checklist
+
+After Lapan, Deep Reinforcement Learning Hands-On, 3rd ed. 2024, restated here. ML-Agents names marked [verified] were
+read in the ML-Agents docs (release 23) on 2026-11-01 ([RESEARCH.md](../RESEARCH.md) R-20261101-2). Use it when the game
+trains an agent with the ML-Agents package.
+
+- Observations must tell states apart (ch. 6). If one frame cannot show where things are heading, add the velocity or set
+  `Stacked Vectors` on Behavior Parameters [verified]; a stack also turns a one-frame view into a short history.
+- Rewards (ch. 1, 6): reward each step's change in progress, not a lump at the end, and keep each step's reward within
+  -1..1, since larger values destabilise training [verified]. Do any hidden start action (a spawn, a reset
+  pose) in `OnEpisodeBegin()` [verified], so every episode starts from a state the agent can observe.
+- Speed (ch. 9, 12): put many copies of the training area in one scene, run several environment instances with
+  `--num-envs`, and train on a build with `engine_settings` `no_graphics: true` and a high `time_scale` [verified].
+- Trainer (ch. 16): `trainer_type: ppo` is the default [verified]. Run several seeds of a run and compare them before
+  judging a change; one lucky seed proves nothing.
+- Sparse goals (ch. 18): add an intrinsic signal under `reward_signals`, `curiosity` or `rnd` [verified].
+- Hard to discover (ch. 14): record play with the `Demonstration Recorder` component and train with `behavioral_cloning`
+  or the `gail` reward signal, both fed by a `demo_path` [verified].
+- Self-play (ch. 20): the `self_play` block keeps snapshots of the policy; judge them by the ELO the trainer reports from
+  match results (a +1/0/-1 final reward), not by loss [verified].
