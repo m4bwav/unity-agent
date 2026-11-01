@@ -83,6 +83,31 @@ public sealed class PlayerMetrics : ScriptableObject
 - Proof the cheats are gone: build or compile the release configuration (rung 2 or 3) and show that no cheat type
   is reachable, rather than trusting the define list.
 - A demo slice is easier when level skip and the arena exist from the start.
+- Time controls in the same cheat menu: pause (`Time.timeScale = 0`), single-step (advance one frame, then pause
+  again), slow and fast play (`Time.timeScale = 0.25f` and `4f`). Drive the menu, its tweens and UI Animators from
+  `Time.unscaledDeltaTime` (`Animator.updateMode = AnimatorUpdateMode.UnscaledTime`) so it still works while the
+  game is paused. Gregory, Game Engine Architecture 2e (2014), sec. 7.4.2 and 9.5.
+- Clamp long frames: `Time.maximumDeltaTime` caps `Time.deltaTime` after a hitch or a breakpoint, and with it the
+  number of `FixedUpdate` calls one frame can run (`maximumDeltaTime / fixedDeltaTime`) [verified, Unity scripting
+  reference]. Gregory, Game Engine Architecture 2e (2014), sec. 7.5.5.
+- A tuning panel for the numbers designers change most (speeds, gravity, damage, spawn rates), editable at runtime
+  and written back to the `PlayerMetrics` asset (section 3) or another ScriptableObject, so a change needs no
+  recompile. Gregory, Game Engine Architecture 2e (2014), sec. 9.3.
+
+### Gameplay architecture traps
+
+- Prefer small components on one GameObject over deep `MonoBehaviour` inheritance trees; a new enemy should be a new
+  mix of components, not a new subclass. Gregory, Game Engine Architecture 2e (2014), sec. 15.2.
+- Update order bugs: the order of `Update` calls across scripts is not defined. When one script reads what another
+  writes in the same frame, fix the order (`[DefaultExecutionOrder]` or Project Settings > Script Execution Order),
+  move the reader to `LateUpdate`, or accept and document a one-frame lag. Gregory, Game Engine Architecture 2e
+  (2014), sec. 12.5.2 and 15.6.
+- A destroyed `UnityEngine.Object` is not C# null, but its overloaded `==` reports it equal to null. Test it with
+  `== null` or `if (obj)`; `?.` and `??` skip the overload and touch the dead object. Gregory, Game Engine Architecture 2e (2014),
+  sec. 15.5, on handles that read as null.
+- Events raised while a list is being walked (an enemy dies during the damage pass, a spawn during the spawn loop):
+  queue them and handle them after the loop, never add to or remove from the list inside it. Gregory, Game Engine
+  Architecture 2e (2014), sec. 15.7.
 
 ## 5. Enemy card and encounter pacing
 
