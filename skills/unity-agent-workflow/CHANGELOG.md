@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261101-1 · 2026-11-01 · Game design §4: time controls, delta clamp, tuning panel and gameplay traps
+- because: user request (book learnings, Gregory, Game Engine Architecture 2e, 2014; owner-approved rows)
+- files: references/game-design.md (§4 Test scenes and debug cheats; new subsection Gameplay architecture traps)
+- Adds pause, single-step and 0.25x/4x play through `Time.timeScale` with the menu on unscaled time, the `Time.maximumDeltaTime` clamp (checked against the current Unity scripting reference), a runtime tuning panel, and four traps: components over inheritance, Update order, destroyed objects and `?.`, events queued during iteration. Reference page only; no trigger or description changed, so the evals were not re-run.
+
 ### C-20261023-1 · 2026-10-23 · Game design before code: references/game-design.md and a new Step 4
 - because: user request (book-learnings track 9, after Rogers, *Level Up!*); R-20261023-1; T-20261023-1
 - files: references/game-design.md (new), SKILL.md (description; new Step 4; Steps 4 and 5 renumbered 5 and 6; Output), evals/evals.json (trigger-3, trigger-4, decoy-3, decoy-4, action-2), LEARNINGS.md (L-003)
