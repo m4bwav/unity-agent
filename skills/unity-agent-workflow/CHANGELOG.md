@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261101-4 · 2026-11-01 · Game design: NavMeshObstacle carving and scripted off-mesh links (1.2.8)
+- because: user request (book learnings, Palacios, Unity 2018 AI Cookbook, ch. 4; owner-approved rows)
+- files: references/game-design.md (AI performance and navigation)
+- Two rows beside the NavMeshAgent traps: carve only route-blocking obstacles because carving rebuilds tiles, and traverse drops and jumps by hand (`autoTraverseOffMeshLink = false`, `isOnOffMeshLink`, animation, `CompleteOffMeshLink()`) on `NavMeshLink` from com.unity.ai.navigation rather than the legacy OffMeshLink. Reference page only; evals not re-run.
+
 ### C-20261101-3 · 2026-11-01 · Game design: NavMeshAgent traps, sight-check order, legacy bake (1.2.7)
 - because: user request (book learnings, Cossu, Beginning Game AI with Unity, 2021; owner-approved rows)
 - files: references/game-design.md (AI performance and navigation)

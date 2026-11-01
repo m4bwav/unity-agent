@@ -175,6 +175,11 @@ R-20261101-1).
   directly (`Translate`) while it is enabled, because it leaves the mesh and walks through walls: use `SetDestination`,
   `agent.Move`, or set `updatePosition = false` and drive it yourself; snap random patrol points to the mesh with
   `NavMesh.SamplePosition` before `SetDestination`; cache the agent in `Awake`, not `GetComponent` every frame.
+- Carve with `NavMeshObstacle.carving` only for obstacles that really block a route (a closed gate, a parked
+  truck); leave crates and other agents to local avoidance, because each carve rebuilds NavMesh tiles and costs CPU.
+- Ledge drops and jumps: set `agent.autoTraverseOffMeshLink = false`, poll `agent.isOnOffMeshLink`, play the jump
+  or drop animation along the link, then call `agent.CompleteOffMeshLink()`. Links come from `NavMeshLink` in the AI
+  Navigation package (`com.unity.ai.navigation`), not the legacy `OffMeshLink` component older books use.
 - Sight check, cheapest first: distance, then `Vector3.Angle` against the half-angle of the cone (name it so),
   then one `Physics.Raycast` with a layer mask of occluders plus the player; compare tags with `CompareTag`.
 - Older tutorials (Unity 2019 to 2021) bake through the Navigation Static flag and the Navigation window; in
