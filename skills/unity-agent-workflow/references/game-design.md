@@ -169,6 +169,16 @@ R-20261101-1).
   placed with the level, not hard-coded in the enemy. Hand-placed cover, sniper and jump points get gizmos
   (`OnDrawGizmos`) so a designer can see them in the Scene view; most games need only a few simple tags.
 - Leave passages wide enough for the AI to move through in groups; level layout and AI are one job.
+- NavMeshAgent traps that tutorials repeat: test arrival with `!agent.pathPending && agent.remainingDistance <=
+  agent.stoppingDistance`, never `transform.position == target` (floats almost never match, so the state never ends);
+  pause with `agent.isStopped = true` or `ResetPath()`, not the obsolete `Stop()`; never move an agent's transform
+  directly (`Translate`) while it is enabled, because it leaves the mesh and walks through walls: use `SetDestination`,
+  `agent.Move`, or set `updatePosition = false` and drive it yourself; snap random patrol points to the mesh with
+  `NavMesh.SamplePosition` before `SetDestination`; cache the agent in `Awake`, not `GetComponent` every frame.
+- Sight check, cheapest first: distance, then `Vector3.Angle` against the half-angle of the cone (name it so),
+  then one `Physics.Raycast` with a layer mask of occluders plus the player; compare tags with `CompareTag`.
+- Older tutorials (Unity 2019 to 2021) bake through the Navigation Static flag and the Navigation window; in
+  Unity 6 that window is gone for new projects: add a `NavMeshSurface` and bake it, as above.
 - One `System.Random` per subsystem (level layout, loot, AI choices), each seeded from one master seed, instead of
   the shared `UnityEngine.Random`, so the same seed builds the same level 2 whatever happened in level 1's fights.
 

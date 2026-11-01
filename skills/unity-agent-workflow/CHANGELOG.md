@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261101-3 · 2026-11-01 · Game design: NavMeshAgent traps, sight-check order, legacy bake (1.2.7)
+- because: user request (book learnings, Cossu, Beginning Game AI with Unity, 2021; owner-approved rows)
+- files: references/game-design.md (AI performance and navigation)
+- The book's guard code ends a state on exact position equality, moves an enabled agent with Translate, uses the obsolete Stop() and skips SamplePosition; these rows name the fixes. Reference page only; evals not re-run.
+
 ### C-20261101-2 · 2026-11-01 · Game design §5: enemy Awareness and States rows, AI performance and navigation
 - because: user request (book learnings, Millington, AI for Games, 3rd ed.; owner-approved rows); R-20261101-1
 - files: references/game-design.md (§5 enemy card; new subsection AI performance and navigation)
