@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261101-2 · 2026-11-01 · Game design §5: enemy Awareness and States rows, AI performance and navigation
+- because: user request (book learnings, Millington, AI for Games, 3rd ed.; owner-approved rows); R-20261101-1
+- files: references/game-design.md (§5 enemy card; new subsection AI performance and navigation)
+- Adds Awareness and States rows to the enemy card and a note on staggered and layered AI updates, no allocation mid-level, rough path first, NavMesh area costs per agent type, NavMeshLinks, gizmos for hand-placed points and one `System.Random` per subsystem. Unity names checked in the docs. Reference page only; no trigger or description changed, so the evals were not re-run.
+
 ### C-20261101-1 · 2026-11-01 · Game design §4: time controls, delta clamp, tuning panel and gameplay traps
 - because: user request (book learnings, Gregory, Game Engine Architecture 2e, 2014; owner-approved rows)
 - files: references/game-design.md (§4 Test scenes and debug cheats; new subsection Gameplay architecture traps)
