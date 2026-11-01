@@ -290,3 +290,21 @@ trains an agent with the ML-Agents package.
   or the `gail` reward signal, both fed by a `demo_path` [verified].
 - Self-play (ch. 20): the `self_play` block keeps snapshots of the policy; judge them by the ELO the trainer reports from
   match results (a +1/0/-1 final reward), not by loss [verified].
+
+When training fails (after Graesser and Keng, Foundations of Deep Reinforcement Learning, 2019):
+
+- First check it beats an agent that picks random actions; matching random means nothing is learning yet.
+- Watch the policy entropy curve in TensorBoard: it should start high and fall slowly. Flat means no learning; a crash
+  early on means exploration died.
+- Look at what the agent sees: draw its observations with Debug draws or preview the camera sensor's image. Most bugs
+  live between the game state and the observation.
+- Prove the setup on a tiny scene that trains in minutes before moving to the real level.
+- Keep the default config's hyperparameters until the bugs are gone; tune last.
+
+Action design (same book):
+
+- One discrete branch per control (move, turn, jump) rather than one action per combination.
+- Relative moves (turn left, step forward) for local control; absolute targets only for global choices.
+- Start with a few coarse discrete steps; go continuous only when the coarse set limits play.
+- Mirror symmetric actions (left and right) so the agent learns one and gets both.
+- Start with the fewest actions that can solve the task and add more later.
