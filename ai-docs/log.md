@@ -26,4 +26,6 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 
 ## [2026-11-01] release | 1.2.5: unity-agent-workflow C-20261101-1 (Gregory, Game Engine Architecture 2e): game-design.md §4 time controls (timeScale pause, step, 0.25x/4x, unscaled UI), Time.maximumDeltaTime clamp, tuning panel, gameplay architecture traps; also ships the unreleased 2026-10-23 and 2026-10-25 work. Tag v1.2.5
 
-## [2026-11-01] release | 1.2.9: unity-agent-workflow C-20261101-5 (Lapan, Deep RL Hands-On 3e): game-design.md �9 ML-Agents training checklist, names verified in ML-Agents release 23 docs (R-20261101-2)
+## [2026-11-01] release | 1.2.9: unity-agent-workflow C-20261101-5 (Lapan, Deep RL Hands-On 3e): game-design.md §9 ML-Agents training checklist, names verified in ML-Agents release 23 docs (R-20261101-2)
+
+## [2026-11-01] release | 1.2.10: unity-agent-workflow C-20261101-6 (Graesser and Keng, Foundations of Deep RL): game-design.md §9 when training fails and action design. Tag v1.2.10

@@ -4,9 +4,14 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
-### C-20261101-5 � 2026-11-01 � Game design �9: ML-Agents training checklist (1.2.9)
+### C-20261101-6 · 2026-11-01 · Game design §9: when training fails, action design (1.2.10)
+- because: user request (book learnings, Graesser and Keng, Foundations of Deep Reinforcement Learning, 2019; owner-approved principles 1, 2, 4, 6, 8, 14)
+- files: references/game-design.md (§9)
+- Two short lists: debugging a failed run (random baseline, entropy curve, view the observations, tiny scene first, default hyperparameters before tuning) and action design (a branch per control, relative moves, coarse discrete first, mirrored actions, fewest actions). Reference page only; evals not re-run.
+
+### C-20261101-5 · 2026-11-01 · Game design §9: ML-Agents training checklist (1.2.9)
 - because: user request (book learnings, Lapan, Deep Reinforcement Learning Hands-On, 3rd ed. 2024; owner-approved rows); R-20261101-2
-- files: references/game-design.md (new �9)
+- files: references/game-design.md (new §9)
 - Seven short items: distinguishable observations (Stacked Vectors), per-step rewards within -1..1 and the start action in OnEpisodeBegin, many training areas plus --num-envs and a no_graphics, high time_scale build, PPO with several seeds, curiosity or rnd for sparse goals, Demonstration Recorder with behavioral_cloning or gail, self_play snapshots judged by ELO. Reference page only; evals not re-run.
 
 ### C-20261101-4 · 2026-11-01 · Game design: NavMeshObstacle carving and scripted off-mesh links (1.2.8)
