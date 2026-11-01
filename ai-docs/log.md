@@ -25,3 +25,5 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 ## [2026-11-01] release | 1.2.6: unity-agent-workflow C-20261101-2 (Millington, AI for Games): game-design.md enemy card Awareness and States rows, AI performance and navigation note (staggered and layered updates, no mid-level allocation, rough path first, NavMesh area costs per agent, NavMeshLink, gizmos, System.Random per subsystem); names checked R-20261101-1. Tag v1.2.6
 
 ## [2026-11-01] release | 1.2.5: unity-agent-workflow C-20261101-1 (Gregory, Game Engine Architecture 2e): game-design.md ยง4 time controls (timeScale pause, step, 0.25x/4x, unscaled UI), Time.maximumDeltaTime clamp, tuning panel, gameplay architecture traps; also ships the unreleased 2026-10-23 and 2026-10-25 work. Tag v1.2.5
+
+## [2026-11-01] release | 1.2.9: unity-agent-workflow C-20261101-5 (Lapan, Deep RL Hands-On 3e): game-design.md ง9 ML-Agents training checklist, names verified in ML-Agents release 23 docs (R-20261101-2)

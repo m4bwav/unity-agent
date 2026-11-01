@@ -49,6 +49,12 @@ Best sources (primary first): unity.com/blog, discussions.unity.com (dated threa
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
 
+### R-20261101-2 · 2026-11-01 · Subject: ML-Agents config and component names for the training checklist
+- Summary: Docs (release 23): `Stacked Vectors` on Behavior Parameters; rewards per decision in [-1,1]; `Agent.OnEpisodeBegin()`; `Demonstration Recorder` component; `trainer_type` of `ppo` (default), `sac` or `poca`; `reward_signals` keys `curiosity`, `gail` (with `demo_path`) and `rnd`; `behavioral_cloning` section with `demo_path`; `self_play` with `save_steps`, `swap_steps`, `window`, `play_against_latest_model_ratio`, ELO from a +1/0/-1 final reward; `--num-envs=<n>`; `engine_settings` `time_scale` and `no_graphics`.
+- Track: subject
+- Sources: https://github.com/Unity-Technologies/ml-agents/blob/release_23/docs/Training-Configuration-File.md, .../Learning-Environment-Design-Agents.md, .../Training-ML-Agents.md
+- Magnitude: minor
+- Applied: C-20261101-5 (references/game-design.md)
 ### R-20261101-1 Â· 2026-11-01 Â· Subject: AI navigation names for the game-design AI note
 - Summary: `NavMeshAgent.SetAreaCost(int areaIndex, float areaCost)` in Unity 6; costs reset to the defaults when the agent is disabled and re-enabled. AI Navigation 2.0 `NavMeshLink` lives in `Unity.AI.Navigation` with `bidirectional` (old `biDirectional` obsolete), `width`, `startPoint`/`endPoint`, `startTransform`/`endTransform`, `costModifier` (old `costOverride` obsolete; negative uses the area cost) and `area`. Design rules from Millington, AI for Games, 3rd ed. (ch. 2, 4, 6, 8, 10, 11), restated in this skill's own words.
 - Track: subject
