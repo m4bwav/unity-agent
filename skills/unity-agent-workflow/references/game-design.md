@@ -285,6 +285,11 @@ trains an agent with the ML-Agents package.
   `--num-envs`, and train on a build with `engine_settings` `no_graphics: true` and a high `time_scale` [verified].
 - Trainer (ch. 16): `trainer_type: ppo` is the default [verified]. Run several seeds of a run and compare them before
   judging a change; one lucky seed proves nothing.
+- Time-outs (Morales, Grokking Deep RL, ch. 8): a time limit is not a failure. Reaching `MaxStep` already ends the
+  episode as interrupted; a timer of your own should call `EpisodeInterrupted()`, not `EndEpisode()` with a death
+  penalty [verified], so the trainer still values the last state instead of treating it as a dead end.
+- Run records (ch. 9, 11, 12): log each run's samples (steps), compute and wall-clock time beside its score, so a
+  change that learns faster per step but costs twice the time shows up.
 - Sparse goals (ch. 18): add an intrinsic signal under `reward_signals`, `curiosity` or `rnd` [verified].
 - Hard to discover (ch. 14): record play with the `Demonstration Recorder` component and train with `behavioral_cloning`
   or the `gail` reward signal, both fed by a `demo_path` [verified].
