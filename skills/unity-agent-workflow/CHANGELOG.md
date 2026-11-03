@@ -4,6 +4,10 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261103-1 · 2026-11-03 · Pointed at Unity's official Claude Code plugin; updated the skill list and install counts
+- because: R-20261103-1
+- files: SKILL.md (Step 5: tooling worth pointing at), RESEARCH.md
+
 ### C-20261101-7 · 2026-11-01 · Game design §9: time-outs and run records (1.2.11)
 - because: user request (book learnings, Morales, Grokking Deep Reinforcement Learning, ch. 8, 9, 11, 12; owner-approved); EpisodeInterrupted() checked in ML-Agents Agent.cs on develop, 2026-11-01
 - files: references/game-design.md (§9)

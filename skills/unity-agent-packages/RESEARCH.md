@@ -48,6 +48,13 @@ Best sources (primary first): docs.unity3d.com Manual and ScriptReference, the o
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
 
+### R-20261103-1 · 2026-11-03 · Subject and testing: Pipeline 0.9.1 grouped commands, Assistant 2.21-pre.2, 6.3 false signature reports
+- Summary: com.unity.pipeline 0.9.0 groups commands as `unity command <group> <name>`, old names no longer work; 0.9.1-exp.1 on 2026-10-22. Discover the package command with `unity command --query package`. Assistant 2.21.0-pre.2 (2026-10-26) fixes a Relay CVE; still no UUM-132096 fix. Unity 6.3 before 6000.3.5f2 can falsely report signed packages invalid. Forum (discussions.unity.com announcements and product updates since 2026-10-11): no staff upgrade post; one user lead (0.7 to 0.9 errors, 2026-10-21). Tooling: unity-package-management 7,970 installs, no competitor. OpenUPM blog and practice quiet. Search plan: add https://discussions.unity.com/c/unity-editor/product-update/205 and the `@0.9` Pipeline changelog.
+- Track: subject, testing
+- Sources: https://docs.unity3d.com/Packages/com.unity.pipeline@0.9/changelog/CHANGELOG.html, https://docs.unity3d.com/Packages/com.unity.ai.assistant@2.21/changelog/CHANGELOG.html, https://docs.unity3d.com/Manual/upm-signature.html, https://skills.sh/api/search?q=unity%20package
+- Magnitude: 0.5
+- Applied: C-20261103-1
+
 ### R-20261011-1 · 2026-10-11 · Subject and tooling: Pipeline 0.8 and the 0.9 renames, `package_add --identifier`, UTF core package, MSBuild NuGet, package signing
 - Summary: `com.unity.pipeline` is at 0.8.0-exp.1 (not 0.4.x); 0.9.0 renames many commands with no aliases (2026-10-07 notice). Unity's `unity-pipeline` skill (2026-10-08) uses `unity command package_add --identifier <id> --confirm true` and names commands absent from 0.8's changelog, so it probably targets 0.9; the parameter name on 0.8 needs checking with `unity command --format json`. Test Framework is a core package fixed to the Editor (1.9 on 6.7; 2.0 abandoned). Assistant 2.20.0-pre.2 (2026-10-02) has no changelog entry for UUM-132096, so the trap stands. 6.7 MSBuild mode allows `<PackageReference>` under a policy (MSBU0006, MSBU0007). Unity 6.3+ verifies package signatures; OpenUPM serves signed tarballs; UnityNuGet signed since May 2026 (a stale cache can fail the check). Unity's `unity-package-management` skill has 6,155 installs, unchanged since 2026-09-06. Practice and testing quiet.
 - Track: subject, tooling

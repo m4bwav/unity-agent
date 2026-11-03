@@ -49,6 +49,13 @@ Best sources (primary first): unity.com/blog, discussions.unity.com (dated threa
 
 Newest first. One entry per material finding; a quiet refresh gets one entry saying so. `Track` is subject, tooling, practice, or testing.
 
+### R-20261103-1 Â· 2026-11-03 Â· Tooling: official Unity plugin for Claude Code, skills repo at about 29 skills, install counts
+- Summary: Unity-Technologies/unity-agent-plugin (`/plugin install unity@unity-agent-plugin`) bundles the official skills (skills only; Editor control via Unity CLI). The skills repo added about 26 skills in four batches (2026-10-22 to 10-30). skills.sh: unity-cli 9.3K, unity-package-management 8.0K, gamedev-skills about 7.5K each, wshobson unity-ecs-patterns 12.3K. Testing: arXiv 2605.07342 (Mage) grades LLM-made Unity scenes on several axes, not a drop-in harness. Subject: no staff announcements on discussions.unity.com since 2026-10-11 (announcements RSS at /c/announcements/9.rss 404s; use /latest.json or the tools-ai tag); no AI-policy change; Unity 7 beta December 2026. Practice: one unconfirmed issue-tracker lead (Claude Code via the AI Gateway).
+- Track: tooling, testing, subject
+- Sources: https://docs.unity.com/en-us/ai/unity-plugin/claude-code.md, https://github.com/Unity-Technologies/skills/commits/main, https://skills.sh/api/search?q=unity, https://arxiv.org/pdf/2605.07342, https://discussions.unity.com/tag/tools-ai/159558
+- Magnitude: 0.45
+- Applied: C-20261103-1
+
 ### R-20261101-2 · 2026-11-01 · Subject: ML-Agents config and component names for the training checklist
 - Summary: Docs (release 23): `Stacked Vectors` on Behavior Parameters; rewards per decision in [-1,1]; `Agent.OnEpisodeBegin()`; `Demonstration Recorder` component; `trainer_type` of `ppo` (default), `sac` or `poca`; `reward_signals` keys `curiosity`, `gail` (with `demo_path`) and `rnd`; `behavioral_cloning` section with `demo_path`; `self_play` with `save_steps`, `swap_steps`, `window`, `play_against_latest_model_ratio`, ELO from a +1/0/-1 final reward; `--num-envs=<n>`; `engine_settings` `time_scale` and `no_graphics`.
 - Track: subject

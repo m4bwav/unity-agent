@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261103-1 · 2026-11-03 · Pipeline 0.9 grouped commands, Assistant 2.21-pre.2, 6.3 signature false reports
+- because: R-20261103-1
+- files: SKILL.md (Step 2 Pipeline row; Step 5 pipeline, Assistant and OpenUPM bullets), RESEARCH.md
+- The live-Editor route now discovers the grouped package command on 0.9+ and keeps the old names for 0.8 and older.
+
 ### C-20261011-1 · 2026-10-11 · Pipeline 0.8 and the 0.9 renames, the package_add parameter, UTF core package, signing, MSBuild NuGet
 - because: R-20261011-1
 - files: SKILL.md (Step 2 Pipeline row; Step 5 pipeline, test-framework and OpenUPM bullets plus a MSBuild NuGet bullet), RESEARCH.md (one finding, Open questions)

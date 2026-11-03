@@ -13,16 +13,16 @@
   "source": null,
   "topic": "Unity Package Manager from the command line and scripts: manifest.json, Client API headless pattern, Pipeline package commands, OpenUPM, AI-related Unity packages and version traps",
   "tier": "moderate",
-  "interval_days": 20.0,
-  "last_checked": "2026-10-11",
-  "next_due": "2026-11-02",
+  "interval_days": 14,
+  "last_checked": "2026-11-03",
+  "next_due": "2026-11-15",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
     "quiet": 0,
-    "pinned_min": 0,
+    "pinned_min": 1,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -38,12 +38,18 @@
       "m": 0.45,
       "interval_after": 20.0,
       "note": "refresh 2026-10-11: Pipeline 0.8/0.9, package_add --identifier, signing; cost: searches 5 · fetches 8 · tool calls 16"
+    },
+    {
+      "date": "2026-11-03",
+      "m": 0.5,
+      "interval_after": 14,
+      "note": "Pipeline 0.9.1 grouped commands, Assistant 2.21-pre.2 CVE, 6.3 signature false report; forum: no staff posts since 10-11; cost: searches 6 · fetches 6 · tool calls 15"
     }
   ],
   "counts": {
     "learnings": 1,
     "changes": 2,
-    "research": 3,
+    "research": 4,
     "tests": 2
   },
   "consolidate_every": 25,
