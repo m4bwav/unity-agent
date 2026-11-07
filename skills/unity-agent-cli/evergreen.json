@@ -14,13 +14,13 @@
   "topic": "the official Unity CLI (unity binary, beta) and com.unity.pipeline package: commands, exit codes, MCP mode, editor install, and how agents drive a running Unity Editor",
   "tier": "fast",
   "interval_days": 3,
-  "last_checked": "2026-10-14",
+  "last_checked": "2026-11-06",
   "next_due": null,
   "verify_at_use": true,
   "volatile_claims": [
     {
-      "claim": "Newest Unity CLI release is 1.0.0-beta.13 (2026-10-07: security fixes, `unity mcp` reads UNITY_PROJECT_PATH, `unity setup codex` and `unity setup grok`) (as of 2026-10-14)",
-      "checked": "2026-10-14"
+      "claim": "Newest Unity CLI release is 1.0.0-beta.17 (2026-11-05, winget Unity.CLI 1.0.0.20017: `unity mcp` fixed for Pipeline packages with kebab-case parameters, Editors launched with a quoted -projectPath now found, `unity install --headless`); this PC still runs beta.13 (as of 2026-11-06)",
+      "checked": "2026-11-06"
     },
     {
       "claim": "Newest com.unity.pipeline is 0.10.0-exp.1 (packages.unity.com, as of 2026-11-06)",
@@ -75,6 +75,12 @@
       "m": 0.1,
       "interval_after": null,
       "note": "verify-at-use claims re-checked 2026-10-14 (one search each); changed claims rewritten"
+    },
+    {
+      "date": "2026-11-06",
+      "m": 0.1,
+      "interval_after": null,
+      "note": "use-time claims pass: CLI beta.17 from its changelog; play-mode proof words still in `unity skill show` of beta.13, not run. cost: searches 0, fetches 4"
     }
   ],
   "counts": {
