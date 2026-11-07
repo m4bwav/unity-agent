@@ -23,8 +23,8 @@
       "checked": "2026-10-14"
     },
     {
-      "claim": "Newest com.unity.pipeline is 0.8.0-exp.1 (packages.unity.com)",
-      "checked": "2026-10-14"
+      "claim": "Newest com.unity.pipeline is 0.10.0-exp.1 (packages.unity.com, as of 2026-11-06)",
+      "checked": "2026-11-06"
     },
     {
       "claim": "Play-mode proof: unity status --until-ready, playerLoopTicking/frameCount, unity command wait_for",
