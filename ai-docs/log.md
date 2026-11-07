@@ -31,3 +31,5 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 ## [2026-11-01] release | 1.2.10: unity-agent-workflow C-20261101-6 (Graesser and Keng, Foundations of Deep RL): game-design.md §9 when training fails and action design. Tag v1.2.10
 
 ## [2026-11-01] release | 1.2.11: unity-agent-workflow C-20261101-7 (Morales, Grokking Deep RL): game-design.md §9 time-outs end with EpisodeInterrupted() not a death penalty, and per-run steps, compute and wall-clock records. Tag v1.2.11
+
+## [2026-11-06] release | 1.2.12: Sound effects go to sfxwright when it is installed; the plugin's own steps stay as the fallback. Tag v1.2.12
