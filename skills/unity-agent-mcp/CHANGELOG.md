@@ -2,7 +2,12 @@
 
 Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with the reason. Reasons cite findings in [RESEARCH.md](RESEARCH.md) (`R-`), lessons in [LEARNINGS.md](LEARNINGS.md) (`L-`), and test runs in [TESTS.md](TESTS.md) (`T-`). State in `evergreen.json`. Protocol: MAINTENANCE.md.
 
-Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
+Entry shape: `### C-20261106-1 · 2026-11-06 · Pipeline 0.10.0-exp.1: kebab-case parameters and other breaking changes
+- because: Unity's release post (https://discussions.unity.com/t/unity-pipeline-0-10-0-exp-1-is-out/1741046), read in a browser; version confirmed at packages.unity.com
+- files: SKILL.md (official row)
+- Recorded from the post only; no Editor run on 0.10 yet, and older command spellings elsewhere on the page were not rewritten.
+
+### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
 ### C-20261030-1 · 2026-10-30 · CLI beta.15: unique tool names, job tools, `unity list` removed
 - because: R-20261030-1
