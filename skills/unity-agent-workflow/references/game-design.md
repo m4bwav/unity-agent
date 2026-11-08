@@ -20,6 +20,7 @@ Ask for, or draft and confirm, these fields:
 | Platforms and controls | PC with pad, mobile touch, and so on |
 | Audience | age and the rating it aims for |
 | Core loop | the one verb the player does most ("jump", "build", "dodge"), plus the short loop around it |
+| Systems | for each core mechanic, the systems it needs (movement, weapon and ammo, pickup and inventory, health and damage); this list is the first code plan |
 | Session length | how long one level or run lasts on the main platform: on mobile, a few minutes (heuristic: 2-5) |
 | Selling points | about five things that make it different |
 | Comparables | two or three successful games it resembles |
@@ -108,6 +109,18 @@ public sealed class PlayerMetrics : ScriptableObject
 - Events raised while a list is being walked (an enemy dies during the damage pass, a spawn during the spawn loop):
   queue them and handle them after the loop, never add to or remove from the list inside it. Gregory, Game Engine
   Architecture 2e (2014), sec. 15.7.
+- Objects spawned and destroyed fast (projectiles, hit effects, pickups) come from a pool: `UnityEngine.Pool.ObjectPool<T>`
+  (`Get` on spawn, `Release` on expiry; reset state in the `actionOnGet` callback), never `Instantiate` and `Destroy` per
+  shot. Cameron, Unity 2022 by Example (2024), ch. 6.
+- An enum plus `switch` state machine is fine for three or four states; past that, or when designers keep changing one
+  state, give each state its own class (`Enter`, `Tick`, `Exit`) so one state changes without editing the controller.
+  Cameron, Unity 2022 by Example (2024), ch. 7 and 13.
+- Loose coupling: typed C# `event`s (or ScriptableObject event channels), subscribed in `OnEnable` and removed in
+  `OnDisable`. Avoid a global bus keyed by event-name strings (a typo fails silently) and singletons beyond a jam-sized
+  game. Cameron, Unity 2022 by Example (2024), ch. 2 and 9; the string bus is the book's own example, not followed here.
+- Enemy perception as small plain C# sensor classes (sight cone, hearing) that the controller ticks and that raise an
+  event when they detect; a behaviour tree can then use the same sensors as condition nodes. Cameron, Unity 2022 by
+  Example (2024), ch. 13.
 
 ## 5. Enemy card and encounter pacing
 
