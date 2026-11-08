@@ -33,3 +33,5 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 ## [2026-11-01] release | 1.2.11: unity-agent-workflow C-20261101-7 (Morales, Grokking Deep RL): game-design.md §9 time-outs end with EpisodeInterrupted() not a death penalty, and per-run steps, compute and wall-clock records. Tag v1.2.11
 
 ## [2026-11-06] release | 1.2.12: Sound effects go to sfxwright when it is installed; the plugin's own steps stay as the fallback. Tag v1.2.12
+
+## [2026-11-08] release | 1.2.13: unity-agent-workflow C-20261108-1 (Cameron, Unity 2022 by Example): one-pager Systems row, pooling, state classes, typed events, sensors, greybox from a sketch. Tag v1.2.13

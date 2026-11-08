@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261108-1 · 2026-11-08 · Unity 2022 by Example: systems row, pooling, state classes, typed events, sensors, greybox
+- because: user request (everscout book distillation, Cameron, Unity 2022 by Example, 2024)
+- files: references/game-design.md (one-pager, Gameplay architecture traps); references/3d-models.md (Kits, texel density and naming)
+- One-pager gains a Systems row; architecture traps gain object pooling, state classes past a few states, typed events unsubscribed in OnDisable (no string-keyed bus), and sensor classes; kits gain greyboxing from a top-down sketch.
+
 ### C-20261106-1 · 2026-11-06 · Sfxwright, when installed
 - because: user request
 - files: SKILL.md (sfxwright note)

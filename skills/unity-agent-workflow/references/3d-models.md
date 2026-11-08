@@ -107,6 +107,8 @@ lands in `Assets/`.
 - Modular kits: build on a grid (1, 2 or 4 m pieces), pivots on grid corners, so pieces snap with Unity's grid
   and increment snapping. ProBuilder (6.1) blocks out levels before the art exists; Terrain is for large
   natural ground, meshes for everything else.
+- Greybox from a top-down sketch: lay the rooms and corridors out as flat ProBuilder planes on the snap grid in a
+  locked orthographic top view, then drop kit pieces along the plane edges. Cameron, Unity 2022 by Example (2024), ch. 10.
 - Texel density: pick one per project (for example 512 px per metre for first-person desktop) and hold every
   kit piece to it so textures do not jump in sharpness.
 - Names: prefix by type (`SM_` static mesh, `SK_` skinned, `M_` material, `T_` texture with `_BaseMap`,
