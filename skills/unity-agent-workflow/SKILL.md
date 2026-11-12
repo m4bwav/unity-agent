@@ -29,6 +29,8 @@ Look for `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, a `CODEMAP
 
 Rule: a red rung is never "pre-existing". When a test or compile check fails after a change, fix it or report it as failing with the output; do not label it pre-existing and move on, because unexamined red tests pile up and the ladder stops meaning anything. Tests that only restate the code (tautological asserts) do not count as a rung; a test must fail when the behaviour breaks.
 
+Recipe (state dump + replay fixture, rungs 3-4): the game writes plain-text state rows (id, actual, expected) at a set timestamp; a small recorded dataset replays with expected values saved in a file beside it. Diff the rows against that file in both live and replay modes, so the agent reads a short diff instead of screenshots or logs.
+
 Rule: `dotnet test` green is not a compile check for engine-side files; before claiming a rename or removal is safe, grep all of `Assets` for every affected symbol and run rung 2.
 
 ## Step 3: rules that keep a Unity repo safe for agents

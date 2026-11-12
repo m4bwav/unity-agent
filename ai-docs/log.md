@@ -35,3 +35,4 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 ## [2026-11-06] release | 1.2.12: Sound effects go to sfxwright when it is installed; the plugin's own steps stay as the fallback. Tag v1.2.12
 
 ## [2026-11-08] release | 1.2.13: unity-agent-workflow C-20261108-1 (Cameron, Unity 2022 by Example): one-pager Systems row, pooling, state classes, typed events, sensors, greybox from a sketch. Tag v1.2.13
+## [2026-11-12] release | 1.2.14: unity-agent-workflow C-20261112-1: state dump + replay fixture recipe in the verification ladder (technique harvest). Tag v1.2.14
