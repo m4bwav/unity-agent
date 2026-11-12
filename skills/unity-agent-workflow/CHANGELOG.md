@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261112-1 · 2026-11-12 · State dump + replay fixture recipe in the ladder
+- because: user request (technique harvest 2026-11-12, C-20261112-B: a game writes text state rows diffed against a saved expected file)
+- files: SKILL.md (Step 2: the verification ladder)
+- One recipe line: text state rows at a timestamp plus a saved expected file, diffed in live and replay modes.
+
 ### C-20261108-1 · 2026-11-08 · Unity 2022 by Example: systems row, pooling, state classes, typed events, sensors, greybox
 - because: user request (everscout book distillation, Cameron, Unity 2022 by Example, 2024)
 - files: references/game-design.md (one-pager, Gameplay architecture traps); references/3d-models.md (Kits, texel density and naming)
