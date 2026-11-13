@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261113-2 · 2026-11-13 · Performance reference and the ladder's performance rule
+- because: R-20261113-1, R-20261113-2 (user request: book harvest of Unity's Unity 6 profiling and optimization e-books)
+- files: references/performance.md (new), SKILL.md (Step 2: the verification ladder)
+- New reference with the procedure, the routes to readable numbers, a marker table, code traps with replacement APIs, settings and import keys read from real Unity 6 files, and how the book conflicts were settled; one ladder paragraph links it.
+
 ### C-20261113-1 · 2026-11-13 · Look target loop for visual polish
 - because: user request (technique harvest 2026-11-13, r/ClaudeGameDev 1xtv7er: approve an edited screenshot as the target, iterate the scene toward it)
 - files: SKILL.md (3D models bullet list)

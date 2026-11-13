@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261113-1 · 2026-11-13 · Profiler flags, a frame-budget row and the shader variant log check
+- because: R-20261113-1 (user request: book harvest of Unity's Unity 6 profiling and optimization e-books)
+- files: SKILL.md (Step 1 table; Step 3 flags)
+- Step 1 gains "Is it inside the frame budget?"; Step 3 gains the profiler flags (three run here, two docs-only), the rule that a `.raw` file is for people, and the `Compiling shader` variant lines.
+
 ### C-20261011-1 · 2026-10-11 · MSBuild-mode projects, UTF as a core package, the MSB3277 warning
 - because: R-20261011-1
 - files: SKILL.md (the csproj paragraph under the compile check; "Tests from the command line"), RESEARCH.md (one finding, Open questions)
