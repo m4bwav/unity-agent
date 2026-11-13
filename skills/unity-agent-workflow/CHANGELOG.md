@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261113-1 · 2026-11-13 · Look target loop for visual polish
+- because: user request (technique harvest 2026-11-13, r/ClaudeGameDev 1xtv7er: approve an edited screenshot as the target, iterate the scene toward it)
+- files: SKILL.md (3D models bullet list)
+- One bullet: reference shots, image-edit target, one change per pass scored with tw look; where a fitted LUT lands in HDRP and URP.
+
 ### C-20261112-1 · 2026-11-12 · State dump + replay fixture recipe in the ladder
 - because: user request (technique harvest 2026-11-12, C-20261112-B: a game writes text state rows diffed against a saved expected file)
 - files: SKILL.md (Step 2: the verification ladder)
