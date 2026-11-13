@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "targets": [
+    {
+      "kind": "reddit",
+      "sub": "ClaudeGameDev",
+      "keep": "Claude driving Unity (MCP servers, editor scripting, CLI and test loops) with concrete setups; drop showcases and how-do-I-start questions"
+    }
+  ]
+}
