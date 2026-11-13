@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261113-3 · 2026-11-13 · C# style rules and safe renames
+- because: R-20261113-3 (user request: book harvest of Unity's C# style guide e-book, Unity 6 edition; book rules, unverified by a compile run here)
+- files: SKILL.md (Step 3: rules that keep a Unity repo safe for agents)
+- New C# style bullet (repo conventions first, five hard rules); the serialized-field bullet gains FormerlySerializedAs and the UXML/USS/C# search for UI Toolkit renames.
+
 ### C-20261113-2 · 2026-11-13 · Performance reference and the ladder's performance rule
 - because: R-20261113-1, R-20261113-2 (user request: book harvest of Unity's Unity 6 profiling and optimization e-books)
 - files: references/performance.md (new), SKILL.md (Step 2: the verification ladder)

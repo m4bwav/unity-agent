@@ -47,7 +47,8 @@ Rule: `dotnet test` green is not a compile check for engine-side files; before c
 - Domain reload: any recompile, Play-mode entry, or package change restarts bridges and clears static state. Batch edits, then verify once.
 - Editor lock: batchmode and a second Editor cannot open a project the Editor holds; the Pipeline route is for the open Editor, batchmode for the closed one.
 - Unity 6 logs live per project in `<project>/Logs/`; read `Editor.log` there, not the global one.
-- Save systems and serialized fields: adding a field is safe; renaming or removing one silently drops data. Flag any change to a serialized or save-reachable type.
+- C# style: follow the repo's existing conventions and `.editorconfig` first, and never mix prefix schemes in one file. Hard rules regardless: file name equals the MonoBehaviour class name, one MonoBehaviour per file, ASCII-only identifiers, `[SerializeField] private` over public fields; `static`, `const` and `readonly` fields never serialize, so they never show in the Inspector.
+- Save systems and serialized fields: adding a field is safe; renaming or removing one silently drops data. Flag any change to a serialized or save-reachable type; rename a serialized field with `[FormerlySerializedAs("oldName")]` to keep its data. UI Toolkit names and USS classes are strings: search UXML, USS and C# together before renaming one.
 - Don't add asmdefs, DI containers, Addressables, or new packages without asking; they change compile units and import behaviour for everyone.
 
 ## Step 4: game features: design before code
