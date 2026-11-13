@@ -31,6 +31,8 @@ Rule: a red rung is never "pre-existing". When a test or compile check fails aft
 
 Recipe (state dump + replay fixture, rungs 3-4): the game writes plain-text state rows (id, actual, expected) at a set timestamp; a small recorded dataset replays with expected values saved in a file beside it. Diff the rows against that file in both live and replay modes, so the agent reads a short diff instead of screenshots or logs.
 
+Performance is verified like behaviour: a frame-time or allocation number from a capture against a stated budget, before and after, at the lowest rung that can produce it (rung 3: the Performance Testing package; rung 4: `ProfilerRecorder` counters written by the state-dump recipe). Procedure, marker table, code traps and settings keys: [references/performance.md](references/performance.md).
+
 Rule: `dotnet test` green is not a compile check for engine-side files; before claiming a rename or removal is safe, grep all of `Assets` for every affected symbol and run rung 2.
 
 ## Step 3: rules that keep a Unity repo safe for agents

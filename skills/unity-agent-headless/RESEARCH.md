@@ -50,6 +50,13 @@ Best sources (primary first): docs.unity3d.com Manual and package pages (fetch f
 
 ## Findings log
 
+### R-20261113-1 · 2026-11-13 · Subject and testing: profiler command-line flags and the shader variant log lines
+- Summary: The 6000.3 Editor command-line page lists `-profiler-enable`, `-profiler-log-file <path>.raw` (Editor and players), `-profiler-capture-frame-count <N>` (players only), `-deepprofiling` and `-profiler-maxusedmemory`; the player page lists none of them. Run on 6000.3.10f1: Editor batchmode with the first two wrote a 30.3 MB `.raw`; a development player with all three (100 frames) wrote a 2.29 MB `.raw`. `-deepprofiling` and `-profiler-maxusedmemory` were not run. Variant counts: the shader-variants manual page and a real build log both show `Compiling shader "<name>"` blocks and per-pass `compiled N variants ... skipped M variants` lines; the book's `Compressed shader` line was not found and is not used. Details: unity-agent-workflow R-20261113-2.
+- Track: subject, testing
+- Sources: https://docs.unity.com/en-us/engine/6000.3/manual/unity-editor/command-line-arguments/editor, https://docs.unity.com/en-us/engine/6000.3/manual/materials-and-shaders/shaders/shader-troubleshooting/shader-reducing/shader-variants/shader-how-many-variants, local run 2026-11-13
+- Magnitude: 0.3
+- Applied: C-20261113-1
+
 ### R-20261030-1 · 2026-10-30 · Quiet refresh (Unity 7.0 notes for CI)
 - Subject: staff "Planned breaking changes in Unity 7.0" (2026-10-22, https://discussions.unity.com/t/planned-breaking-changes-in-unity-7-0/1740094): Editor moves to CoreCLR; serialization warnings become errors; `UNITY_64` and `DEVELOPMENT_BUILD` defines removed; Progressive CPU lightmapper converted to GPU (headless bake agents need a GPU); no change to command-line arguments, `-runTests` or exit codes. Not yet in SKILL.md: Unity 7 is alpha; apply when it ships. Tooling: com.unity.test-framework still 1.4.6; game-ci/unity-builder v6.0.0 (09-10) already out before last check. CLI beta.15 adds `unity projects audit --workflow coreclr` (lead for a Unity 7 readiness check). Practice: nothing new. Testing: nothing new. magnitude 0.2.
 

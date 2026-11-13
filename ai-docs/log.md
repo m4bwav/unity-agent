@@ -36,3 +36,4 @@ Append-only. One line per operation: `## [YYYY-MM-DD] op | title` where op is on
 
 ## [2026-11-08] release | 1.2.13: unity-agent-workflow C-20261108-1 (Cameron, Unity 2022 by Example): one-pager Systems row, pooling, state classes, typed events, sensors, greybox from a sketch. Tag v1.2.13
 ## [2026-11-12] release | 1.2.14: unity-agent-workflow C-20261112-1: state dump + replay fixture recipe in the verification ladder (technique harvest). Tag v1.2.14
+## [2026-11-13] release | 1.2.16: Unity 6 performance track from Unity's profiling and optimization e-books: unity-agent-workflow references/performance.md + ladder line (C-20261113-2), unity-agent-headless profiler flags, frame-budget row, shader variant lines (C-20261113-1); capture route run on 6000.3.10f1 (R-20261113-2). Tag v1.2.16

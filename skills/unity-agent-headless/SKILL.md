@@ -20,6 +20,7 @@ Read `evergreen.json` next to this file. If `verify_at_use` is true, re-check th
 | Does the engine-free logic pass? | the repo's own `dotnet test` project, if it has one | yes |
 | Do Unity Test Framework tests pass? | `-Action tests` (batchmode `-runTests`) or `unity test` from unity-agent-cli | no |
 | Run an Editor method (importer, build, generator)? | `-Action method -Method Class.Method` (batchmode `-executeMethod`) | no |
+| Is it inside the frame budget? | a script with `ProfilerRecorder` writing counters to a file, run in batchmode Play mode or a development player; the workflow skill's `references/performance.md` | no |
 | Which editors exist, install one, without the `unity` binary? | Hub headless CLI (Step 4) | yes |
 
 The driver:
@@ -50,6 +51,8 @@ Direct invocation, when the driver or `unity run` do not fit:
 - Success marker: `Exiting batchmode successfully`. Failure markers: `error CS`, `Scripts have compiler errors`, `Aborting batchmode due to failure`, an exception stack. Old Unity versions returned exit 0 after "Scripts have compiler errors"; treat the markers as truth and the exit code as a hint.
 - Do not pass `-quit` with `-runTests` (the Editor quits before the tests run) or with any method that starts asynchronous work (UPM `Client.Add`, async imports): let the method call `EditorApplication.Exit(code)` when done.
 - Useful flags (Unity 6 reference): `-nographics`, `-quitTimeout <s>`, `-accept-apiupdate`, `-ignorecompilererrors`, `-disable-assembly-updater`, `-noUpm`, `-silent-crashes`, `-stackTraceLogType Full`, `-timestamps`, `-job-worker-count N`, `-buildTarget <t>`, `-activeBuildProfile <path>`, `-build <path>` (Unity 6 build profiles), `-importPackage`, `-exportPackage`, `-createProject`, `-rebuildLibrary`, licensing `-username/-password/-serial`, `-returnlicense`, `-manualLicenseFile`.
+- Profiler flags (6000.3 reference): `-profiler-enable`, `-profiler-log-file <file>.raw` (Editor and players), `-profiler-capture-frame-count <N>` (players only); these three were run on 6000.3.10f1 and wrote the `.raw` file. From the docs only, not run here: `-deepprofiling` (a player also needs Deep Profiling ticked in its build profile) and `-profiler-maxusedmemory <bytes>`. The `.raw` file is for a person to open in the Profiler window or Profile Analyzer; numbers an agent reads come from `ProfilerRecorder` or `FrameTimingManager` written to a file or the log by a script. Do not assume a third-party raw-to-CSV converter. A player in `-batchmode` renders nothing, so its render and GPU counters read 0.
+- Shader variant count: a build's log has a `Compiling shader "<name>"` block per shader with `Full variant space:`, `After settings filtering:`, `After built-in stripping:` and `After scriptable stripping:` lines, then a line per pass ending `compiled <N> variants (<s> CPU time), skipped <M> variants.`; grep these to total variants per shader.
 - The first batchmode run after closing the Editor re-imports the Library and can take minutes; "Unable to upload symbols" in a build log is harmless.
 
 Tests from the command line (Unity Test Framework; in Unity 6 it is a core package fixed to the Editor version, 1.9 on 6.7; the 2.0 line was abandoned in 2022):
