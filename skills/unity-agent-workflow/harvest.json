@@ -5,6 +5,17 @@
       "kind": "reddit",
       "sub": "ClaudeGameDev",
       "keep": "Claude driving Unity (MCP servers, editor scripting, CLI and test loops) with concrete setups; drop showcases and how-do-I-start questions"
+    },
+    {
+      "kind": "reddit",
+      "sub": "unity",
+      "keep": "editor automation, CLI/headless builds, package and workflow techniques"
+    },
+    {
+      "kind": "reddit",
+      "sub": "unity_tutorials",
+      "weight": "low",
+      "keep": "tutorials with concrete Unity techniques worth scripting"
     }
   ]
 }
