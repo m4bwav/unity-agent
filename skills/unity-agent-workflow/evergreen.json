@@ -13,16 +13,16 @@
   "source": null,
   "topic": "how AI coding agents work safely in Unity projects: verification ladder, YAML and .meta rules, Humble Object testing, agent skill packs for Unity, Unity's AI policies and agent roadmap",
   "tier": "moderate",
-  "interval_days": 14,
-  "last_checked": "2026-11-03",
-  "next_due": "2026-11-15",
+  "interval_days": 17.5,
+  "last_checked": "2026-11-15",
+  "next_due": "2026-12-05",
   "verify_at_use": false,
   "volatile_claims": [],
   "contradiction": null,
   "events": [],
   "streak": {
-    "quiet": 0,
-    "pinned_min": 1,
+    "quiet": 1,
+    "pinned_min": 0,
     "pinned_max": 0,
     "vau_quiet": 0
   },
@@ -44,12 +44,18 @@
       "m": 0.45,
       "interval_after": 14,
       "note": "official Unity Claude Code plugin pointed at, skills list and install counts updated; forum: no staff posts since 10-11; cost: searches 5 · fetches 6 · tool calls 14"
+    },
+    {
+      "date": "2026-11-15",
+      "m": 0.0,
+      "interval_after": 17.5,
+      "note": "quiet; no Unity 6.x release since 11-03; cost: searches ~3 · fetches ~1 · tool calls ~6"
     }
   ],
   "counts": {
     "learnings": 3,
     "changes": 6,
-    "research": 9,
+    "research": 10,
     "tests": 3
   },
   "consolidate_every": 25,
