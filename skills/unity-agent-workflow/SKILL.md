@@ -76,6 +76,10 @@ For "how should the agent work here": the ladder rung(s) you will use for the ta
 
 If the user corrects you, the same error happens twice, a workaround is found, or an environment fact is discovered, write it to `LEARNINGS.md` now (format in MAINTENANCE.md; check existing entries first: add, update, retire, or nothing). If a learning proves a claim above wrong, fix it here, log it in `CHANGELOG.md`, and set `contradiction` in `evergreen.json`.
 
+## YouTube videos
+
+Engine tutorials give steps and gotchas, but versions drift fast: docs first, video second. Use fetchwright's `yt.py read URL` (captions, chapters, `&t=` links; opt-in route) and `yt.py clip URL A-B "question"` (Gemini reads the screen for spans of 2 minutes or less). Cite the `&t=` link and check numbers against a written source: auto-captions drop decimals.
+
 ## Maintenance
 
 This skill is evergreen (topic: how AI agents work safely and verifiably in Unity projects; tier `moderate`, currently every 30d, next due 2026-10-06). Files: `evergreen.json` (state), [RESEARCH.md](RESEARCH.md) (findings and search plan), [CHANGELOG.md](CHANGELOG.md) (every change, with reasons), [LEARNINGS.md](LEARNINGS.md) (lessons), [TESTS.md](TESTS.md) and `evals/evals.json` (the cases that prove it and the runs). Protocol: MAINTENANCE.md (pointer to the installed evergreen plugin). Refresh with `evergreen-refresh`; test with `evergreen-test`; fix a failure with `evergreen-tune`; audit with `evergreen-audit`. Sibling skills in this suite: unity-agent-cli, unity-agent-headless, unity-agent-mcp, unity-agent-workflow, unity-agent-packages.
