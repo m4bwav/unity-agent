@@ -47,6 +47,13 @@ Best sources (primary first): unity.com/blog, discussions.unity.com (dated threa
 
 ## Findings log
 
+### R-20261118-1 · 2026-11-18 · Subject: Unity e-books on version control (2022) and DOTS (Unity 6 edition)
+- Summary: Origin: Unity's free e-books *Version control and project organization best practices* (2022) and *Introduction to the Data-Oriented Technology Stack*, Unity 6 edition (2025). Adopted as book rules, unverified by a run here: scenes, prefabs and atlases show as changed after being opened, so commits list only intended files; Git ignores empty folders and orphans their .meta; Visible Meta Files, an ignore list and LFS at setup. DOTS: Burst jobs retrofit into GameObject projects cheaply while moving to Entities is an invasive rewrite; Entities fit large static worlds, heavy unit counts and predicted netcode; DOTS saves CPU only; jobs are not for I/O; Burst excludes managed objects. Noted, not built: Plastic SCM sections (now Unity Version Control) and the e-book's claims about future GameObject/Entities interop, which date.
+- Track: subject
+- Sources: the two e-books (local copies); notes in technique-harvest ai-docs/books/2022-abmversioncontrolandprojectorganizationinunity-ebook-final and introduction-to-dots-unity-6-edition
+- Magnitude: 0.2 (two bullets; no existing claim changed)
+- Applied: C-20261118-1
+
 ### R-20261113-3 · 2026-11-13 · Subject: Unity C# style guide e-book (Unity 6 edition)
 - Summary: Origin: Unity's free e-book on a C# style guide for clean and scalable game code, Unity 6 edition (2025). Adopted as book rules, unverified by a compile check here: file name matches the MonoBehaviour, one per file, ASCII identifiers (non-ASCII can break command-line tools), `[SerializeField] private` over public fields, static/const/readonly not serialized, UI Toolkit names searched across UXML, USS and C#. `[FormerlySerializedAs]` is the standard UnityEngine.Serialization attribute for keeping data across a field rename. Noted, not built: a root `.editorconfig` would need a tested Unity-specific file before the plugin ships one; analyzer warnings (IDE1006 naming and the like) belong in the rung 2 compile check output; the book's m_/k_/s_ prefixes are an older Unity-internal habit that current .NET analyzer defaults do not expect, so follow the repo rather than impose them.
 - Track: subject

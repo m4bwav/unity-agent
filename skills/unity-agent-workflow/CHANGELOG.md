@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261118-1 · 2026-11-18 · Commit hygiene and the DOTS decision
+- because: R-20261118-1 (user request: book harvest round 21 of Unity's version control e-book (2022) and Introduction to DOTS, Unity 6 edition; book rules, unverified by a run here)
+- files: SKILL.md (Step 3: rules that keep a Unity repo safe for agents)
+- Two bullets: stage only intended files, revert incidental re-serialization, no empty folders, repo setup checks; and when to suggest Burst jobs, Entities or nothing.
+
 ### C-20261113-3 · 2026-11-13 · C# style rules and safe renames
 - because: R-20261113-3 (user request: book harvest of Unity's C# style guide e-book, Unity 6 edition; book rules, unverified by a compile run here)
 - files: SKILL.md (Step 3: rules that keep a Unity repo safe for agents)
