@@ -47,6 +47,12 @@ Best sources (primary first): unity.com/blog, discussions.unity.com (dated threa
 
 ## Findings log
 
+### R-20261119-1 · 2026-11-19 · Subject: URP Pixel Perfect Camera settings and the Murder engine's pixel camera
+- Summary: Unity's 6000.4 manual lists Asset Pixels Per Unit, Reference Resolution, Crop Frame (None, Pillarbox, Letterbox, Windowbox, Stretch Fill), Grid Snapping (Upscale Render Texture or Pixel Snapping) and Filter Mode for Stretch Fill (Retro AA default, Point). No sub-pixel camera offset is documented; Upscale Render Texture snaps movement to art pixels. So Stretch Fill already has a smoothing filter (Retro AA), which corrects the harvest note that called it point-only. Adopted as a recipe, unverified by a run here: sub-pixel offset with a bleed margin (Murder engine, MIT) and sharp-bilinear sampling (Cole Cecil, 2017).
+- Track: subject
+- Sources: https://docs.unity3d.com/6000.4/Documentation/Manual/urp/2d-pixelperfect-ref.html ; https://docs.unity.com/en-us/engine/6000.0/manual/unity2d/2d-urp/2d-pixelperfect/configure ; github.com/isadorasophia/murder ; colececil.io/blog/2017/scaling-pixel-art-without-destroying-it
+- Magnitude: 0.2 (one new reference; no existing claim changed)
+
 ### R-20261118-1 Â· 2026-11-18 Â· Subject: Unity e-books on version control (2022) and DOTS (Unity 6 edition)
 - Summary: Origin: Unity's free e-books *Version control and project organization best practices* (2022) and *Introduction to the Data-Oriented Technology Stack*, Unity 6 edition (2025). Adopted as book rules, unverified by a run here: scenes, prefabs and atlases show as changed after being opened, so commits list only intended files; Git ignores empty folders and orphans their .meta; Visible Meta Files, an ignore list and LFS at setup. DOTS: Burst jobs retrofit into GameObject projects cheaply while moving to Entities is an invasive rewrite; Entities fit large static worlds, heavy unit counts and predicted netcode; DOTS saves CPU only; jobs are not for I/O; Burst excludes managed objects. Noted, not built: Plastic SCM sections (now Unity Version Control) and the e-book's claims about future GameObject/Entities interop, which date.
 - Track: subject
