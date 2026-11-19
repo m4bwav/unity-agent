@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261119-1 · 2026-11-19 · Pixel camera reference
+- because: R-20261119-1 (user request: technique harvest of the Murder engine's pixel camera and sharp-bilinear upscale)
+- files: references/pixel-camera.md (new), references/3d-models.md (styles table, Pixel-3D row)
+- New reference: Pixel Perfect Camera settings checked against the Unity 6000.4 manual, a sub-pixel camera offset recipe with a bleed margin, and a sharp-bilinear HLSL function; the Pixel-3D row links it.
+
 ### C-20261118-1 · 2026-11-18 · Commit hygiene and the DOTS decision
 - because: R-20261118-1 (user request: book harvest round 21 of Unity's version control e-book (2022) and Introduction to DOTS, Unity 6 edition; book rules, unverified by a run here)
 - files: SKILL.md (Step 3: rules that keep a Unity repo safe for agents)

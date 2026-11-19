@@ -100,7 +100,7 @@ lands in `Assets/`.
 | Stylized low-poly | 300 to 5k triangles a prop, flat or hard-edged normals, a palette | one shared gradient or palette atlas, vertex colours; huge batching wins |
 | PBR realism | budget by screen size, LODs, baked normals from a high poly | full texture sets (above), consistent texel density, lightmap UV1 for static props |
 | Toon (URP) | clean silhouettes, controlled normals (custom normals for faces) | Shader Graph or the Unity Toon Shader package, outlines by inverted hull or a renderer feature |
-| Pixel-3D | very low poly, sized to the pixel grid | point filtering, no mipmaps, small textures, a low-resolution render texture upscaled |
+| Pixel-3D | very low poly, sized to the pixel grid | point filtering, no mipmaps, small textures, a low-resolution render texture upscaled; camera and scaling recipe: [pixel-camera.md](pixel-camera.md) |
 
 ## Kits, texel density and naming
 
