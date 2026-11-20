@@ -148,6 +148,27 @@ Settings.
 - Audio (`*.wav.meta`, `AudioImporter`): `forceToMono` (on for spatialized sounds), `loadInBackground`,
   `preloadAudioData`, and in the sample settings `loadType`, `compressionFormat`, `quality`,
   `sampleRateSetting`. Music and loop decisions belong to musicwright-game when it is installed.
+  In the `.meta`, `loadType` is 0 Decompress On Load, 1 Compressed In Memory, 2 Streaming; `compressionFormat`
+  is 0 PCM, 1 Vorbis, 2 ADPCM. Flags worth a grep (Lanham, *Game Audio Development with Unity 5.x*, ch. 11):
+  a clip under about 2 s on Vorbis (decode CPU for nothing; PCM or ADPCM), a clip over about 30 s on Decompress
+  On Load (memory; Streaming or Compressed In Memory). Streaming trades memory for Streaming CPU.
+
+## Audio: cost and silence
+
+Checked against the Unity 6000.3 Audio Profiler and mixer pages (book is Unity 5 era; book's "Audio DSP" view
+is now DSP CPU in the module's Simple view, not a chart counter).
+
+- Profile: in Play mode find where Total Audio CPU peaks, pause, read DSP CPU in the Audio module's Simple
+  view, then bypass mixer effects one group at a time (each effect's Bypass, or the group's B button) and watch
+  it drop; then mute sources one by one. First check the peaks line up with frame drops at all.
+- Usual culprits: reverb and delay-family effects (SFX Reverb, Echo, Chorus, Flange) and Duck Volume. One
+  shared reverb on a return per mix, never one per source, prefab or FMOD event instance. Each Send copies the
+  signal; worth it only to feed a shared expensive effect. 3D spatialization costs DSP too: cap 3D sources and
+  lower Max Distance from the default 500. Repair filters belong offline in a DAW, not in the mixer.
+- Silent sound, checked in this order: an enabled AudioListener in the scene; source and GameObject enabled;
+  clip assigned; actually playing (Play On Awake or a script call); volume; output group not muted, no other
+  group soloed, group routed to Master; effects in order and reverb or duck on a return. FMOD: listener
+  present, banks built, event path current. Note: soloing a Receive unit silences it by design.
 
 ## Where the books disagree, and what this file keeps
 

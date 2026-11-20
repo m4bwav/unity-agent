@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261119-2 · 2026-11-19 · Audio cost and silent-sound checks
+- because: book harvest round 6 (Lanham, *Game Audio Development with Unity 5.x*, ch. 11), names checked against the Unity 6000.3 Audio Profiler and mixer manual pages
+- files: references/performance.md (Import settings to read; new section Audio: cost and silence), SKILL.md (Step 2 pointer)
+- Added the .meta enum values for loadType and compressionFormat with two grep flags, a bypass-by-group audio profiling routine, the expensive-effect list and a fixed silent-sound check order. The book's Audio DSP view is DSP CPU in the Simple view now.
+
 ### C-20261119-1 · 2026-11-19 · Pixel camera reference
 - because: R-20261119-1 (user request: technique harvest of the Murder engine's pixel camera and sharp-bilinear upscale)
 - files: references/pixel-camera.md (new), references/3d-models.md (styles table, Pixel-3D row)
