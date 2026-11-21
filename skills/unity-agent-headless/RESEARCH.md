@@ -50,6 +50,11 @@ Best sources (primary first): docs.unity3d.com Manual and package pages (fetch f
 
 ## Findings log
 
+### R-20261120-1 · 2026-11-20 · Official `unity test` CLI route; Unity 7 alpha a9 notes
+- Practice: a Unity staff Technical Article (2026-10-23) tells agents to run tests with `unity test . --mode EditMode --output results.xml` and `unity doctor` after updates, rather than raw batchmode; PlayMode still needs an Editor or player. Subject: 7000.0.0a9 speeds Test Framework result reporting and makes workers inherit the command-line graphics API; 6000.7.0a4/a5 fix Awaitable.NextFrameAsync hanging in batchmode (alpha only, held). Tooling: headless-unity-mcp (Shonas301) and small community test-runner skills, none used enough to delegate to: note. Testing: nothing new on exit 0 with compile errors; log markers still decide.
+- Sources: https://discussions.unity.com/t/tips-and-tricks-for-using-claude-code-codex-with-the-unity-cli/1740182; https://unity.com/releases/editor/alpha/7000.0.0a9; https://glama.ai/mcp/servers/Shonas301/headless-unity-mcp/tools/unity_test
+- Magnitude: 0.2 · applied: C-20261120-1
+
 ### R-20261113-1 · 2026-11-13 · Subject and testing: profiler command-line flags and the shader variant log lines
 - Summary: The 6000.3 Editor command-line page lists `-profiler-enable`, `-profiler-log-file <path>.raw` (Editor and players), `-profiler-capture-frame-count <N>` (players only), `-deepprofiling` and `-profiler-maxusedmemory`; the player page lists none of them. Run on 6000.3.10f1: Editor batchmode with the first two wrote a 30.3 MB `.raw`; a development player with all three (100 frames) wrote a 2.29 MB `.raw`. `-deepprofiling` and `-profiler-maxusedmemory` were not run. Variant counts: the shader-variants manual page and a real build log both show `Compiling shader "<name>"` blocks and per-pass `compiled N variants ... skipped M variants` lines; the book's `Compressed shader` line was not found and is not used. Details: unity-agent-workflow R-20261113-2.
 - Track: subject, testing
