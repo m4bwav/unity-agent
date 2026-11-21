@@ -55,6 +55,8 @@ Direct invocation, when the driver or `unity run` do not fit:
 - Shader variant count: a build's log has a `Compiling shader "<name>"` block per shader with `Full variant space:`, `After settings filtering:`, `After built-in stripping:` and `After scriptable stripping:` lines, then a line per pass ending `compiled <N> variants (<s> CPU time), skipped <M> variants.`; grep these to total variants per shader.
 - The first batchmode run after closing the Editor re-imports the Library and can take minutes; "Unable to upload symbols" in a build log is harmless.
 
+When the official Unity CLI is installed, Unity's own guidance for agents is `unity test . --mode EditMode --output results.xml` (see unity-agent-cli); the batchmode form below is the fallback and the route for PlayMode without the CLI.
+
 Tests from the command line (Unity Test Framework; in Unity 6 it is a core package fixed to the Editor version, 1.9 on 6.7; the 2.0 line was abandoned in 2022):
 
 ```

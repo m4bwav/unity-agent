@@ -4,6 +4,11 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261120-1 · 2026-11-20 · Point to the official `unity test` CLI before batchmode
+- because: R-20261120-1
+- files: SKILL.md (Tests from the command line)
+- One sentence names `unity test` (owned by unity-agent-cli) as Unity's recommended agent route, keeping batchmode as the fallback.
+
 ### C-20261113-1 · 2026-11-13 · Profiler flags, a frame-budget row and the shader variant log check
 - because: R-20261113-1 (user request: book harvest of Unity's Unity 6 profiling and optimization e-books)
 - files: SKILL.md (Step 1 table; Step 3 flags)
