@@ -4,6 +4,12 @@ Every change to [SKILL.md](SKILL.md) and its companions, newest first, each with
 
 Entry shape: `### C-YYYYMMDD-n · date · one-line summary`, then `because:` (IDs or "user request"), `files:` (file and section), and a sentence on what changed. Cite section headings, not line numbers.
 
+### C-20261121-1 · 2026-11-21 · Capture rounds and view stamps
+- because: technique harvest, a public r/ClaudeGameDev write-up of a Unity 6 planet renderer driven by Claude Code (render-judged changes, a location line on every screenshot, agent-written motion tools, floating origin with TAA)
+- files: SKILL.md Step 2 (after the state-dump recipe); references/capture-round.md (new)
+
+Visual changes get a before/after capture round with difference images; the view-stamp save and restore evals were checked on a live Unity 6.6 Editor (pose and fov round-trip exactly); the floating-origin TAA note is marked unverified.
+
 ### C-20261119-2 · 2026-11-19 · Audio cost and silent-sound checks
 - because: book harvest round 6 (Lanham, *Game Audio Development with Unity 5.x*, ch. 11), names checked against the Unity 6000.3 Audio Profiler and mixer manual pages
 - files: references/performance.md (Import settings to read; new section Audio: cost and silence), SKILL.md (Step 2 pointer)
