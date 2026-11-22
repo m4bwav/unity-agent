@@ -31,6 +31,8 @@ Rule: a red rung is never "pre-existing". When a test or compile check fails aft
 
 Recipe (state dump + replay fixture, rungs 3-4): the game writes plain-text state rows (id, actual, expected) at a set timestamp; a small recorded dataset replays with expected values saved in a file beside it. Diff the rows against that file in both live and replay modes, so the agent reads a short diff instead of screenshots or logs.
 
+Visual changes are verified by a capture round: the same named views before and after, a difference image per pair (threewright `tw diff`), pictures read first and numbers second, and a view file saved with every capture so a reported spot is reproduced at its exact view before anything changes. Snippets, motion-measuring tools and the floating-origin TAA trap: [references/capture-round.md](references/capture-round.md).
+
 Performance is verified like behaviour: a frame-time or allocation number from a capture against a stated budget, before and after, at the lowest rung that can produce it (rung 3: the Performance Testing package; rung 4: `ProfilerRecorder` counters written by the state-dump recipe). Procedure, marker table, code traps, settings keys, audio cost and the silent-sound check order: [references/performance.md](references/performance.md).
 
 Rule: `dotnet test` green is not a compile check for engine-side files; before claiming a rename or removal is safe, grep all of `Assets` for every affected symbol and run rung 2.
