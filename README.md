@@ -46,7 +46,7 @@ rather than carrying its own copy of the protocol. The skills work without that 
 The skills install nothing on their own: the Unity CLI, the Pipeline package, Unity's own skills,
 any MCP registration and a .NET SDK are all left to you to approve.
 
-As a Claude Code plugin:
+In Claude Code:
 
     /plugin marketplace add m4bwav/unity-agent
     /plugin install unity-agent@unity-agent
